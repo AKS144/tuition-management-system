@@ -16,4 +16,18 @@ class Menu extends Model
     protected $fillable = [
         'title'
     ];
+
+    /**
+     * Get the role associated with the menu
+     */
+    public function role(){
+        return $this->belongsToMany(Role::class, 'user_access_menu');
+    }
+
+    /**
+     * Get the menu list associated with the menu
+     */
+    public function menulist(){
+        return $this->hasMany(MenuList::class);
+    }
 }

@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Branch extends Model
+class MenuCollapseList extends Model
 {
     public $timestamps = FALSE;
     
@@ -14,13 +14,13 @@ class Branch extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'address', 'city'
+        'title', 'url', 'icon', 'is_active'
     ];
 
     /**
-     * Get the roles associated with the branch
+     * Get the role associated with the menu
      */
     public function role(){
-        return $this->belongsToMany(Role::class, 'user_access_branch');
+        return $this->belongsToMany(Role::class, 'user_access_menu_collapse_list');
     }
 }

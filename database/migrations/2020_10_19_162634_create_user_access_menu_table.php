@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMenuListsTable extends Migration
+class CreateUserAccessMenuTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,13 @@ class CreateMenuListsTable extends Migration
      */
     public function up()
     {
-        Schema::create('menu_lists', function (Blueprint $table) {
+        Schema::create('user_access_menu', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title');
-            $table->string('url');
-            $table->string('icon');
-            $table->bigInteger('is_active');
-            $table->bigInteger('is_collapsible');
             $table->bigInteger('menu_id')->unsigned();
+            $table->bigInteger('role_id')->unsigned();
 
             $table->foreign('menu_id')->references('id')->on('menus')->onDelete('cascade');
+            $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
         });
     }
 
@@ -33,6 +30,6 @@ class CreateMenuListsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('menu__lists');
+        Schema::dropIfExists('user_access_menu');
     }
 }
