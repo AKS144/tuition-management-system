@@ -14,10 +14,10 @@ class MenuSeeder extends Seeder
     {
         $menu = [
             [
-                'title' => 'Dashboard',
+                'title' => 'Overall',
             ],
             [
-                'title' => 'Create',
+                'title' => 'Interface',
             ],
             [
                 'title' => 'Manage',
