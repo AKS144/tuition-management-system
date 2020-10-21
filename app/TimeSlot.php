@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Attendance extends Model
+class TimeSlot extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -12,6 +12,6 @@ class Attendance extends Model
      * @var array
      */
     protected $fillable = [
-        'date', 'status', 'remarks', 'class_student_id'
+        'start_time', 'end_time'
     ];
 }

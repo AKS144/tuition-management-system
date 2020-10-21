@@ -44,11 +44,4 @@ class Role extends Model
     public function menulist(){
         return $this->belongsToMany(MenuList::class, 'user_access_menu_list');
     }
-
-    /**
-     * Get the menu collapsible list associated with the roles
-     */
-    public function menuCollapsibleList(){
-        return $this->belongsToMany(MenuCollapsibleList::class, 'user_access_menu_collapse_list');
-    }
 }

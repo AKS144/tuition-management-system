@@ -23,4 +23,11 @@ class Branch extends Model
     public function role(){
         return $this->belongsToMany(Role::class, 'user_access_branch');
     }
+
+    /**
+     * Get the student associated with the branch
+     */
+    public function student(){
+        return $this->hasMany(Student::class);
+    }
 }

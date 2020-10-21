@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateClassroomsTable extends Migration
+class CreateTimeSlotsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,11 @@ class CreateClassroomsTable extends Migration
      */
     public function up()
     {
-        Schema::create('classrooms', function (Blueprint $table) {
+        Schema::create('time_slots', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('code');
-            $table->string('name');
-            $table->bigInteger('batch_year');
-            $table->bigInteger('tutor_id')->unsigned();
+            $table->bigInteger('start_time');
+            $table->bigInteger('end_time');
             $table->timestamps();
-
-            $table->foreign('tutor_id')->references('id')->on('tutors')->onDelete('cascade');
         });
     }
 
@@ -32,6 +28,6 @@ class CreateClassroomsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('classrooms');
+        Schema::dropIfExists('time_slots');
     }
 }

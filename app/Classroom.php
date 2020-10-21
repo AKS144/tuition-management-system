@@ -12,6 +12,13 @@ class Classroom extends Model
      * @var array
      */
     protected $fillable = [
-        'code', 'name', 'batch_year'
+        'code', 'name', 'batch_year', 
     ];
+
+    /**
+     * Get the tutor associated with the classroom
+     */
+    public function tutor(){
+        return $this->belongsTo(Tutor::class);
+    }
 }

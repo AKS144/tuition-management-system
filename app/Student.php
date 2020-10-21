@@ -14,4 +14,11 @@ class Student extends Model
     protected $fillable = [
         'full_name', 'nric', 'age', 'level', 'mobile_no', 'date_joined', 'status'
     ];
+
+    /**
+     * Get the branch associated with the student
+     */
+    public function branch(){
+        return $this->belongsTo(Branch::class);
+    }
 }
