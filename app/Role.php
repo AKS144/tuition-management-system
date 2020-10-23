@@ -25,13 +25,6 @@ class Role extends Model
     }
 
     /**
-     * Get the branch associated with the roles
-     */
-    public function branch(){
-        return $this->belongsToMany(Branch::class, 'user_access_branch');
-    }
-
-    /**
      * Get the menu title associated with the roles
      */
     public function menu(){

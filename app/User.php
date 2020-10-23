@@ -47,6 +47,13 @@ class User extends Authenticatable
      * Get the roles associated with the user
      */
     public function roles(){
-        return $this->belongsTo('App\Role');
+        return $this->belongsTo(Role::class);
+    }
+
+    /**
+     * Get the branch associated with the user
+     */
+    public function branch(){
+        return $this->belongsToMany(Branch::class, 'branch_user');
     }
 }

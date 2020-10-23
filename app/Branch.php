@@ -18,10 +18,17 @@ class Branch extends Model
     ];
 
     /**
-     * Get the roles associated with the branch
+     * Get the user associated with the branch
      */
-    public function role(){
-        return $this->belongsToMany(Role::class, 'user_access_branch');
+    public function user(){
+        return $this->belongsToMany(User::class, 'branch_user');
+    }
+
+    /**
+     * Get the venue associated with the branch
+     */
+    public function venue(){
+        return $this->belongsToMany(Venue::class, 'branch_venues');
     }
 
     /**

@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             MenuCollapsibleListSeeder::class,
             DaySeeder::class,
             TimeSlotSeeder::class,
+            VenueSeeder::class,
         ]);
     }
 }

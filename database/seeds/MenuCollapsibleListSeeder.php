@@ -127,12 +127,6 @@ class MenuCollapsibleListSeeder extends Seeder
                 'icon' => 'gear',
                 'is_active' => '1',
             ],
-            [
-                'title' => 'Logout',
-                'url' => 'logout',
-                'icon' => 'gear',
-                'is_active' => '1',
-            ],
         ];
 
         foreach($menu as $key => $value) {

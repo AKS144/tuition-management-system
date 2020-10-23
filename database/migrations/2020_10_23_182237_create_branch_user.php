@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserAccessBranchTable extends Migration
+class CreateBranchUser extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateUserAccessBranchTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_access_branch', function (Blueprint $table) {
+        Schema::create('branch_user', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('branch_id')->unsigned();
-            $table->bigInteger('role_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned();
 
             $table->foreign('branch_id')->references('id')->on('branches')->onDelete('cascade');
-            $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -30,6 +30,6 @@ class CreateUserAccessBranchTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_access_branch');
+        Schema::dropIfExists('branch_user');
     }
 }
