@@ -14,4 +14,11 @@ class Attendance extends Model
     protected $fillable = [
         'date', 'status', 'remarks', 'class_student_id'
     ];
+
+    /**
+     * Get the roles associated with the user
+     */
+    public function classAttendance(){
+        return $this->belongsTo(Classroom::class);
+    }
 }
