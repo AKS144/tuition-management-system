@@ -29,4 +29,25 @@ class SubjectLevel extends Model
     public function package(){
         return $this->belongsToMany(Package::class, 'subject_level_package');
     }
+
+    /**
+     * Get the exam associated with the subject level
+     */
+    public function examType(){
+        return $this->hasMany(Exam::class);
+    }
+
+    /**
+     * Get the level associated with the subject level
+     */
+    public function level(){
+        return $this->hasMany(Level::class);
+    }
+
+    /**
+     * Get the subject type associated with the subject level
+     */
+    public function subject(){
+        return $this->hasMany(Subject::class);
+    }
 }

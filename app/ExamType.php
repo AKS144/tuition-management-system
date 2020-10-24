@@ -14,4 +14,11 @@ class ExamType extends Model
     protected $fillable = [
         'name', 'description'
     ];
+
+    /**
+     * Get the exam associated with the exam type
+     */
+    public function exam(){
+        return $this->belongsTo(Exam::class);
+    }
 }

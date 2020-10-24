@@ -12,13 +12,16 @@ class Attendance extends Model
      * @var array
      */
     protected $fillable = [
-        'date', 'status', 'remarks', 'class_student_id'
+        'date', 
+        'status', 
+        'remarks', 
+        'class_student_id'
     ];
 
     /**
-     * Get the roles associated with the user
+     * Get the classroom student associated with the attendance
      */
     public function classAttendance(){
-        return $this->belongsTo(Classroom::class);
+        return $this->belongsTo(ClassroomStudent::class);
     }
 }

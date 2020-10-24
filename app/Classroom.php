@@ -12,7 +12,10 @@ class Classroom extends Model
      * @var array
      */
     protected $fillable = [
-        'code', 'name', 'batch_year', 
+        'code', 
+        'name', 
+        'batch_year',
+        'tutor_id', 
     ];
 
     /**
@@ -20,5 +23,19 @@ class Classroom extends Model
      */
     public function tutor(){
         return $this->belongsTo(Tutor::class);
+    }
+
+    /**
+     * Get the student associated with the classroom
+     */
+    public function student(){
+        return $this->belongsToMany(Student::class, 'classroom_student');
+    }
+
+    /**
+     * Get the schedule associated with the classroom
+     */
+    public function schedule(){
+        return $this->belongsToMany(Schedule::class, 'classroom_schedule');
     }
 }

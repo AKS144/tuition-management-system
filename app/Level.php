@@ -21,4 +21,11 @@ class Level extends Model
     public function subject(){
         return $this->belongsToMany(Subject::class, 'subject_levels');
     }
+
+    /**
+     * Get the subject level associated with the level
+     */
+    public function subjectLevel(){
+        return $this->belongsTo(SubjectLevel::class);
+    }
 }

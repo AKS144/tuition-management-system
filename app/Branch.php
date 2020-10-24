@@ -37,4 +37,11 @@ class Branch extends Model
     public function student(){
         return $this->hasMany(Student::class);
     }
+
+    /**
+     * Get the tutor associated with the branch
+     */
+    public function tutor(){
+        return $this->hasMany(Tutor::class);
+    }
 }

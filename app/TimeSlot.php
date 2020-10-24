@@ -12,6 +12,14 @@ class TimeSlot extends Model
      * @var array
      */
     protected $fillable = [
-        'start_time', 'end_time'
+        'start_time', 
+        'end_time'
     ];
+
+    /**
+     * Get the DayTimeSlot associated with the timeslot
+     */
+    public function dayTimeSlot(){
+        return $this->belongsTo(DayTimeSlot::class);
+    }
 }

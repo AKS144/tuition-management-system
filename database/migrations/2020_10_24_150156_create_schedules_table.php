@@ -16,11 +16,10 @@ class CreateSchedulesTable extends Migration
         Schema::create('schedules', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('day_time_slot_id')->unsigned();
-            $table->bigInteger('is_recurring');
-            $table->bigInteger('frequency');
-            $table->timestamps();
+            $table->bigInteger('branch_venue_id')->unsigned();
 
             $table->foreign('day_time_slot_id')->references('id')->on('day_time_slots')->onDelete('cascade');
+            $table->foreign('branch_venue_id')->references('id')->on('branch_venues')->onDelete('cascade');
         });
     }
 

@@ -22,6 +22,7 @@ class CreateStudentsTable extends Migration
             $table->bigInteger('mobile_no');
             $table->bigInteger('status');
             $table->bigInteger('branch_id')->unsigned();
+            $table->dateTime('date_joined');
             $table->timestamps();
 
             $table->foreign('branch_id')->references('id')->on('branches')->onDelete('cascade');

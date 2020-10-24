@@ -14,4 +14,11 @@ class Day extends Model
     protected $fillable = [
         'name'
     ];
+
+    /**
+     * Get the DayTimeSlot associated with the day
+     */
+    public function dayTimeSlot(){
+        return $this->belongsTo(DayTimeSlot::class);
+    }
 }
