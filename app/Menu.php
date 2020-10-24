@@ -21,7 +21,7 @@ class Menu extends Model
      * Get the role associated with the menu
      */
     public function role(){
-        return $this->belongsToMany(Role::class, 'user_access_menu');
+        return $this->belongsToMany(Role::class, 'menu_role');
     }
 
     /**

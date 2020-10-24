@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Subject extends Model
+class Level extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -12,13 +12,13 @@ class Subject extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'code'
+        'name'
     ];
 
     /**
-     * Get the level list associated with the subject
+     * Get the subject list associated with the level
      */
-    public function level(){
-        return $this->belongsToMany(Level::class, 'subject_levels');
+    public function subject(){
+        return $this->belongsToMany(Subject::class, 'subject_levels');
     }
 }

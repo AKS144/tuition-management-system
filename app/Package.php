@@ -14,4 +14,18 @@ class Package extends Model
     protected $fillable = [
         'name', 'level'
     ];
+
+    /**
+     * Get the subject level associated with the package
+     */
+    public function subjectLevel(){
+        return $this->belongsToMany(SubjectLevel::class, 'subject_level_package');
+    }
+
+    /**
+     * Get the student associated with the package
+     */
+    public function student(){
+        return $this->belongsToMany(Student::class, 'student_package');
+    }
 }

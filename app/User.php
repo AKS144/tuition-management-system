@@ -56,4 +56,11 @@ class User extends Authenticatable
     public function branch(){
         return $this->belongsToMany(Branch::class, 'branch_user');
     }
+
+    /**
+     * Get the payment associated with the user
+     */
+    public function payment(){
+        return $this->hasMany(Payment::class);
+    }
 }

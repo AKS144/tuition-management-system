@@ -28,6 +28,13 @@ class MenuList extends Model
      * Get the roles associated with the menu list
      */
     public function role(){
-        return $this->belongsToMany(Role::class, 'user_access_menu_list');
+        return $this->belongsToMany(Role::class, 'menu_list_role');
+    }
+
+    /**
+     * Get the collapsible menu associated with the menu list
+     */
+    public function menuCollapsibleList(){
+        return $this->hasMany(MenuCollapseList::class);
     }
 }

@@ -21,4 +21,18 @@ class Student extends Model
     public function branch(){
         return $this->belongsTo(Branch::class);
     }
+
+    /**
+     * Get the payment associated with the student
+     */
+    public function payment(){
+        return $this->belongsToMany(Payment::class, 'student_payment');
+    }
+
+    /**
+     * Get the package associated with the student
+     */
+    public function package(){
+        return $this->belongsToMany(Package::class, 'student_package');
+    }
 }
