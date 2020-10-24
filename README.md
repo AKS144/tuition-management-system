@@ -35,7 +35,9 @@ If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Lar
 - rename `.env.example` file to `.env` inside your project root and fill the database information. (Windows wont let you do it, so you have to open your console, cd to the project root directory and run `mv .env.example .env`)
 - open the console and cd to your project root directory
 - run `composer install`
+- run `php artisan passport:install`
 - run `php artisan key:generate`
+- run `php artisan passport:client` if needed. Please refer to this [documentation](https://laravel.com/docs/8.x/passport#the-passportclient-command) for more info 
 - run `php artisan migrate:fresh --seed`. This will rn the migration file and seeder, if any.
 - run `php artisan serve`
 - the project will be accessible at localhost:8000
