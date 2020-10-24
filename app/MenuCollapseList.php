@@ -18,9 +18,9 @@ class MenuCollapseList extends Model
     ];
 
     /**
-     * Get the role associated with the menu
+     * Get the menu list titlw associated with the collapsible menu
      */
-    public function role(){
-        return $this->belongsToMany(Role::class, 'user_access_menu_collapse_list');
+    public function menuList(){
+        return $this->belongsTo(MenuList::class);
     }
 }

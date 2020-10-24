@@ -18,7 +18,10 @@ class CreateClassroomsTable extends Migration
             $table->string('code');
             $table->string('name');
             $table->bigInteger('batch_year');
+            $table->bigInteger('tutor_id')->unsigned();
             $table->timestamps();
+
+            $table->foreign('tutor_id')->references('id')->on('tutors')->onDelete('cascade');
         });
     }
 

@@ -18,12 +18,16 @@ class CreateTutorsTable extends Migration
             $table->string('full_name');
             $table->bigInteger('mobile_no');
             $table->bigInteger('age');
+            $table->string('nric');
             $table->string('address');
             $table->bigInteger('experience');
             $table->dateTime('date_employed');
             $table->bigInteger('status');
             $table->bigInteger('is_active');
+            $table->bigInteger('branch_id')->unsigned();
             $table->timestamps();
+
+            $table->foreign('branch_id')->references('id')->on('branches')->onDelete('cascade');
         });
     }
 

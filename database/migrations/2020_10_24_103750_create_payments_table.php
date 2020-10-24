@@ -20,7 +20,10 @@ class CreatePaymentsTable extends Migration
             $table->bigInteger('status');
             $table->string('description');
             $table->dateTime('date_pay');
+            $table->bigInteger('user_id')->unsigned();
             $table->timestamps();
+            
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

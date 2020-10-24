@@ -14,6 +14,16 @@ class Parents extends Model
      * @var array
      */
     protected $fillable = [
-        'full_name', 'mobile_no', 'address'
+        'full_name', 
+        'mobile_no', 
+        'address',
+        'nric',
     ];
+
+    /**
+     * Get the student associated with the parent
+     */
+    public function student(){
+        return $this->belongsToMany(Student::class, 'parent_student');
+    }
 }

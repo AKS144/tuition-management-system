@@ -5,10 +5,11 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, HasApiTokens;
 
     /**
      * The attributes that are mass assignable.
@@ -16,7 +17,12 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'full_name', 'email', 'password', 'is_active', 'role_id', 'image'
+        'full_name', 
+        'email', 
+        'password', 
+        'is_active', 
+        'role_id', 
+        'image'
     ];
 
     /**
@@ -41,6 +47,20 @@ class User extends Authenticatable
      * Get the roles associated with the user
      */
     public function roles(){
-        return $this->belongsTo('App\Role');
+        return $this->belongsTo(Role::class);
+    }
+
+    /**
+     * Get the branch associated with the user
+     */
+    public function branch(){
+        return $this->belongsToMany(Branch::class, 'branch_user');
+    }
+
+    /**
+     * Get the payment associated with the user
+     */
+    public function payment(){
+        return $this->hasMany(Payment::class);
     }
 }
