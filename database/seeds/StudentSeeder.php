@@ -11,6 +11,7 @@ class StudentSeeder extends Seeder
      */
     public function run()
     {
-        factory('App\Student', 50)->create();
+        factory('App\Student', 50)->create()->each(function ($student){
+        });
     }
 }

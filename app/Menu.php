@@ -20,7 +20,7 @@ class Menu extends Model
     /**
      * Get the role associated with the menu
      */
-    public function role(){
+    public function roles(){
         return $this->belongsToMany(Role::class, 'menu_role');
     }
 

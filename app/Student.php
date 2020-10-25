@@ -45,7 +45,7 @@ class Student extends Model
     /**
      * Get the student associated with the parent
      */
-    public function parent(){
+    public function parents(){
         return $this->belongsToMany(Parent::class, 'parent_student');
     }
 

@@ -30,7 +30,7 @@ class Payment extends Model
     /**
      * Get the student associated with the payment
      */
-    public function student(){
+    public function students(){
         return $this->belongsToMany(Student::class, 'student_payment');
     }
 }

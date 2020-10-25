@@ -20,14 +20,14 @@ class Branch extends Model
     /**
      * Get the user associated with the branch
      */
-    public function user(){
+    public function users(){
         return $this->belongsToMany(User::class, 'branch_user');
     }
 
     /**
      * Get the venue associated with the branch
      */
-    public function venue(){
+    public function venues(){
         return $this->belongsToMany(Venue::class, 'branch_venues');
     }
 

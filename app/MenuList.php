@@ -27,7 +27,7 @@ class MenuList extends Model
     /**
      * Get the roles associated with the menu list
      */
-    public function role(){
+    public function roles(){
         return $this->belongsToMany(Role::class, 'menu_list_role');
     }
 

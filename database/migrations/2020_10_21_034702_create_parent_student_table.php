@@ -15,10 +15,10 @@ class CreateParentStudentTable extends Migration
     {
         Schema::create('parent_student', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('parent_id')->unsigned();
+            $table->bigInteger('parents_id')->unsigned();
             $table->bigInteger('student_id')->unsigned();
 
-            $table->foreign('parent_id')->references('id')->on('parents')->onDelete('cascade');
+            $table->foreign('parents_id')->references('id')->on('parents')->onDelete('cascade');
             $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
         });
     }
