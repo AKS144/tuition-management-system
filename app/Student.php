@@ -18,7 +18,8 @@ class Student extends Model
         'level', 
         'mobile_no', 
         'date_joined', 
-        'status'
+        'status',
+        'branch_id',
     ];
 
     /**
