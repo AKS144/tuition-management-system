@@ -2,30 +2,38 @@
 
 ```bash
 ├── views
+│   ├── auth
+│   │   ├── password
+│   │   │   ├── email.blade.php
+│   │   │   ├── reset.blade.php
+│   │   ├── login.blade.php
+│   │   ├── register.blade.php
+│   │   ├── verify.blade.php
 │   ├── layouts
-│   │   ├── default.balde.php
+│   │   ├── default.blade.php
 │   │   ├── sidebar.blade.php
 │   ├── includes
 │   │   ├── head.blade.php
 │   │   ├── header.blade.php
-│   │   ├── sidebar.balde.php
+│   │   ├── sidebar.blade.php
 │   │   ├── navbar.blade.php
-│   │   ├── breadcrumb.balde.php
+│   │   ├── breadcrumb.blade.php
 │   │   ├── modal.blade.php
 │   ├── pages
 │   │   ├── student
-│   │   │  ├── index.balde.php
-│   │   │  ├── create.balde.php
-│   │   │  ├── show.balde.php
-│   │   │  ├── edit.balde.php
+│   │   │   ├── index.blade.php
+│   │   │   ├── create.blade.php
+│   │   │   ├── show.blade.php
+│   │   │   ├── edit.blade.php
 │   │   ├── user
-│   │   │  ├── index.balde.php
-│   │   │  ├── create.balde.php
-│   │   │  ├── show.balde.php
-│   │   │  ├── edit.balde.php
+│   │   │   ├── index.blade.php
+│   │   │   ├── create.blade.php
+│   │   │   ├── show.blade.php
+│   │   │   ├── edit.blade.php
 │   │   ├── subject
 │   │   ├── tutor
 │   │   ├── package
 │   │   ├── payment
 │   │   ├── schedule
 │   │   ├── class
+│   │   ├── parent
