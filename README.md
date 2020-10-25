@@ -27,6 +27,21 @@ Laravel has the most extensive and thorough [documentation](https://laravel.com/
 
 If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
+## How To Run Laravel Project Locally
+
+- run localhost server  (eg: XAMPP, Laragon)
+- create a database locally named `tuition`
+- clone repository
+- rename `.env.example` file to `.env` inside your project root and fill the database information. (Windows wont let you do it, so you have to open your console, cd to the project root directory and run `mv .env.example .env`)
+- open the console and cd to your project root directory
+- run `composer install`
+- run `php artisan passport:install`
+- run `php artisan key:generate`
+- run `php artisan passport:client --personal` if needed. Please refer to this [documentation](https://laravel.com/docs/8.x/passport#the-passportclient-command) for more info 
+- run `php artisan migrate:fresh --seed`. This will rn the migration file and seeder, if any.
+- run `php artisan serve`
+- the project will be accessible at localhost:8000
+
 ## Laravel Sponsors
 
 We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
