@@ -21,5 +21,30 @@
         "sass": "^1.15.2",
         "sass-loader": "^8.0.0",
         "vue-template-compiler": "^2.6.12"
+    },
+    "dependencies": {
+        "@fortawesome/fontawesome-svg-core": "^1.2.32",
+        "@fortawesome/free-regular-svg-icons": "^5.15.1",
+        "@fortawesome/free-solid-svg-icons": "^5.15.1",
+        "@fortawesome/vue-fontawesome": "^2.0.0",
+        "chart.js": "^2.9.4",
+        "guid": "0.0.12",
+        "moment": "^2.29.1",
+        "sweet-modal-vue": "^2.0.0",
+        "sweetalert": "^2.1.2",
+        "toastr": "^2.1.4",
+        "v-money": "^0.8.1",
+        "v-tooltip": "^2.0.3",
+        "vue": "^2.6.12",
+        "vue-avatar-cropper": "^1.0.9",
+        "vue-i18n": "^8.22.1",
+        "vue-multiselect": "^2.1.6",
+        "vue-router": "^3.4.8",
+        "vue-tabs-component": "^1.5.0",
+        "vue2-dropzone": "^3.6.0",
+        "vuedraggable": "^2.24.3",
+        "vuejs-datepicker": "^1.6.2",
+        "vuelidate": "^0.7.6",
+        "vuex": "^3.5.1"
     }
 }
