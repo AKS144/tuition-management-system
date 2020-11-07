@@ -12,7 +12,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            RoleSeeder::class,
+            RoleTableSeeder::class,
             CreateUserSeeder::class,
             BranchSeeder::class,
             MenuSeeder::class,
@@ -29,24 +29,8 @@ class DatabaseSeeder extends Seeder
             SubjectSeeder::class,
             ExamTypeSeeder::class,
             ClassroomSeeder::class,
+            PermissionTableSeeder::class,
         ]);
-
-        // Get all the roles attaching to each menu/menuList
-        $roles = App\Role::all();
-
-        // Populate menu_role table
-        App\Menu::all()->each(function ($menu) use ($roles) {
-            $menu->roles()->attach(
-                $roles->random(rand(1, $roles->count()))->pluck('id')->toArray()
-            );
-        });
-
-        // Popoulate menu_list_role table
-        App\MenuList::all()->each(function ($menuList) use ($roles) {
-            $menuList->roles()->attach(
-                $roles->random(rand(1, $roles->count()))->pluck('id')->toArray()
-            );
-        });
 
         // Get all the user attaching to each branch
         $users = App\User::all();
