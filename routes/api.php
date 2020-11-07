@@ -20,7 +20,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['prefix' => 'v1'], function () {
     Route::post('/login', 'API\AuthController@login');
     Route::post('/register', 'API\AuthController@register');
-    Route::get('/logout', 'API\AuthController@logout')->middleware('auth:api');
 
-    Route::apiResource('/student', 'API\StudentController')->middleware('auth:api');
+    Route::group(['middleware' => 'auth:api'], function() {
+        Route::get('/logout', 'API\AuthController@logout');
+        Route::apiResource('/student', 'API\StudentController');
+    });
 });
