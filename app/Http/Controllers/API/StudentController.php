@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Validator;
 
 class StudentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['permission:student-create|student-list|student-edit|student-delete']);
+    }
+
     /**
      * Display a listing of the resource.
      *
