@@ -70,18 +70,34 @@ export default {
     },
     validations: {
         loginData: {
-        email: {
-            required,
-            email
-        },
-        password: {
-            required,
-            minLength: minLength(8)
-        }
+            email: {
+                required,
+                email
+            },
+            password: {
+                required,
+                minLength: minLength(7)
+            }
         }
     },
     methods: {
+        ...mapActions('auth', [
+        'login'
+        ]),
+        async validateBeforeSubmit () {
+        this.$v.loginData.$touch()
+        if (this.$v.$invalid) {
+            return true
+        }
 
+        this.isLoading = true
+        this.login(this.loginData).then((res) => {
+            this.$router.push('/dashboard')
+            this.isLoading = false
+        }).catch(() => {
+            this.isLoading = false
+        })
+        }
     }
 }
 </script>
