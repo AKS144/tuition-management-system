@@ -5,7 +5,7 @@ import * as getters from './getters'
 import mutations from './mutations'
 import actions from './actions'
 
-
+import auth from './modules/auth'
 
 Vue.use(Vuex)
 
@@ -18,8 +18,9 @@ export default new Vuex.Store({
     state: initialState,
     getters,
     mutations,
+    actions,
 
-    modules: {
-
+    modules: {  
+        auth
     }
 })
