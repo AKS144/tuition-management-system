@@ -20,6 +20,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['prefix' => 'v1'], function () {
     Route::post('/login', 'API\AuthController@login');
     Route::post('/register', 'API\AuthController@register');
+    Route::post('/password/forgot', 'API\AuthController@forgot');
+    Route::post('/password/reset', 'API\AuthController@reset');
 
     Route::group(['middleware' => 'auth:api'], function() {
         Route::get('/logout', 'API\AuthController@logout');

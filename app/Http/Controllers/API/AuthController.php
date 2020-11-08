@@ -78,4 +78,60 @@ class AuthController extends Controller
             ], 401);
         }
     }
+
+    public function forgot(Request $request){
+        $forgotData = $request->validate([
+            'email' => 'email|required'
+        ]);
+
+        $validator = Validator::make($request->all(), $forgotData);
+
+        if($validator->fails()){
+            return response()->json([
+                'status' => false,
+                'error' => $validator->errors()
+            ], 401);
+        }
+
+        Password::sendResetLink($forgotData);
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Reset password link sent on your email id.',
+        ], 200);
+    }
+
+    public function reset(Request $request){
+        $resetData = $request->validate([
+            'email' => 'email|required',
+            'token' => 'required|string',
+            'password' => 'required|string|confirmed'
+        ]);
+
+        $validator = Validator::make($request->all(), $resetData);
+
+        if($validator->fails()){
+            return response()->json([
+                'status' => false,
+                'error' => $validator->errors()
+            ], 400);
+        }
+
+        $reset_password_status = Password::reset($resetData, function ($user, $password) {
+            $user->password = $password;
+            $user->save();
+        });
+
+        if ($reset_password_status == Password::INVALID_TOKEN) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Invalid token provided'
+            ], 400);
+        }
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Password has been successfully changed',
+        ], 200);
+    }
 }
