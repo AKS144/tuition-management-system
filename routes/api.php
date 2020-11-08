@@ -21,10 +21,11 @@ Route::group(['prefix' => 'v1'], function () {
     Route::post('/login', 'API\AuthController@login');
     Route::post('/register', 'API\AuthController@register');
     Route::post('/password/forgot', 'API\AuthController@forgot');
-    Route::post('/password/reset', 'API\AuthController@reset');
 
     Route::group(['middleware' => 'auth:api'], function() {
         Route::get('/logout', 'API\AuthController@logout');
+        Route::post('/password/reset', 'API\AuthController@reset');
+
         Route::apiResource('/student', 'API\StudentController');
         Route::apiResource('/user', 'API\UserController');
         Route::apiResource('/tutor', 'API\TutorController');

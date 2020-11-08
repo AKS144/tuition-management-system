@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -22,7 +23,7 @@ class AuthController extends Controller
             return response()->json([
                 'status' => false,
                 'error' => $validator->errors()
-            ], 401);
+            ], 422);
         }
 
         $input = $request->all();
@@ -33,8 +34,6 @@ class AuthController extends Controller
         return response()->json([
             'status' => true,
             'user' => $user,
-            // 'access_token' => $accessToken,
-            'status_code' => 1000
         ], 200);
     }
 
@@ -43,24 +42,31 @@ class AuthController extends Controller
             'email' => 'email|required',
             'password' => 'required'
         ]);
-        
-        // If authentication is unsuccessful
-        if(!auth()->attempt($loginData)){
+
+        $user = User::where('email', $request->email)->first();
+
+        if($user){
+            if(Hash::check($request->password, $user->password)){
+                $accessToken = auth()->user()->createToken('authtoken')->accessToken;
+
+                // successful authentication
+                return response()->json([
+                    'status' => true,
+                    'user' => auth()->user(),
+                    'access_token' => $accessToken
+                ], 200);
+            } else {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Password mismatch'
+                ], 422);
+            }
+        } else {
             return response()->json([
                 'status' => false,
-                'message' => 'invalid Credentials',
-                'status_code' => 1001
-            ], 401);
+                'message' => 'User does not exist!'
+            ], 422);
         }
-
-        $accessToken = auth()->user()->createToken('authtoken')->accessToken;
-
-        // successful authentication
-        return response()->json([
-            'status' => true,
-            'user' => auth()->user(),
-            'access_token' => $accessToken
-        ], 200);
     }
 
     public function logout(Request $request){
@@ -69,13 +75,13 @@ class AuthController extends Controller
 
             return response([
                 'status' => true,
-                'message' => 'Logout successsfully'
+                'message' => 'You have been successfully logged out!'
             ], 200);
         } else {
             return response([
                 'status' => false,
                 'message' => 'Unable to logout'
-            ], 401);
+            ], 422);
         }
     }
 
