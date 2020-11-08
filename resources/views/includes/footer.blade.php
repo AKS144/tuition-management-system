@@ -1,1 +1,0 @@
-<div id="copyright text-right">© Copyright 2020 Tuisyen Management System</div>
