@@ -12,7 +12,10 @@ class StudentController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['permission:student-create|student-list|student-edit|student-delete']);
+        $this->middleware(['permission:student-list'], ['only' => ['index']]);
+        $this->middleware(['permission:student-create'], ['only' => ['store']]);
+        $this->middleware(['permission:student-edit'], ['only' => ['update']]);
+        $this->middleware(['permission:student-delete'], ['only' => ['destroy']]);
     }
 
     /**
