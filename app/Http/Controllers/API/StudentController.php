@@ -30,13 +30,13 @@ class StudentController extends Controller
 
             return response([
                 'status' => true,
-                'message' => 'User successfully retrieved',
+                'message' => 'Student successfully retrieved',
                 'data' => StudentResource::collection($student),
             ], 200);
         } else {
             return response([
                 'status' => false,
-                'message' => 'Failed to retrieved user data'
+                'message' => 'Failed to retrieved student data'
             ], 401);
         }
     }
@@ -62,7 +62,7 @@ class StudentController extends Controller
         if($validator->fails()){
             return response([
                 'status' => false,
-                'error' => $validator->error(),
+                'error' => $validator->errors(),
                 'message' => 'Validation Error'
             ], 401);
         }
@@ -72,7 +72,7 @@ class StudentController extends Controller
         return response([
             'status' => true,
             'data' => new StudentResource($student),
-            'message' => 'User successfully created',
+            'message' => 'Student successfully created',
         ], 200);
     }
 
@@ -87,13 +87,13 @@ class StudentController extends Controller
         if(auth()->user()){
             return response([
                 'status' => true,
-                'message' => 'User successfully retrieved',
+                'message' => 'Student successfully retrieved',
                 'data' => new StudentResource($student),
             ], 200);
         } else {
             return response([
                 'status' => false,
-                'message' => 'Failed to view the user details'
+                'message' => 'Failed to view the student details'
             ], 401);
         }
     }
@@ -112,13 +112,13 @@ class StudentController extends Controller
 
             return response([
                 'status' => true,
-                'message' => 'User successfully updated',
+                'message' => 'Student successfully updated',
                 'data' => new StudentResource($student),
             ], 200);
         } else {
             return response([
                 'status' => false,
-                'message' => 'Failed to update the user'
+                'message' => 'Failed to update the student'
             ], 401);
         }
     }
@@ -136,12 +136,12 @@ class StudentController extends Controller
 
             return response([
                 'status' => true,
-                'message' => 'User successfully deleted'
+                'message' => 'Student successfully deleted'
             ], 200);
         } else {
             return response([
                 'status' => false,
-                'message' => 'Failed to delete the user'
+                'message' => 'Failed to delete the student'
             ], 401);
         }
     }

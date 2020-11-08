@@ -24,5 +24,7 @@ Route::group(['prefix' => 'v1'], function () {
     Route::group(['middleware' => 'auth:api'], function() {
         Route::get('/logout', 'API\AuthController@logout');
         Route::apiResource('/student', 'API\StudentController');
+        Route::apiResource('/user', 'API\UserController');
+        Route::apiResource('/tutor', 'API\TutorController');
     });
 });
