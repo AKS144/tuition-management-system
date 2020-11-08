@@ -47,12 +47,12 @@ class AuthController extends Controller
 
         if($user){
             if(Hash::check($request->password, $user->password)){
-                $accessToken = auth()->user()->createToken('authtoken')->accessToken;
+                $accessToken = $user->createToken('authtoken')->accessToken;
 
                 // successful authentication
                 return response()->json([
                     'status' => true,
-                    'user' => auth()->user(),
+                    'user' => $user,
                     'access_token' => $accessToken
                 ], 200);
             } else {
