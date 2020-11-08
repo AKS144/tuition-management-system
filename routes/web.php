@@ -11,16 +11,19 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/{vue?}', function () {
+    return view('app');
+})->where('vue', '[\/\w\.-]*');
 
-Auth::routes();
+// Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
+// Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
-Route::group(['middleware' => ['auth']], function() {
-    Route::resources('roles', 'RoleController');
-    Route::resources('users', 'UserController');
-    Route::resources('tutor', 'TutorController');
-});
+// Route::group(['middleware' => ['auth']], function() {
+//     Route::resources('roles', 'RoleController');
+//     Route::resources('users', 'UserController');
+//     Route::resources('tutor', 'TutorController');
+// });
+// Auth::routes();
+
+// Route::get('/home', 'HomeController@index')->name('home');

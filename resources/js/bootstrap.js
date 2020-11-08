@@ -1,55 +1,134 @@
+import VueRouter from 'vue-router'
+import Vuex from 'vuex'
+import Ls from './services/ls'
+import store from './store/index.js'
+import Vue from 'vue'
+import Vuelidate from 'vuelidate'
+import VDropdown from './components/dropdown/VDropdown.vue'
+import VDropdownItem from './components/dropdown/VDropdownItem.vue'
+import VDropdownDivider from './components/dropdown/VDropdownDivider.vue'
+import DotIcon from './components/icon/DotIcon.vue'
+import CustomerModal from './components/base/modal/CustomerModal.vue'
+import TaxTypeModal from './components/base/modal/TaxTypeModal.vue'
+import CategoryModal from './components/base/modal/CategoryModal.vue'
+import money from 'v-money'
+import VTooltip from 'v-tooltip'
+
+/**
+ * Global css plugins
+ */
+import 'vue-tabs-component/docs/resources/tabs-component.css'
+
+Vue.use(Vuelidate)
+
 window._ = require('lodash');
 
 /**
- * We'll load jQuery and the Bootstrap jQuery plugin which provides support
- * for JavaScript based Bootstrap features such as modals and tabs. This
- * code may be modified to fit the specific needs of your application.
+ * Vue is a modern JavaScript library for building interactive web interfaces
+ * using reactive data binding and reusable components. Vue's API is clean
+ * and simple, leaving you to focus on building your next great project.
  */
 
-try {
-    window.Popper = require('popper.js').default;
-    window.$ = window.jQuery = require('jquery');
-
-    require('bootstrap');
-} catch (e) {}
+window.Vue = require('vue')
 
 /**
- * We'll load the axios HTTP library which allows us to easily issue requests
- * to our Laravel back-end. This library automatically handles sending the
- * CSRF token as a header based on the value of the "XSRF" token cookie.
+ * Font Awesome
  */
-
-window.axios = require('axios');
-
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+require('../plugins/vue-font-awesome/index')
 
 /**
- * Next we will register the CSRF Token as a common header with Axios so that
- * all outgoing HTTP requests automatically have it attached. This is just
- * a simple convenience so we don't have to attach every token manually.
+ * Custom Directives
+ */
+require('./helpers/directives')
+
+/**
+ * Base Components
+ */
+require('./components/base')
+
+/**
+ * We'll register a HTTP interceptor to attach the "CSRF" header to each of
+ * the outgoing requests issued by this application. The CSRF middleware
+ * included with Laravel will automatically verify the header's value.
  */
 
-let token = document.head.querySelector('meta[name="csrf-token"]');
+window.axios = require('axios')
+window.Ls = Ls
+global.$ = global.jQuery = require('jquery')
 
-if (token) {
-    window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
-} else {
-    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+window.axios.defaults.headers.common = {
+  'X-Requested-With': 'XMLHttpRequest'
 }
 
+// /**
+//  * Interceptors
+//  */
+
+// window.axios.interceptors.request.use(function (config) {
+//     // Do something before request is sent
+//     const AUTH_TOKEN = Ls.get('auth.token')
+//     // const companyId = Ls.get('selectedCompany')
+
+//     if (AUTH_TOKEN) {
+//         config.headers.common['Authorization'] = `Bearer ${AUTH_TOKEN}`
+//     }
+
+//     // if (companyId) {
+//     //   config.headers.common['company'] = companyId
+//     // }
+
+//     return config
+//     }, function (error) {
+//     // Do something with request error
+//     return Promise.reject(error)
+// })
+
+// /**
+//  * Global Axios Response Interceptor
+//  */
+
+// global.axios.interceptors.response.use(undefined, function (err) {
+//     // Do something with request error
+//     if (!err.response) {
+//         window.toastr['error']('Network error: Please check your internet connection or wait until servers are back online')
+//         console.log('Network error: Please check your internet connection.')
+//     } else {
+//         console.log(err.response)
+//         if (err.response.data && (err.response.statusText === 'Unauthorized' || err.response.data === ' Unauthorized.')) {
+//         // Unauthorized and log out
+//         window.toastr['error']((err.response.data.message) ? err.response.data.message : 'Unauthorized')
+//         // store.dispatch('auth/logout', true)
+//         } else if (err.response.data.errors) {
+//         // Show a notification per error
+//         const errors = JSON.parse(JSON.stringify(err.response.data.errors))
+//         for (const i in errors) {
+//             window.toastr['error'](errors[i])
+//         }
+//         } else {
+//         // Unknown error
+//         window.toastr['error']((err.response.data.message) ? err.response.data.message : 'Unknown error occurred')
+//         }
+//     }
+//     return Promise.reject(err)
+// })
+
 /**
- * Echo exposes an expressive API for subscribing to channels and listening
- * for events that are broadcast by Laravel. Echo and event broadcasting
- * allows your team to easily build robust real-time web applications.
+ * Global plugins
  */
+window.toastr = require('toastr')
 
-// import Echo from 'laravel-echo'
+Vue.use(VueRouter)
+Vue.use(Vuex)
+Vue.use(VTooltip)
 
-// window.Pusher = require('pusher-js');
+// register directive v-money and component <money>
+Vue.use(money, {precision: 2})
 
-// window.Echo = new Echo({
-//     broadcaster: 'pusher',
-//     key: process.env.MIX_PUSHER_APP_KEY,
-//     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-//     encrypted: true
-// });
+Vue.component('v-dropdown', VDropdown)
+Vue.component('v-dropdown-item', VDropdownItem)
+Vue.component('v-dropdown-divider', VDropdownDivider)
+
+Vue.component('dot-icon', DotIcon)
+Vue.component('customer-modal', CustomerModal)
+Vue.component('tax-type-modal', TaxTypeModal)
+Vue.component('category-modal', CategoryModal)
