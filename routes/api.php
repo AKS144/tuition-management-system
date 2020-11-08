@@ -20,7 +20,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['prefix' => 'v1'], function () {
     Route::post('/login', 'API\AuthController@login');
     Route::post('/register', 'API\AuthController@register');
-    Route::get('/logout', 'API\AuthController@logout')->middleware('auth:api');
+    Route::post('/password/forgot', 'API\AuthController@forgot');
 
-    Route::apiResource('/student', 'API\StudentController')->middleware('auth:api');
+    Route::group(['middleware' => 'auth:api'], function() {
+        Route::get('/logout', 'API\AuthController@logout');
+        Route::post('/password/reset', 'API\AuthController@reset');
+
+        Route::apiResource('/student', 'API\StudentController');
+        Route::apiResource('/user', 'API\UserController');
+        Route::apiResource('/tutor', 'API\TutorController');
+    });
 });

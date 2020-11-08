@@ -12,7 +12,7 @@ class BranchSeeder extends Seeder
      */
     public function run()
     {
-        $roles = [
+        $branch = [
             [
                 'name' => 'Pusat Tuisyen Fikir Jaya',
                 'address' => 'No 27, Tingkat 1, Jalan Seroja 3, Taman Seroja, Bandar Baru Salak Tinggi, 43900 Sepang, Selangor',
@@ -25,7 +25,7 @@ class BranchSeeder extends Seeder
             ],
         ];
 
-        foreach($roles as $key => $value) {
+        foreach($branch as $key => $value) {
             Branch::create($value);
         }
     }
