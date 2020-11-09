@@ -1,0 +1,37 @@
+<?php
+
+use Illuminate\Database\Seeder;
+use App\EstimateTemplate;
+
+class EstimateTemplateSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        $templates = [
+            [
+                'name' => 'Template 1',
+                'view' => 'estimate1',
+                'path' => '/assets/img/PDF/Template1.png'
+            ],
+            [
+                'name' => 'Template 2',
+                'view' => 'estimate2',
+                'path' => '/assets/img/PDF/Template2.png'
+            ],
+            [
+                'name' => 'Template 3',
+                'view' => 'estimate3',
+                'path' => '/assets/img/PDF/Template3.png'
+            ],
+        ];
+
+        foreach($templates as $key => $value) {
+            EstimateTemplate::create($value);
+        }
+    }
+}

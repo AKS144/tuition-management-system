@@ -12,11 +12,13 @@ class Payment extends Model
      * @var array
      */
     protected $fillable = [
+        'payment_number',
         'title', 
         'amount', 
-        'status', 
-        'description', 
-        'date_pay', 
+        'notes',
+        'unique_hash', 
+        'payment_method_id',
+        'payment_date', 
         'user_id',
     ];
 

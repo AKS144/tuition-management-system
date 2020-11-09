@@ -14,7 +14,7 @@ class Branch extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'address', 'city'
+        'name', 'address', 'city', 'logo', 'unique_hash'
     ];
 
     /**
