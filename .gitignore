@@ -22,5 +22,6 @@ Homestead.json
 /.vagrant
 .phpunit.result.cache
 
-/public/
+public/css/app.css
+public/css/crater.css
 public/js/app.js

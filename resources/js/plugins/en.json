@@ -475,6 +475,8 @@
     "login": {
       "email": "Email",
       "password": "Password",
+      "c_password": "Confirm Password",
+      "full_name": "Full Name",
       "forgot_password": "Forgot Password?",
       "or_signIn_with": "or Sign in with",
       "login": "Login",
@@ -482,6 +484,7 @@
       "reset_password": "Reset Password",
       "password_reset_successfully": "Password Reset Successfully",
       "enter_email": "Enter email",
+      "enter_full_name": "Enter full name",
       "enter_password": "Enter Password",
       "retype_password": "Retype Password",
       "login_placeholder": "mail@example.com"

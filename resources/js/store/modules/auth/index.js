@@ -7,7 +7,8 @@ const initialState = {
   token: Ls.get('auth.token'),
   status: '',
   validateTokenError: '',
-  validateTokenSuccess: ''
+  validateTokenSuccess: '',
+  user: []
 }
 
 export default {

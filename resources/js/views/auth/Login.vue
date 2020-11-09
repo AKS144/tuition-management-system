@@ -3,6 +3,10 @@
         id="loginForm"
         @submit.prevent="validateBeforeSubmit"
     >
+        <div class="text-sm-left mb-4 text-primary font-weight-bold h3">
+            {{ $t('login.login') }}
+        </div>
+
         <div :class="{'form-group' : true }">
         <p class="input-label">{{ $t('login.email') }} <span class="text-danger"> * </span></p>
         <base-input
@@ -39,9 +43,14 @@
         </div>
         </div>
         <div class="other-actions row">
-        <div class="col-sm-12 text-sm-left mb-4">
+        <div class="col-sm-12 text-sm-left mb-2">
             <router-link to="forgot-password" class="forgot-link">
             {{ $t('login.forgot_password') }}
+            </router-link>
+        </div>
+        <div class="col-sm-12 text-sm-left mb-4">
+            <router-link to="register" class="forgot-link">
+            {{ $t('login.register') }}
             </router-link>
         </div>
         </div>

@@ -21,8 +21,24 @@ export const login = ({ commit, dispatch, state }, data) => {
             window.toastr['success']('Login Successful')
             resolve(response)
         }).catch(err => {
-            commit(types.AUTH_ERROR, err.response)
-            Ls.remove('auth.token')
+            reject(err)
+        })
+    })
+}
+
+export const register = ({ commit, dispatch, state }, data) => {
+    let loginData = {
+        full_name: data.full_name,
+        email: data.email,
+        password: data.password,
+        c_password: data.c_password
+    }
+    return new Promise((resolve, reject) => {
+        axios.post('/api/v1/register', loginData).then((response) => {    
+            commit(types.REGISTER_USER, response.data)
+            window.toastr['success']('User successfully Added')
+            resolve(response)
+        }).catch(err => {
             reject(err)
         })
     })

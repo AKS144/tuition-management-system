@@ -3,7 +3,9 @@
     id="loginForm"
     @submit.prevent="validateBeforeSubmit"
   >
-
+    <div class="text-sm-left mb-4 text-primary font-weight-bold h3">
+            {{ $t('login.forgot_password') }}
+        </div>
     <div :class="{'form-group' : true }">
       <base-input
         :invalid="$v.formData.email.$error"

@@ -3,6 +3,9 @@
     id="loginForm"
     @submit.prevent="validateBeforeSubmit"
   >
+    <div class="text-sm-left mb-4 text-primary font-weight-bold h3">
+            {{ $t('login.reset_password') }}
+        </div>
     <div class="form-group">
       <base-input
         v-model.trim="formData.email"

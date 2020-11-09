@@ -18,5 +18,9 @@ export default {
   [types.REFRESH_SUCCESS] (state, token) {
     state.token = token
     state.status = 'success'
+  },
+
+  [types.REGISTER_USER] (state, data){
+    state.user.push(data.user)
   }
 }
