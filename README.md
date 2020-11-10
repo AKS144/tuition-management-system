@@ -37,7 +37,7 @@ If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Lar
 - run `composer install`
 - run `php artisan passport:install`
 - run `php artisan key:generate`
-- run `npm install && npm run dev`
+- run `npm install && npm run watch`
 - run `php artisan migrate:fresh --seed`. This will rn the migration file and seeder, if any.
 - run `php artisan serve`
 - the project will be accessible at localhost:8000
