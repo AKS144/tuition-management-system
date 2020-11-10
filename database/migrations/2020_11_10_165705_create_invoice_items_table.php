@@ -24,10 +24,10 @@ class CreateInvoiceItemsTable extends Migration
             $table->unsignedBigInteger('discount_val');
             $table->unsignedBigInteger('tax');
             $table->unsignedBigInteger('total');
-            $table->integer('invoice_id')->unsigned();
-            $table->foreign('invoice_id')->references('id')->on('invoices')->onDelete('cascade');
-            $table->integer('item_id')->unsigned()->nullable();
-            $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
+            // $table->integer('invoice_id')->unsigned();
+            // $table->foreign('invoice_id')->references('id')->on('invoices')->onDelete('cascade');
+            // $table->integer('item_id')->unsigned()->nullable();
+            // $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
             $table->timestamps();
         });
     }

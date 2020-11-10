@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEstimatesTable extends Migration
+class CreateInvoicesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,29 +13,33 @@ class CreateEstimatesTable extends Migration
      */
     public function up()
     {
-        Schema::create('estimates', function (Blueprint $table) {
+        Schema::create('invoices', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->date('estimate_date');
-            $table->date('expiry_date');
-            $table->string('estimate_number');
-            $table->string('status');
+            $table->date('invoice_date');
+            $table->date('due_date');
+            $table->string('invoice_number');
             $table->string('reference_number')->nullable();
+            $table->string('status');
+            $table->string('paid_status');
             $table->string('tax_per_item');
             $table->string('discount_per_item');
-            $table->string('notes')->nullable();
-            $table->decimal('discount', 15, 2)->nullable();
+            $table->text('notes')->nullable();
             $table->string('discount_type')->nullable();
+            $table->decimal('discount', 15, 2)->nullable();
             $table->unsignedBigInteger('discount_val')->nullable();
             $table->unsignedBigInteger('sub_total');
             $table->unsignedBigInteger('total');
             $table->unsignedBigInteger('tax');
+            $table->unsignedBigInteger('due_amount');
+            $table->boolean('sent')->default(false);
+            $table->boolean('viewed')->default(false);
             $table->string('unique_hash')->nullable();
+            // $table->integer('invoice_template_id')->unsigned()->nullable();
+            // $table->foreign('invoice_template_id')->references('id')->on('invoice_templates');
             // $table->integer('user_id')->unsigned()->nullable();
             // $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->integer('estimate_template_id')->unsigned()->nullable();
-            $table->foreign('estimate_template_id')->references('id')->on('estimate_templates');
-            // $table->integer('company_id')->unsigned()->nullable();
-            // $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
+            // $table->integer('branch_id')->unsigned()->nullable();
+            // $table->foreign('branch_id')->references('id')->on('branches')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -47,6 +51,6 @@ class CreateEstimatesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('estimates');
+        Schema::dropIfExists('invoices');
     }
 }

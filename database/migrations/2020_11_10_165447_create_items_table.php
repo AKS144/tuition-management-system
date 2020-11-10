@@ -19,10 +19,10 @@ class CreateItemsTable extends Migration
             $table->string('description')->nullable();
             $table->string('unit')->nullable();
             $table->unsignedBigInteger('price');
-            $table->integer('branch_id')->unsigned()->nullable();
-            $table->foreign('branch_id')->references('id')->on('branches')->onDelete('cascade');
-            $table->integer('unit_id')->unsigned()->nullable();
-            $table->foreign('unit_id')->references('id')->on('units')->onDelete('cascade');
+            // $table->integer('branch_id')->unsigned()->nullable();
+            // $table->foreign('branch_id')->references('id')->on('branches')->onDelete('cascade');
+            // $table->integer('unit_id')->unsigned()->nullable();
+            // $table->foreign('unit_id')->references('id')->on('units')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -15,9 +15,6 @@ class DatabaseSeeder extends Seeder
             RoleTableSeeder::class,
             CreateUserSeeder::class,
             BranchSeeder::class,
-            MenuSeeder::class,
-            MenuListSeeder::class,
-            MenuCollapsibleListSeeder::class,
             DaySeeder::class,
             TimeSlotSeeder::class,
             VenueSeeder::class,
@@ -30,6 +27,12 @@ class DatabaseSeeder extends Seeder
             ExamTypeSeeder::class,
             ClassroomSeeder::class,
             PermissionTableSeeder::class,
+            CountriesTableSeeder::class,
+            CurrenciesTableSeeder::class,
+            EstimateTemplateSeeder::class,
+            InvoiceTemplateSeeder::class,
+            PaymentMethodSeeder::class,
+            UnitSeeder::class,
         ]);
 
         // Get all the user attaching to each branch
