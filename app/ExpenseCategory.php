@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ExpenseCategory extends Model
 {
-    protected $fillable = ['name', 'company_id', 'description'];
+    protected $fillable = ['name', 'branch_id', 'description'];
 
     /**
      * The accessors to append to the model's array form.
@@ -18,5 +18,13 @@ class ExpenseCategory extends Model
     public function expenses()
     {
         return $this->hasMany(Expense::class);
+    }
+
+    /**
+     * Get the branch that owns the expense category.
+     */
+    public function branch()
+    {
+        return $this->belongsTo(Branch::class);
     }
 }

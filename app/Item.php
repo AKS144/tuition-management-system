@@ -16,8 +16,16 @@ class Item extends Model
         'unit_id',
     ];
 
-    public function unit()
+    public function units()
     {
         return $this->belongsTo(Unit::class);
+    }
+
+    /**
+     * The invoice items that belong to the item.
+     */
+    public function invoicesItem()
+    {
+        return $this->hasMany(InvoiceItem::class);
     }
 }

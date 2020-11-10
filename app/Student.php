@@ -63,4 +63,11 @@ class Student extends Model
     public function classroom(){
         return $this->belongsToMany(Classroom::class, 'classroom_student');
     }
+
+    /**
+     * Get the invoices associated with the student
+     */
+    public function invoices(){
+        return $this->hasMany(Invoice::class);
+    }
 }

@@ -34,14 +34,42 @@ class Branch extends Model
     /**
      * Get the student associated with the branch
      */
-    public function student(){
+    public function students(){
         return $this->hasMany(Student::class);
     }
 
     /**
      * Get the tutor associated with the branch
      */
-    public function tutor(){
+    public function tutors(){
         return $this->hasMany(Tutor::class);
+    }
+
+    /**
+     * Get the expense category associated with the branch
+     */
+    public function expenseCategorys(){
+        return $this->hasMany(ExpenseCategory::class);
+    }
+
+    /**
+     * Get the tax type associated with the branch
+     */
+    public function taxTypes(){
+        return $this->hasMany(TaxType::class);
+    }
+
+    /**
+     * Get the item associated with the branch
+     */
+    public function items(){
+        return $this->hasMany(Item::class);
+    }
+
+    /**
+     * Get the invoice associated with the branch
+     */
+    public function invoices(){
+        return $this->hasMany(Invoice::class);
     }
 }

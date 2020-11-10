@@ -42,7 +42,7 @@ class InvoiceItem extends Model
     {
         return $this->belongsTo(Item::class);
     }
-
+    
     public function taxes()
     {
         return $this->hasMany(Tax::class);

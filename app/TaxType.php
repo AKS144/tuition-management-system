@@ -25,6 +25,14 @@ class TaxType extends Model
         return $this->hasMany(Tax::class);
     }
 
+    /**
+     * Get the branch that owns the tax type.
+     */
+    public function branch()
+    {
+        return $this->belongsTo(Branch::class);
+    }
+
     public function scopeWhereCompany($query, $branch_id)
     {
         $query->where('branch_id', $branch_id);

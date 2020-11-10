@@ -34,12 +34,12 @@ class CreateInvoicesTable extends Migration
             $table->boolean('sent')->default(false);
             $table->boolean('viewed')->default(false);
             $table->string('unique_hash')->nullable();
-            // $table->integer('invoice_template_id')->unsigned()->nullable();
-            // $table->foreign('invoice_template_id')->references('id')->on('invoice_templates');
-            // $table->integer('user_id')->unsigned()->nullable();
-            // $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            // $table->integer('branch_id')->unsigned()->nullable();
-            // $table->foreign('branch_id')->references('id')->on('branches')->onDelete('cascade');
+            $table->bigInteger('invoice_template_id')->unsigned()->nullable();
+            $table->foreign('invoice_template_id')->references('id')->on('invoice_templates');
+            $table->bigInteger('student_id')->unsigned()->nullable();
+            $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
+            $table->bigInteger('branch_id')->unsigned()->nullable();
+            $table->foreign('branch_id')->references('id')->on('branches')->onDelete('cascade');
             $table->timestamps();
         });
     }
