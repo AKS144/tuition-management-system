@@ -15,19 +15,19 @@ class PaymentMethodSeeder extends Seeder
         $paymentMethods = [
             [
                 'name' => 'Cash',
-                'branch_id' => '1'
+                // 'branch_id' => '1'
             ],
             [
                 'name' => 'Check',
-                'branch_id' => '1'
+                // 'branch_id' => '1'
             ],
             [
                 'name' => 'Credit Card',
-                'branch_id' => '1'
+                // 'branch_id' => '1'
             ],
             [
                 'name' => 'Bank Transfer',
-                'branch_id' => '1'
+                // 'branch_id' => '1'
             ],
         ];
 

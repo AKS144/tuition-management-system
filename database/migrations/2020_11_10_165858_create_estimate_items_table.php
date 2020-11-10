@@ -24,10 +24,10 @@ class CreateEstimateItemsTable extends Migration
             $table->unsignedBigInteger('price');
             $table->unsignedBigInteger('tax');
             $table->unsignedBigInteger('total');
-            $table->integer('item_id')->unsigned()->nullable();
-            $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
-            $table->integer('estimate_id')->unsigned();
-            $table->foreign('estimate_id')->references('id')->on('estimates')->onDelete('cascade');
+            // $table->integer('item_id')->unsigned()->nullable();
+            // $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
+            // $table->integer('estimate_id')->unsigned();
+            // $table->foreign('estimate_id')->references('id')->on('estimates')->onDelete('cascade');
             // $table->integer('company_id')->unsigned()->nullable();
             // $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
             $table->timestamps();
