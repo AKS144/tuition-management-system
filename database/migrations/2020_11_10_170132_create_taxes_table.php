@@ -15,20 +15,16 @@ class CreateTaxesTable extends Migration
     {
         Schema::create('taxes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            // $table->integer('tax_type_id')->unsigned();
-            // $table->foreign('tax_type_id')->references('id')->on('tax_types');
-            // $table->integer('invoice_id')->unsigned()->nullable();
-            // $table->foreign('invoice_id')->references('id')->on('invoices')->onDelete('cascade');
-            // $table->integer('estimate_id')->unsigned()->nullable();
-            // $table->foreign('estimate_id')->references('id')->on('estimates')->onDelete('cascade');
-            // $table->integer('invoice_item_id')->unsigned()->nullable();
-            // $table->foreign('invoice_item_id')->references('id')->on('invoice_items')->onDelete('cascade');
-            // $table->integer('estimate_item_id')->unsigned()->nullable();
-            // $table->foreign('estimate_item_id')->references('id')->on('estimate_items')->onDelete('cascade');
-            // $table->integer('item_id')->unsigned()->nullable();
-            // $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
-            // $table->integer('company_id')->unsigned()->nullable();
-            // $table->foreign('company_id')->references('id')->on('companies');
+            $table->bigInteger('tax_type_id')->unsigned();
+            $table->foreign('tax_type_id')->references('id')->on('tax_types');
+            $table->bigInteger('invoice_id')->unsigned()->nullable();
+            $table->foreign('invoice_id')->references('id')->on('invoices')->onDelete('cascade');
+            $table->bigInteger('invoice_item_id')->unsigned()->nullable();
+            $table->foreign('invoice_item_id')->references('id')->on('invoice_items')->onDelete('cascade');
+            $table->bigInteger('item_id')->unsigned()->nullable();
+            $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
+            $table->bigInteger('branch_id')->unsigned()->nullable();
+            $table->foreign('branch_id')->references('id')->on('branches')->onDelete('cascade');
             $table->string('name');
             $table->unsignedBigInteger('amount');
             $table->decimal('percent', 5, 2);

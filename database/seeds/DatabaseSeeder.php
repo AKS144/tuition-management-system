@@ -29,7 +29,6 @@ class DatabaseSeeder extends Seeder
             PermissionTableSeeder::class,
             CountriesTableSeeder::class,
             CurrenciesTableSeeder::class,
-            EstimateTemplateSeeder::class,
             InvoiceTemplateSeeder::class,
             PaymentMethodSeeder::class,
             UnitSeeder::class,

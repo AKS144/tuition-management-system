@@ -72,4 +72,25 @@ class Branch extends Model
     public function invoices(){
         return $this->hasMany(Invoice::class);
     }
+
+    /**
+     * Get the expense associated with the branch
+     */
+    public function expenses(){
+        return $this->hasMany(Expense::class);
+    }
+
+    /**
+     * Get the paymentMethod associated with the branch
+     */
+    public function paymentMethods(){
+        return $this->hasMany(PaymentMethod::class);
+    }
+
+    /**
+     * Get the tax associated with the branch
+     */
+    public function taxes(){
+        return $this->hasMany(Tax::class);
+    }
 }

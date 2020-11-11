@@ -35,4 +35,11 @@ class Payment extends Model
     public function students(){
         return $this->belongsToMany(Student::class, 'student_payment');
     }
+
+    /**
+     * Get the payment method associated with the payment
+     */
+    public function paymentMethod(){
+        return $this->belongsTo(PaymentMethod::class);
+    }
 }

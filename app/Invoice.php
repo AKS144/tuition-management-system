@@ -93,4 +93,12 @@ class Invoice extends Model
     {
         return $this->hasMany(InvoiceItem::class);
     }
+
+    /**
+     * The tax that belong to the invoices.
+     */
+    public function taxes()
+    {
+        return $this->hasMany(Tax::class);
+    }
 }

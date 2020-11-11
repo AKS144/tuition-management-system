@@ -28,4 +28,12 @@ class Item extends Model
     {
         return $this->hasMany(InvoiceItem::class);
     }
+
+    /**
+     * The taxe items that belong to the item.
+     */
+    public function taxes()
+    {
+        return $this->hasMany(Tax::class);
+    }
 }

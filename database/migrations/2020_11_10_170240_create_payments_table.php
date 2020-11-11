@@ -22,8 +22,8 @@ class CreatePaymentsTable extends Migration
             $table->string('notes');
             $table->dateTime('payment_date');
             $table->bigInteger('user_id')->unsigned();
-            // $table->integer('payment_method_id')->unsigned()->nullable();
-            // $table->foreign('payment_method_id')->references('id')->on('payment_methods')->onDelete('cascade');
+            $table->bigInteger('payment_method_id')->unsigned()->nullable();
+            $table->foreign('payment_method_id')->references('id')->on('payment_methods')->onDelete('cascade');
             $table->timestamps();
             
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
