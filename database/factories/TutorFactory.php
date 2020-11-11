@@ -10,7 +10,6 @@ $factory->define(Tutor::class, function (Faker $faker) {
         'full_name' => $faker->name,
         'nric' => $faker->e164PhoneNumber(),
         'age' => $faker->numberBetween(17, 45),
-        'address' => $faker->address(),
         'mobile_no' => $faker->e164PhoneNumber(),
         'date_employed'=> now(),
         'status' => $faker->numberBetween(0,2),

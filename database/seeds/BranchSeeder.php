@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 use App\Branch;
 
 class BranchSeeder extends Seeder
@@ -15,15 +16,13 @@ class BranchSeeder extends Seeder
         $branch = [
             [
                 'name' => 'Pusat Tuisyen Fikir Jaya',
-                'address' => 'No 27, Tingkat 1, Jalan Seroja 3, Taman Seroja, Bandar Baru Salak Tinggi, 43900 Sepang, Selangor',
                 'city' => 'Selangor',
-                // 'unique_hash' => str_random(60)
+                'unique_hash' => Str::random(60)
             ],
             [
                 'name' => 'Pusat Tuisyen Faiza Jaya',
-                'address' => 'No 27, Tingkat 1, Jalan Seroja 3, Taman Seroja, Bandar Baru Salak Tinggi, 43900 Sepang, Selangor',
                 'city' => 'Selangor',
-                // 'unique_hash' => str_random(60)
+                'unique_hash' => Str::random(60)
             ],
         ];
 

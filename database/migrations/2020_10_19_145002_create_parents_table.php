@@ -17,7 +17,6 @@ class CreateParentsTable extends Migration
             $table->bigIncrements('id');
             $table->string('full_name');
             $table->bigInteger('mobile_no');
-            $table->string('address');
             $table->string('nric');
         });
     }

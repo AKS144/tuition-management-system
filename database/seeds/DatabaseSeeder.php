@@ -32,6 +32,8 @@ class DatabaseSeeder extends Seeder
             InvoiceTemplateSeeder::class,
             PaymentMethodSeeder::class,
             UnitSeeder::class,
+            AddressSeeder::class,
+            BranchSettingSeeder::class,
         ]);
 
         // Get all the user attaching to each branch

@@ -14,7 +14,7 @@ class Branch extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'address', 'city', 'logo', 'unique_hash'
+        'name', 'city', 'logo', 'unique_hash'
     ];
 
     /**
@@ -92,5 +92,14 @@ class Branch extends Model
      */
     public function taxes(){
         return $this->hasMany(Tax::class);
+    }
+
+    
+    /**
+     * Get the of the branch address.
+     */
+    public function addresses()
+    {
+        return $this->morphMOne(Address::class, 'addressable');
     }
 }

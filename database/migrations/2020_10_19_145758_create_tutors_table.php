@@ -19,7 +19,6 @@ class CreateTutorsTable extends Migration
             $table->bigInteger('mobile_no');
             $table->bigInteger('age');
             $table->string('nric');
-            $table->string('address');
             $table->bigInteger('experience');
             $table->dateTime('date_employed');
             $table->bigInteger('status');
