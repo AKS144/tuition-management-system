@@ -29,5 +29,21 @@ Route::group(['prefix' => 'v1'], function () {
         Route::apiResource('/student', 'API\StudentController');
         Route::apiResource('/user', 'API\UserController');
         Route::apiResource('/tutor', 'API\TutorController');
+        Route::apiResource('/units', 'API\UnitController');
+        Route::apiResource('/payment-methods', 'API\PaymentMethodController');
+        Route::apiResource('/tax-types', 'API\TaxTypeController');
+        Route::apiResource('/categories', 'API\ExpenseCategoryController');
+
+        Route::fallback(function(){
+            return response()->json([
+                'message' => 'Invalid route, Please contact the administrator'
+            ], 404);
+        });
+    });
+
+    Route::fallback(function(){
+        return response()->json([
+            'message' => 'Invalid route, Please contact the administrator'
+        ], 404);
     });
 });
