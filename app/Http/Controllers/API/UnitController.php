@@ -5,7 +5,6 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Unit;
 use Illuminate\Http\Request;
-use App\Http\Resources\UnitResource;
 use Illuminate\Support\Facades\Validator;
 
 class UnitController extends Controller
@@ -29,8 +28,7 @@ class UnitController extends Controller
 
         return response([
             'status' => true,
-            'message' => 'Unit successfully retrieved',
-            'units' => UnitResource::collection($units),
+            'units' => $units,
         ], 200);
     }
 
@@ -60,8 +58,7 @@ class UnitController extends Controller
 
         return response([
             'status' => true,
-            'data' => new UnitResource($units),
-            'message' => 'Unit successfully created',
+            'data' => $units,
         ], 200);
     }
 
@@ -75,8 +72,7 @@ class UnitController extends Controller
     {
         return response([
             'status' => true,
-            'message' => 'Unit successfully retrieved',
-            'data' => new UnitResource($unit),
+            'data' => $unit,
         ], 200);
     }
 
@@ -93,8 +89,7 @@ class UnitController extends Controller
 
         return response([
             'status' => true,
-            'message' => 'Unit successfully updated',
-            'data' => new UnitResource($unit),
+            'data' => $unit,
         ], 200);
     }
 
@@ -110,7 +105,6 @@ class UnitController extends Controller
 
         return response([
             'status' => true,
-            'message' => 'Unit successfully deleted'
         ], 200);
     }
 }
