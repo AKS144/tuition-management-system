@@ -3,9 +3,8 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Taxtype;
+use App\TaxType;
 use Illuminate\Http\Request;
-use App\Http\Resources\TaxTypeResource;
 use Illuminate\Support\Facades\Validator;
 
 class TaxTypeController extends Controller
@@ -25,12 +24,11 @@ class TaxTypeController extends Controller
      */
     public function index()
     {
-        $taxType = Unit::all();
+        $taxTypes = TaxType::all();
 
         return response([
             'status' => true,
-            'message' => 'Tax type successfully retrieved',
-            'taxTypes' => TaxTypeResource::collection($taxType),
+            'taxTypes' => $taxTypes,
         ], 200);
     }
 
@@ -42,15 +40,12 @@ class TaxTypeController extends Controller
      */
     public function store(Request $request)
     {
-        $taxType = $request->all();
+        $taxTypes = $request->all();
 
-        $validator = Validator::make($taxType, [
+        $validator = Validator::make($taxTypes, [
             'name' => 'required|unique:tax_types',
             'percent' => 'required|between:0, 99.99',
-            'compound_tax' => 'nullable|min:0|max:1',
-            'collective_tax' => 'nullable|min:0|max:1',
-            'description' => 'nullable',
-            'branch_id' => 'nullable',
+
         ]);
 
         if($validator->fails()){
@@ -61,27 +56,25 @@ class TaxTypeController extends Controller
             ], 401);
         }
 
-        $taxType = TaxType::create($taxType);
+        $taxTypes = TaxType::create($taxTypes);
 
         return response([
             'status' => true,
-            'data' => new TaxTypeResource($taxType),
-            'message' => 'Tax type successfully created',
+            'data' => $taxTypes,
         ], 200);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Taxtype  $taxtype
+     * @param  \App\TaxType  $taxType
      * @return \Illuminate\Http\Response
      */
-    public function show(Taxtype $taxtype)
+    public function show(TaxType $taxType)
     {
         return response([
             'status' => true,
-            'message' => 'Tax type successfully retrieved',
-            'data' => new TaxTypeResource($taxtype),
+            'data' => $taxType,
         ], 200);
     }
 
@@ -89,33 +82,31 @@ class TaxTypeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Taxtype  $taxtype
+     * @param  \App\TaxType  $taxType
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Taxtype $taxtype)
+    public function update(Request $request, TaxType $taxType)
     {
-        $taxtype->update($request->all());
+        $taxType->update($request->all());
 
         return response([
             'status' => true,
-            'message' => 'Tax type successfully updated',
-            'data' => new TaxTypeResource($taxtype),
+            'data' => $taxType,
         ], 200);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Taxtype  $taxtype
+     * @param  \App\TaxType  $taxType
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Taxtype $taxtype)
+    public function destroy(TaxType $taxType)
     {
-        $taxtype->delete();
+        $taxType->delete();
 
         return response([
             'status' => true,
-            'message' => 'Tax type successfully deleted'
         ], 200);
     }
 }
