@@ -7,6 +7,7 @@ import actions from './actions'
 
 import auth from './modules/auth'
 import dashboard from './modules/dashboard'
+import expense from './modules/expense'
 
 Vue.use(Vuex)
 
@@ -23,6 +24,7 @@ export default new Vuex.Store({
 
     modules: {  
         auth,
+        expense,
         dashboard
     }
 })

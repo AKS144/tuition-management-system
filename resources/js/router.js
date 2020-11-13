@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 
 // Layout
 import LayoutLogin from './views/layouts/LayoutLogin.vue'
+import LayoutBasic from './views/layouts/LayoutBasic.vue'
 
 // Auth
 import Login from './views/auth/Login.vue'
@@ -12,7 +13,8 @@ import ForgotPassword from './views/auth/ForgotPassword.vue'
 
 import NotFoundPage from './views/errors/404.vue'
 
-// Dashboard
+// Dashbord
+import Dashboard from './views/dashboard/Dashboard.vue'
 
 // Students
 
@@ -28,9 +30,9 @@ import NotFoundPage from './views/errors/404.vue'
 
 // Payments
 
-// Estimates
-
 // Expenses
+import ExpensesIndex from './views/expenses/Index.vue'
+import ExpenseCreate from './views/expenses/Create.vue'
 
 // Report
 
@@ -74,10 +76,46 @@ const routes = [
                 path: 'register',
                 component: Register,
                 name: 'register'
-            }
+            },
         ]
     },
-
+    /*
+    |--------------------------------------------------------------------------
+    | Admin Backend Routes
+    |--------------------------------------------------------------------------|
+    */
+    {
+        path: '/admin',
+        component: LayoutBasic, // Change the desired Layout here
+        // meta: { requiresAuth: true },
+        children: [
+            // Dashbord
+            {
+                path: '/',
+                component: Dashboard,
+                name: 'dashboard'
+            },
+            {
+                path: 'dashboard',
+                component: Dashboard
+            },
+            // Expenses
+            {
+                path: 'expenses',
+                component: ExpensesIndex
+            },
+            {
+                path: 'expenses/create',
+                name: 'expenses.create',
+                component: ExpenseCreate
+            },
+            {
+                path: 'expenses/:id/edit',
+                name: 'expenses.edit',
+                component: ExpenseCreate
+            },
+        ]
+    },
     // Default Route
     { path: '*', component: NotFoundPage }
 ]
