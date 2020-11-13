@@ -9,7 +9,6 @@ $factory->define(Parents::class, function (Faker $faker) {
     return [
         'full_name' => $faker->name,
         'nric' => $faker->e164PhoneNumber(),
-        'address' => $faker->address(),
         'mobile_no' => $faker->e164PhoneNumber(),
     ];
 });

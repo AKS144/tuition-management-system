@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEstimateTemplatesTable extends Migration
+class CreateBranchSettingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateEstimateTemplatesTable extends Migration
      */
     public function up()
     {
-        Schema::create('estimate_templates', function (Blueprint $table) {
+        Schema::create('branch_settings', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name')->nullable();
-            $table->string('view');
-            $table->string('path');
+            $table->string('option');
+            $table->string('value');
+            $table->bigInteger('branch_id')->unsigned()->nullable();
+            $table->foreign('branch_id')->references('id')->on('branches')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateEstimateTemplatesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('estimate_templates');
+        Schema::dropIfExists('branch_settings');
     }
 }

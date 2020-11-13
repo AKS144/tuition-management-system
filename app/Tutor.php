@@ -15,8 +15,7 @@ class Tutor extends Model
         'full_name', 
         'mobile_no', 
         'age', 
-        'nric',
-        'address', 
+        'nric', 
         'experience', 
         'date_employed', 
         'status', 
@@ -36,5 +35,13 @@ class Tutor extends Model
      */
     public function branch(){
         return $this->belongsTo(Branch::class);
+    }
+
+    /**
+     * Get the of the tutor address.
+     */
+    public function addresses()
+    {
+        return $this->morphMOne(Address::class, 'addressable');
     }
 }

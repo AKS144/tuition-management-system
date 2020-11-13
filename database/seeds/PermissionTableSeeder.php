@@ -36,6 +36,41 @@ class PermissionTableSeeder extends Seeder
             'user-create',
             'user-delete',
             'user-edit',
+
+            'unit-list',
+            'unit-create',
+            'unit-delete',
+            'unit-edit',
+
+            'taxtype-list',
+            'taxtype-create',
+            'taxtype-delete',
+            'taxtype-edit',
+
+            'paymentMethod-list',
+            'paymentMethod-create',
+            'paymentMethod-delete',
+            'paymentMethod-edit',
+
+            'expenseCategory-list',
+            'expenseCategory-create',
+            'expenseCategory-delete',
+            'expenseCategory-edit',
+
+            'invoice-list',
+            'invoice-create',
+            'invoice-delete',
+            'invoice-edit',
+
+            'expense-list',
+            'expense-create',
+            'expense-delete',
+            'expense-edit',
+
+            'payment-list',
+            'payment-create',
+            'payment-delete',
+            'payment-edit',
         ];
 
         foreach($permissions as $permission){
@@ -65,6 +100,41 @@ class PermissionTableSeeder extends Seeder
             'student-create',
             'student-delete',
             'student-edit',
+
+            'unit-list',
+            'unit-create',
+            'unit-delete',
+            'unit-edit',
+
+            'taxtype-list',
+            'taxtype-create',
+            'taxtype-delete',
+            'taxtype-edit',
+
+            'paymentMethod-list',
+            'paymentMethod-create',
+            'paymentMethod-delete',
+            'paymentMethod-edit',
+
+            'expenseCategory-list',
+            'expenseCategory-create',
+            'expenseCategory-delete',
+            'expenseCategory-edit',
+
+            'invoice-list',
+            'invoice-create',
+            'invoice-delete',
+            'invoice-edit',
+
+            'expense-list',
+            'expense-create',
+            'expense-delete',
+            'expense-edit',
+
+            'payment-list',
+            'payment-create',
+            'payment-delete',
+            'payment-edit',
         ]);
 
         $role = Role::findByName('manager');
@@ -80,6 +150,41 @@ class PermissionTableSeeder extends Seeder
             'student-create',
             'student-delete',
             'student-edit',
+
+            'unit-list',
+            'unit-create',
+            'unit-delete',
+            'unit-edit',
+
+            'taxtype-list',
+            'taxtype-create',
+            'taxtype-delete',
+            'taxtype-edit',
+
+            'paymentMethod-list',
+            'paymentMethod-create',
+            'paymentMethod-delete',
+            'paymentMethod-edit',
+
+            'expenseCategory-list',
+            'expenseCategory-create',
+            'expenseCategory-delete',
+            'expenseCategory-edit',
+
+            'invoice-list',
+            'invoice-create',
+            'invoice-delete',
+            'invoice-edit',
+
+            'expense-list',
+            'expense-create',
+            'expense-delete',
+            'expense-edit',
+
+            'payment-list',
+            'payment-create',
+            'payment-delete',
+            'payment-edit',
         ]);
 
         $role = Role::findByName('staff');
@@ -95,6 +200,29 @@ class PermissionTableSeeder extends Seeder
             'student-create',
             'student-delete',
             'student-edit',
+            
+            'unit-list',
+            'unit-edit',
+
+            'taxtype-list',
+            'taxtype-edit',
+
+            'paymentMethod-list',
+
+            'expenseCategory-list',
+            'expenseCategory-edit',
+
+            'invoice-list',
+            'invoice-create',
+            'invoice-edit',
+
+            'expense-list',
+            'expense-create',
+            'expense-edit',
+
+            'payment-list',
+            'payment-create',
+            'payment-edit',
         ]);
     }
 }

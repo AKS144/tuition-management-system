@@ -30,13 +30,6 @@ class Student extends Model
     }
 
     /**
-     * Get the payment associated with the student
-     */
-    public function payment(){
-        return $this->belongsToMany(Payment::class, 'student_payment');
-    }
-
-    /**
      * Get the package associated with the student
      */
     public function package(){
@@ -62,5 +55,19 @@ class Student extends Model
      */
     public function classroom(){
         return $this->belongsToMany(Classroom::class, 'classroom_student');
+    }
+
+    /**
+     * Get the invoices associated with the student
+     */
+    public function invoices(){
+        return $this->hasMany(Invoice::class);
+    }
+
+    /**
+     * Get the payments associated with the student
+     */
+    public function payments(){
+        return $this->hasMany(Payment::class);
     }
 }

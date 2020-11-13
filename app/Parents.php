@@ -15,8 +15,7 @@ class Parents extends Model
      */
     protected $fillable = [
         'full_name', 
-        'mobile_no', 
-        'address',
+        'mobile_no',
         'nric',
     ];
 
@@ -25,5 +24,13 @@ class Parents extends Model
      */
     public function students(){
         return $this->belongsToMany(Student::class, 'parent_student');
+    }
+
+    /**
+     * Get the of the parent address.
+     */
+    public function addresses()
+    {
+        return $this->morphMOne(Address::class, 'addressable');
     }
 }

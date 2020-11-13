@@ -10,21 +10,20 @@ class Expense extends Model
     protected $fillable = [
         'expense_category_id',
         'amount',
-        'company_id',
+        'branch_id',
         'user_id',
         'expense_date',
         'notes',
         'attachment_receipt'
     ];
 
-    protected $appends = [
-        'formattedExpenseDate',
-        'formattedCreatedAt',
-        'receipt'
-    ];
-
-    public function category()
+    public function expenseCategory()
     {
-        return $this->belongsTo(ExpenseCategory::class, 'expense_category_id');
+        return $this->belongsTo(ExpenseCategory::class);
+    }
+
+    public function branch()
+    {
+        return $this->belongsTo(Branch::class);
     }
 }

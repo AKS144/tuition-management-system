@@ -14,7 +14,7 @@ class InvoiceItem extends Model
         'name',
         'item_id',
         'description',
-        'company_id',
+        'branch_id',
         'quantity',
         'price',
         'discount_type',
@@ -42,7 +42,7 @@ class InvoiceItem extends Model
     {
         return $this->belongsTo(Item::class);
     }
-
+    
     public function taxes()
     {
         return $this->hasMany(Tax::class);

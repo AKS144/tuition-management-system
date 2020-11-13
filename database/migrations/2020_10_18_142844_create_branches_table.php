@@ -16,7 +16,6 @@ class CreateBranchesTable extends Migration
         Schema::create('branches', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('address');
             $table->string('city');
             $table->string('logo')->nullable();
             $table->string('unique_hash')->nullable();

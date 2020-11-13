@@ -29,10 +29,11 @@ class DatabaseSeeder extends Seeder
             PermissionTableSeeder::class,
             CountriesTableSeeder::class,
             CurrenciesTableSeeder::class,
-            EstimateTemplateSeeder::class,
             InvoiceTemplateSeeder::class,
             PaymentMethodSeeder::class,
             UnitSeeder::class,
+            AddressSeeder::class,
+            BranchSettingSeeder::class,
         ]);
 
         // Get all the user attaching to each branch

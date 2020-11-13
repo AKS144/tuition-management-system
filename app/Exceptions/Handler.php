@@ -4,6 +4,8 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Database\Eloquent\ModelNotFoundException as ModelNotFoundException;
+use Illuminate\Database\Eloquent\RouteNotFoundException as RouteNotFoundException;
 
 class Handler extends ExceptionHandler
 {
@@ -50,6 +52,13 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if ($exception instanceof ModelNotFoundException) {
+            return response()->json([
+                'error' => 'Entry for '.str_replace('App\\', '', $exception->getModel()).' not found'], 404);
+        } else if ($exception instanceof RouteNotFoundException) {
+            return response()->json([ 'message' => "Route doesn't exist"], 404);
+        }
+        
         return parent::render($request, $exception);
     }
 }

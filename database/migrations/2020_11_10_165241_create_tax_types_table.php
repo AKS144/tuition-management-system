@@ -20,8 +20,8 @@ class CreateTaxTypesTable extends Migration
             $table->tinyInteger('compound_tax')->default(0);
             $table->tinyInteger('collective_tax')->default(0);
             $table->text('description')->nullable();
-            // $table->integer('branch_id')->unsigned()->nullable();
-            // $table->foreign('branch_id')->references('id')->on('branches')->onDelete('cascade');
+            $table->bigInteger('branch_id')->unsigned()->nullable();
+            $table->foreign('branch_id')->references('id')->on('branches')->onDelete('cascade');
             $table->timestamps();
         });
     }

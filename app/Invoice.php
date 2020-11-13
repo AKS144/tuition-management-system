@@ -39,6 +39,7 @@ class Invoice extends Model
         'invoice_number',
         'reference_number',
         'invoice_template_id',
+        'branch_id',
         'status',
         'paid_status',
         'sub_total',
@@ -56,8 +57,51 @@ class Invoice extends Model
         'viewed'
     ];
 
-    public function invoiceTemplate()
+    /**
+     * Get the branch that owns the invoice.
+     */
+    public function branch()
+    {
+        return $this->belongsTo(Branch::class);
+    }
+
+    /**
+     * Get the invoice template that owns the invoice.
+     */
+    public function invoiceTemplates()
     {
         return $this->belongsTo(InvoiceTemplate::class);
+    }
+
+    /**
+     * Get the student that owns the invoice.
+     */
+    public function student()
+    {
+        return $this->belongsTo(Student::class);
+    }
+
+    /**
+     * The invoice items that belong to the invoices.
+     */
+    public function invoiceItems()
+    {
+        return $this->hasMany(InvoiceItem::class);
+    }
+
+    /**
+     * The tax that belong to the invoices.
+     */
+    public function taxes()
+    {
+        return $this->hasMany(Tax::class);
+    }
+
+    /**
+     * The payments that belong to the invoices.
+     */
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
     }
 }

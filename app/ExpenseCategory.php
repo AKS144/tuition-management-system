@@ -3,20 +3,26 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Branch;
+use App\Expense;
 
 class ExpenseCategory extends Model
 {
-    protected $fillable = ['name', 'company_id', 'description'];
+    protected $fillable = ['name', 'branch_id', 'description'];
 
     /**
-     * The accessors to append to the model's array form.
-     *
-     * @var array
+     * Get the branch that owns the expense category.
      */
-    protected $appends = ['amount', 'formattedCreatedAt'];
+    public function branch()
+    {
+        return $this->belongsTo(Branch::class);
+    }
 
+    /**
+     * Get the expense that owns the expense category.
+     */
     public function expenses()
     {
-        return $this->hasMany(Expense::class);
+        return $this->belongsTo(Expense::class);
     }
 }

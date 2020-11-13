@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class PaymentMethod extends Model
 {
-    protected $fillable = ['name', 'company_id'];
+    protected $fillable = ['name', 'branch_id'];
 
     public function payments()
     {
