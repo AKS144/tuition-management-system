@@ -22,28 +22,46 @@ Route::group(['prefix' => 'v1'], function () {
     Route::post('/register', 'API\AuthController@register');
     Route::post('/password/forgot', 'API\AuthController@forgot');
 
-    Route::group(['middleware' => 'auth:api'], function() {
+    Route::group(['middleware' => ['auth:api', 'cors']], function() {
         Route::get('/logout', 'API\AuthController@logout');
         Route::post('/password/reset', 'API\AuthController@reset');
 
-        Route::apiResource('/student', 'API\StudentController');
+        Route::resource('/student', 'API\StudentController');
         Route::apiResource('/user', 'API\UserController');
         Route::apiResource('/tutor', 'API\TutorController');
-        Route::apiResource('/units', 'API\UnitController');
-        Route::apiResource('/payment-methods', 'API\PaymentMethodController');
-        Route::apiResource('/tax-types', 'API\TaxTypeController');
-        Route::apiResource('/categories', 'API\ExpenseCategoryController');
 
-        Route::fallback(function(){
-            return response()->json([
-                'message' => 'Invalid route, Please contact the administrator'
-            ], 404);
-        });
+        // Units
+        //----------------------------------
+        Route::resource('/units', 'API\UnitController');
+
+        // Payment Methods
+        //----------------------------------
+        Route::resource('/payment-methods', 'API\PaymentMethodController');
+
+        // Tax Types
+        //----------------------------------
+        Route::resource('/tax-types', 'API\TaxTypeController');
+
+        // Expense Categories
+        //----------------------------------
+        Route::resource('/categories', 'API\ExpenseCategoryController');
+
+        // Expenses
+        //----------------------------------
+        Route::resource('/expenses', 'API\ExpenseController');
+
+        // Invoice
+        //----------------------------------
+        Route::resource('/invoices', 'API\InvoiceController');
+
+        // Payment
+        //----------------------------------
+        Route::resource('/payments', 'API\PaymentController');
     });
 
-    Route::fallback(function(){
-        return response()->json([
-            'message' => 'Invalid route, Please contact the administrator'
-        ], 404);
-    });
+    // Route::fallback(function(){
+    //     return response()->json([
+    //         'message' => 'Invalid route, Please contact the administrator'
+    //     ], 404);
+    // });
 });
