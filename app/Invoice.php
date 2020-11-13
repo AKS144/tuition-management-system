@@ -57,11 +57,6 @@ class Invoice extends Model
         'viewed'
     ];
 
-    public function invoiceTemplate()
-    {
-        return $this->belongsTo(InvoiceTemplate::class);
-    }
-
     /**
      * Get the branch that owns the invoice.
      */
@@ -100,5 +95,13 @@ class Invoice extends Model
     public function taxes()
     {
         return $this->hasMany(Tax::class);
+    }
+
+    /**
+     * The payments that belong to the invoices.
+     */
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
     }
 }
