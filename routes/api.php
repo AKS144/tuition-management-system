@@ -48,6 +48,21 @@ Route::group(['prefix' => 'v1'], function () {
 
         // Expenses
         //----------------------------------
+        Route::post('/expenses/delete', [
+            'as' => 'expenses.delete',
+            'uses' => 'ExpensesController@delete'
+        ]);
+
+        Route::get('/expenses/{id}/show/receipt', [
+            'as' => 'expenses.show',
+            'uses' => 'ExpensesController@showReceipt',
+        ]);
+
+        Route::post('/expenses/{id}/upload/receipts', [
+            'as' => 'estimate.to.invoice',
+            'uses' => 'ExpensesController@uploadReceipts'
+        ]);
+
         Route::resource('/expenses', 'API\ExpenseController');
 
         // Invoice

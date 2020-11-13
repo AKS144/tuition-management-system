@@ -19,10 +19,10 @@ class ExpenseCategory extends Model
     }
 
     /**
-     * Get the expense that owns the expense category.
+     * Get the expenses that owns the expense category.
      */
     public function expenses()
     {
-        return $this->belongsTo(Expense::class);
+        return $this->hasMany(Expense::class);
     }
 }
