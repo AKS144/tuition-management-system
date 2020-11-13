@@ -2,15 +2,21 @@
 
 namespace App\Http\Controllers\API;
 
-use App\ExpenseCategory;
 use App\Expense;
-use App\Branch;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class ExpenseCategoryController extends Controller
+class ExpenseController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['permission:expense-list'], ['only' => ['index']]);
+        $this->middleware(['permission:expense-create'], ['only' => ['store']]);
+        $this->middleware(['permission:expense-edit'], ['only' => ['update']]);
+        $this->middleware(['permission:expense-delete'], ['only' => ['destroy']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -18,11 +24,11 @@ class ExpenseCategoryController extends Controller
      */
     public function index()
     {
-        $expenseCategory = ExpenseCategory::all();
+        $expense = Expense::all();
 
         return response([
             'status' => true,
-            'data' => $expenseCategory,
+            'expense' => $expense,
         ], 200);
     }
 
@@ -34,10 +40,12 @@ class ExpenseCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $expenseCategory = $request->all();
+        $expenses = $request->all();
 
-        $validator = Validator::make($expenseCategory, [
-            'name' => 'required|unique:expense_categories',
+        $validator = Validator::make($expenses, [
+            'expense_date' => 'required',
+            'expense_category_id' => 'required',
+            'amount' => 'required'
         ]);
 
         if($validator->fails()){
@@ -48,25 +56,25 @@ class ExpenseCategoryController extends Controller
             ], 401);
         }
 
-        $expenseCategory = ExpenseCategory::create($expenseCategory);
+        $expenses = Expense::create($expenses);
 
         return response([
             'status' => true,
-            'data' => $expenseCategory,
+            'data' => $expenses,
         ], 200);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\ExpenseCategory  $category
+     * @param  \App\Expense  $expense
      * @return \Illuminate\Http\Response
      */
-    public function show(ExpenseCategory $category)
+    public function show(Expense $expense)
     {
         return response([
             'status' => true,
-            'data' => $category,
+            'data' => $expense,
         ], 200);
     }
 
@@ -74,28 +82,28 @@ class ExpenseCategoryController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ExpenseCategory  $category
+     * @param  \App\Expense  $expense
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ExpenseCategory $category)
+    public function update(Request $request, Expense $expense)
     {
-        $category->update($request->all());
+        $expense->update($request->all());
 
         return response([
             'status' => true,
-            'data' => $category,
+            'data' => $expense,
         ], 200);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\ExpenseCategory  $category
+     * @param  \App\Expense  $expense
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ExpenseCategory $category)
+    public function destroy(Expense $expense)
     {
-        $category->delete();
+        $expense->delete();
 
         return response([
             'status' => true,
