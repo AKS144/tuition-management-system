@@ -22,11 +22,14 @@ class CreatePaymentsTable extends Migration
             $table->string('notes');
             $table->dateTime('payment_date');
             $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->bigInteger('payment_method_id')->unsigned()->nullable();
             $table->foreign('payment_method_id')->references('id')->on('payment_methods')->onDelete('cascade');
+            $table->bigInteger('student_id')->unsigned()->nullable();
+            $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
+            $table->bigInteger('invoice_id')->unsigned()->nullable();
+            $table->foreign('invoice_id')->references('id')->on('invoices')->onDelete('cascade');
             $table->timestamps();
-            
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
