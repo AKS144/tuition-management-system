@@ -17,12 +17,6 @@ class Expense extends Model
         'attachment_receipt'
     ];
 
-    protected $appends = [
-        'formattedExpenseDate',
-        'formattedCreatedAt',
-        'receipt'
-    ];
-
     public function expenseCategory()
     {
         return $this->belongsTo(ExpenseCategory::class);
