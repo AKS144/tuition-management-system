@@ -30,7 +30,7 @@ class PaymentMethodController extends Controller
         return response([
             'status' => true,
             'message' => 'Payment method successfully retrieved',
-            'paymentMethod' => PaymentMethodResource::collection($paymentMethod),
+            'paymentMethod' => $paymentMethod,
         ], 200);
     }
 
@@ -77,7 +77,7 @@ class PaymentMethodController extends Controller
         return response([
             'status' => true,
             'message' => 'Payment method successfully retrieved',
-            'data' => new PaymentResource($paymentMethod),
+            'data' => new PaymentMethodResource($paymentMethod),
         ], 200);
     }
 
