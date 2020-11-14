@@ -13,14 +13,18 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
 
 Route::group(['prefix' => 'v1'], function () {
     Route::post('/login', 'API\AuthController@login');
     Route::post('/register', 'API\AuthController@register');
     Route::post('/password/forgot', 'API\AuthController@forgot');
+
+    // Country, State & City
+    //----------------------------------
+    Route::get('/countries', [
+        'as' => 'countries',
+        'uses' => 'API\LocationController@getCountries'
+    ]);
 
     Route::group(['middleware' => ['auth:api', 'cors']], function() {
         Route::get('/logout', 'API\AuthController@logout');
