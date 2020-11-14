@@ -54,17 +54,17 @@ Route::group(['prefix' => 'v1'], function () {
         //----------------------------------
         Route::post('/expenses/delete', [
             'as' => 'expenses.delete',
-            'uses' => 'ExpensesController@delete'
+            'uses' => 'API\ExpensesController@delete'
         ]);
 
         Route::get('/expenses/{id}/show/receipt', [
             'as' => 'expenses.show',
-            'uses' => 'ExpensesController@showReceipt',
+            'uses' => 'API\ExpensesController@showReceipt',
         ]);
 
         Route::post('/expenses/{id}/upload/receipts', [
             'as' => 'estimate.to.invoice',
-            'uses' => 'ExpensesController@uploadReceipts'
+            'uses' => 'API\ExpensesController@uploadReceipts'
         ]);
 
         Route::resource('/expenses', 'API\ExpenseController');
@@ -75,6 +75,16 @@ Route::group(['prefix' => 'v1'], function () {
 
         // Payment
         //----------------------------------
+        Route::post('/payments/delete', [
+            'as' => 'payments.delete',
+            'uses' => 'API\PaymentController@delete'
+        ]);
+
+        Route::post('/payments/send', [
+            'as' => 'payments.send',
+            'uses' => 'PaymentController@sendPayment'
+        ]);
+
         Route::resource('/payments', 'API\PaymentController');
     });
 
