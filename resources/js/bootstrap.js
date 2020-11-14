@@ -67,15 +67,15 @@ window.axios.defaults.headers.common = {
 window.axios.interceptors.request.use(function (config) {
     // Do something before request is sent
     const AUTH_TOKEN = Ls.get('auth.token')
-    // const companyId = Ls.get('selectedCompany')
+    const branchId = Ls.get('selectedBranch')
 
     if (AUTH_TOKEN) {
         config.headers.common['Authorization'] = `Bearer ${AUTH_TOKEN}`
     }
 
-    // if (companyId) {
-    //   config.headers.common['company'] = companyId
-    // }
+    if (branchId) {
+      config.headers.common['branch'] = branchId
+    }
 
     return config
     }, function (error) {
