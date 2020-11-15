@@ -40,11 +40,11 @@ class DatabaseSeeder extends Seeder
         $users = App\User::all();
 
         // Populate branch_user table
-        App\Branch::all()->each(function ($branch) use ($users) {
-            $branch->users()->attach(
-                $users->random(rand(1, $users->count()))->pluck('id')->toArray()
-            );
-        });
+        // App\Branch::all()->each(function ($branch) use ($users) {
+        //     $branch->users()->attach(
+        //         $users->random(rand(1, $users->count()))->pluck('id')->toArray()
+        //     );
+        // });
 
         // Get all the venue attaching to each branch
         $venue = App\Venue::all();

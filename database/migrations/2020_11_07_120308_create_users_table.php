@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('image')->default('default.jpg');
             // $table->bigInteger('role_id')->default('4')->unsigned();
             $table->bigInteger('is_active')->default('0');
+            $table->bigInteger('branch_id')->default('1');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
