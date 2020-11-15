@@ -119,8 +119,8 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('company', [
-      'getSelectedCompany'
+    ...mapGetters('branch', [
+      'getSelectedBranch'
     ]),
     getReportUrl () {
       return this.url
@@ -133,8 +133,8 @@ export default {
     }
   },
   mounted () {
-    this.customerSiteURL = `/reports/sales/customers/${this.getSelectedCompany.unique_hash}`
-    this.itemsSiteURL = `/reports/sales/items/${this.getSelectedCompany.unique_hash}`
+    this.customerSiteURL = `/reports/sales/customers/${this.getSelectedBranch.unique_hash}`
+    this.itemsSiteURL = `/reports/sales/items/${this.getSelectedBranch.unique_hash}`
     this.getInitialReport()
   },
   methods: {

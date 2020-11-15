@@ -101,8 +101,8 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('company', [
-      'getSelectedCompany'
+    ...mapGetters('branch', [
+      'getSelectedBranch'
     ]),
     getReportUrl () {
       return this.url
@@ -115,7 +115,7 @@ export default {
     }
   },
   mounted () {
-    this.siteURL = `/reports/profit-loss/${this.getSelectedCompany.unique_hash}`
+    this.siteURL = `/reports/profit-loss/${this.getSelectedBranch.unique_hash}`
     this.url = `${this.siteURL}?from_date=${moment(this.formData.from_date).format('DD/MM/YYYY')}&to_date=${moment(this.formData.to_date).format('DD/MM/YYYY')}`
 
     this.loadProfitLossLink(this.url + '&download=true')
