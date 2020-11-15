@@ -37,9 +37,9 @@ export default {
       'isAppLoaded'
     ]),
 
-    ...mapGetters('company', {
-      selectedCompany: 'getSelectedCompany',
-      companies: 'getCompanies'
+    ...mapGetters('branch', {
+      selectedCompany: 'getSelectedBranch',
+      companies: 'getBranches'
     }),
 
     isShow () {

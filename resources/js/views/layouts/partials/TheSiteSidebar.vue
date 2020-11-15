@@ -38,7 +38,7 @@ export default {
           {
             title: 'navigation.customers',
             icon: 'user',
-            route: '/admin/customers'
+            route: '/admin/students'
           },
           {
             title: 'navigation.items',
@@ -51,7 +51,7 @@ export default {
           {
             title: 'navigation.estimates',
             icon: 'file',
-            route: '/admin/estimates'
+            route: '/admin/subjects'
           },
           {
             title: 'navigation.invoices',
