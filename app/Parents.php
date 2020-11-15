@@ -31,6 +31,6 @@ class Parents extends Model
      */
     public function addresses()
     {
-        return $this->morphMOne(Address::class, 'addressable');
+        return $this->morphOne(Address::class, 'addressable');
     }
 }

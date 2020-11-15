@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Branch;
 
 class Student extends Model
 {
@@ -69,5 +70,47 @@ class Student extends Model
      */
     public function payments(){
         return $this->hasMany(Payment::class);
+    }
+
+    public function scopeWhereBranch($query, $branch_id)
+    {
+        $query->where('students.branch_id', $branch_id);
+    }
+
+    public function scopeApplyFilters($query, array $filters)
+    {
+        $filters = collect($filters);
+
+        // if ($filters->get('search')) {
+        //     $query->whereSearch($filters->get('search'));
+        // }
+
+        // if ($filters->get('contact_name')) {
+        //     $query->whereContactName($filters->get('contact_name'));
+        // }
+
+        // if ($filters->get('display_name')) {
+        //     $query->whereDisplayName($filters->get('display_name'));
+        // }
+
+        // if ($filters->get('phone')) {
+        //     $query->wherePhone($filters->get('phone'));
+        // }
+
+        if ($filters->get('orderByField') || $filters->get('orderBy')) {
+            $field = $filters->get('orderByField') ? $filters->get('orderByField') : 'name';
+            $orderBy = $filters->get('orderBy') ? $filters->get('orderBy') : 'asc';
+            $query->whereOrder($field, $orderBy);
+        }
+    }
+
+    public function billingAddress()
+    {
+        return $this->hasOne(Address::class)->where('type', Address::BILLING_TYPE);
+    }
+
+    public function shippingAddress()
+    {
+        return $this->hasOne(Address::class)->where('type', Address::SHIPPING_TYPE);
     }
 }

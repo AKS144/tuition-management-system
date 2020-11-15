@@ -7,6 +7,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+use Carbon\Carbon;
+use App\BranchSetting;
+use App\Currency;
 
 class User extends Authenticatable
 {
@@ -44,17 +47,51 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected $with = [
+        'currency'
+    ];
+
+    protected $appends = [
+        'formattedCreatedAt',
+        // 'avatar'
+    ];
+
     /**
      * Get the branch associated with the user
      */
     public function branch(){
-        return $this->belongsToMany(Branch::class, 'branch_user');
+        return $this->belongsTo(Branch::class);
     }
 
     /**
-     * Get the payment associated with the user
+     * Get the payments associated with the user
      */
-    public function payment(){
+    public function payments(){
         return $this->hasMany(Payment::class);
+    }
+
+    public function getFormattedCreatedAtAttribute($value)
+    {
+        $dateFormat = BranchSetting::getSetting('carbon_date_format', $this->branch_id);
+        return Carbon::parse($this->created_at)->format($dateFormat);
+    }
+
+    public function currency()
+    {
+        return $this->belongsTo(Currency::class);
+    }
+
+    public function scopeWhereOrder($query, $orderByField, $orderBy)
+    {
+        $query->orderBy($orderByField, $orderBy);
+    }
+
+    public function scopeWhereSearch($query, $search)
+    {
+        foreach (explode(' ', $search) as $term) {
+            $query->where(function ($query) use ($term) {
+                $query->where('name', 'LIKE', '%'.$term.'%');
+            });
+        }
     }
 }

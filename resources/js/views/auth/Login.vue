@@ -101,7 +101,7 @@ export default {
 
         this.isLoading = true
         this.login(this.loginData).then((res) => {
-            this.$router.push('/dashboard')
+            this.$router.push('/admin/dashboard')
             this.isLoading = false
         }).catch(() => {
             this.isLoading = false

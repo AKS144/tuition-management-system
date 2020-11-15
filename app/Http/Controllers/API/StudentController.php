@@ -23,22 +23,30 @@ class StudentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        if(auth()->user()){
-            $student = Student::all();
+        $limit = $request->has('limit') ? $request->limit : 10;
+        
+        $students = Student::applyFilters($request->only([
+                // 'search',
+                // 'contact_name',
+                // 'display_name',
+                // 'phone',
+                'orderByField',
+                'orderBy'
+            ]))
+            ->whereBranch($request->header('branch'))
+            // ->select('users.*',
+            //     DB::raw('sum(invoices.due_amount) as due_amount')
+            // )
+            ->groupBy('students.id')
+            ->paginate($limit);
+        
+        $limit = $request->has('limit') ? $request->limit : 10;
 
-            return response([
-                'status' => true,
-                'message' => 'Student successfully retrieved',
-                'data' => StudentResource::collection($student),
-            ], 200);
-        } else {
-            return response([
-                'status' => false,
-                'message' => 'Failed to retrieved student data'
-            ], 401);
-        }
+        return response()->json([
+            'students' => $students
+        ]);
     }
 
     /**

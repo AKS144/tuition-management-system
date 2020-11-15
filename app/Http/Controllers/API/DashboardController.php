@@ -11,6 +11,7 @@ use App\BranchSetting;
 use App\Expense;
 use App\Payment;
 use App\Student;
+use App\Tutor;
 use App\User;
 
 class DashboardController extends Controller
@@ -128,6 +129,7 @@ class DashboardController extends Controller
         $totalDueAmount = Invoice::whereBranch($request->header('branch'))->sum('due_amount');
         $dueInvoices = Invoice::with('user')->whereBranch($request->header('branch'))->where('due_amount', '>', 0)->take(5)->latest()->get();
         $expenses = Expense::take(5)->latest()->get();
+        $tutorCount = Tutor::whereBranch($request->header('branch'))->get()->count();
 
         return response()->json([
             'dueInvoices' => $dueInvoices,
@@ -140,7 +142,8 @@ class DashboardController extends Controller
             'salesTotal' => $salesTotal,
             'totalReceipts' => $totalReceipts,
             'totalExpenses' => $totalExpenses,
-            'netProfit' => $netProfit
+            'netProfit' => $netProfit,
+            'tutorCount' => $tutorCount
         ]);
     }
 }

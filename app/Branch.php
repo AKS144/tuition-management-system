@@ -21,7 +21,7 @@ class Branch extends Model
      * Get the user associated with the branch
      */
     public function users(){
-        return $this->belongsToMany(User::class, 'branch_user');
+        return $this->hasMany(User::class);
     }
 
     /**
@@ -100,6 +100,6 @@ class Branch extends Model
      */
     public function addresses()
     {
-        return $this->morphMOne(Address::class, 'addressable');
+        return $this->morphOne(Address::class, 'addressable');
     }
 }

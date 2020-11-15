@@ -39,14 +39,14 @@ class ExpenseController extends Controller
                 'orderByField',
                 'orderBy'
             ]))
-            ->whereBranch($request->branch_id)
+            ->whereBranch($request->header('branch'))
             ->select('expenses.*', 'expense_categories.name')
             ->paginate($limit);
         
         return response()->json([
             'expenses' => $expenses,
             'currency' => Currency::findOrFail(
-                BranchSetting::getSetting('currency', $request->branch_id)
+                BranchSetting::getSetting('currency', $request->header('branch'))
             )
         ]);
     }
@@ -58,7 +58,7 @@ class ExpenseController extends Controller
      */
     public function create(Request $request)
     {
-        $categories = ExpenseCategory::whereCompany($request->branch_id)->get();
+        $categories = ExpenseCategory::whereCompany($request->header('branch'))->get();
 
         return response()->json([
             'categories' => $categories
@@ -95,7 +95,7 @@ class ExpenseController extends Controller
         $expense->notes = $request->notes;
         $expense->expense_category_id = $request->expense_category_id;
         $expense->amount = $request->amount;
-        $expense->branch_id = $request->branch_id;
+        $expense->branch_id = $request->header('branch');
         $expense->expense_date = $expense_date;
         $expense->save();
 
@@ -131,7 +131,7 @@ class ExpenseController extends Controller
      */
     public function edit(Request $request, $id)
     {
-        $categories = ExpenseCategory::whereCompany($request->branch_id)->get();
+        $categories = ExpenseCategory::whereCompany($request->header('branch'))->get();
         $expense = Expense::with('category')->where('id', $id)->first();
 
         return response()->json([

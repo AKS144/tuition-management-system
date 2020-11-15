@@ -30,9 +30,25 @@ Route::group(['prefix' => 'v1'], function () {
         Route::get('/logout', 'API\AuthController@logout');
         Route::post('/password/reset', 'API\AuthController@reset');
 
-        Route::resource('/student', 'API\StudentController');
+        Route::resource('/students', 'API\StudentController');
         Route::apiResource('/user', 'API\UserController');
         Route::apiResource('/tutor', 'API\TutorController');
+
+        // Bootstrap
+        //----------------------------------
+
+        Route::get('/bootstrap', [
+            'as' => 'bootstrap',
+            'uses' => 'API\UserController@getBootstrap'
+        ]);
+
+        // Dashboard
+        //----------------------------------
+
+        Route::get('/dashboard', [
+            'as' => 'dashboard',
+            'uses' => 'API\DashboardController@index'
+        ]);
 
         // Units
         //----------------------------------
@@ -86,6 +102,25 @@ Route::group(['prefix' => 'v1'], function () {
         ]);
 
         Route::resource('/payments', 'API\PaymentController');
+
+        // Items
+        //----------------------------------
+
+        Route::post('/items/delete', [
+            'as' => 'items.delete',
+            'uses' => 'API\ItemController@delete'
+        ]);
+
+        Route::resource('items', 'API\ItemController');
+
+        // Settings
+        //----------------------------------
+        Route::group(['prefix' => 'settings'], function () {
+            Route::get('/general', [
+                'as' => 'get.admin.branch.setting',
+                'uses' => 'API\SettingsController@getGeneralSettings'
+            ]);
+        });
     });
 
     // Route::fallback(function(){

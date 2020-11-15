@@ -243,12 +243,12 @@ export default {
     ...mapGetters('category', [
       'categories'
     ]),
-    ...mapGetters('company', [
-      'getSelectedCompany'
+    ...mapGetters('branch', [
+      'getSelectedBranch'
     ]),
     getReceiptUrl () {
       if (this.isEdit) {
-        return `/expenses/${this.$route.params.id}/receipt/${this.getSelectedCompany.unique_hash}`
+        return `/expenses/${this.$route.params.id}/receipt/${this.getSelectedBranch.unique_hash}`
       }
     }
   },
