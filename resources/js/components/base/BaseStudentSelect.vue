@@ -2,17 +2,17 @@
   <div class="item-selector">
     <base-select
       ref="baseSelect"
-      v-model="customerSelect"
-      :options="customers"
+      v-model="studentSelect"
+      :options="students"
       :show-labels="false"
       :preserve-search="false"
-      :placeholder="$t('customers.type_or_click')"
+      :placeholder="$t('students.type_or_click')"
       label="name"
       class="multi-select-item"
-      @close="checkCustomers"
+      @close="checkStudents"
       @value="onTextChange"
       @select="(val) => $emit('select', val)"
-      @remove="deselectCustomer"
+      @remove="deselectStudent"
     />
   </div>
 </template>
@@ -23,36 +23,36 @@ import { mapActions, mapGetters } from 'vuex'
 export default {
   data () {
     return {
-      customerSelect: null,
+      studentSelect: null,
       loading: false
     }
   },
   computed: {
-    ...mapGetters('customer', [
-      'customers'
+    ...mapGetters('student', [
+      'students'
     ])
   },
   methods: {
-    ...mapActions('customer', [
-      'fetchCustomers'
+    ...mapActions('student', [
+      'fetchStudents'
     ]),
-    async searchCustomers (search) {
+    async searchStudents (search) {
       this.loading = true
 
-      await this.fetchCustomers({search})
+      await this.fetchStudents({search})
 
       this.loading = false
     },
     onTextChange (val) {
-      this.searchCustomers(val)
+      this.searchStudents(val)
     },
-    checkCustomers (val) {
-      if (!this.customers.length) {
-        this.fetchCustomers()
+    checkStudents (val) {
+      if (!this.students.length) {
+        this.fetchStudents()
       }
     },
-    deselectCustomer () {
-      this.customerSelect = null
+    deselectStudent () {
+      this.studentSelect = null
       this.$emit('deselect')
     }
   }

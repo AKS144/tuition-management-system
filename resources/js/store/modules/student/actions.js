@@ -3,6 +3,7 @@ import * as types from './mutation-types'
 export const fetchStudents = ({ commit, dispatch, state }, params) => {
   return new Promise((resolve, reject) => {
     window.axios.get(`/api/v1/students`, {params}).then((response) => {
+      console.log(response);
       commit(types.BOOTSTRAP_STUDENTS, response.data.students.data)
       commit(types.SET_TOTAL_STUDENTS, response.data.students.total)
       resolve(response)

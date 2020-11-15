@@ -36,6 +36,12 @@ class SettingsController extends Controller
             ['key' => 'December-November', 'value' => '12-11'],
         ];
 
+        $status = [
+            ['key' => 'Active' , 'value' => '1'],
+            ['key' => 'Not Active' , 'value' => '0'],
+            ['key' => 'Terminated' , 'value' => '2'],
+        ];
+
         $language = BranchSetting::getSetting('language', $request->header('branch'));
         $carbon_date_format = BranchSetting::getSetting('carbon_date_format', $request->header('branch'));
         $moment_date_format = BranchSetting::getSetting('moment_date_format', $request->header('branch'));
@@ -60,6 +66,7 @@ class SettingsController extends Controller
             'selectedCurrency' => $currency,
             'carbon_date_format' => $carbon_date_format,
             'moment_date_format' => $moment_date_format,
+            'status' => $status,
         ]);
     }
 }

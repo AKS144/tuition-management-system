@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Student;
+use App\Parents;
 use Illuminate\Http\Request;
 use App\Http\Resources\StudentResource;
 use Illuminate\Support\Facades\Validator;
@@ -27,22 +28,18 @@ class StudentController extends Controller
     {
         $limit = $request->has('limit') ? $request->limit : 10;
         
-        $students = Student::applyFilters($request->only([
-                // 'search',
-                // 'contact_name',
-                // 'display_name',
-                // 'phone',
+        $students = Student::with('parents')
+            ->applyFilters($request->only([
+                'search',
+                'full_name',
+                'nric',
+                'mobile_no',
                 'orderByField',
                 'orderBy'
             ]))
             ->whereBranch($request->header('branch'))
-            // ->select('users.*',
-            //     DB::raw('sum(invoices.due_amount) as due_amount')
-            // )
             ->groupBy('students.id')
             ->paginate($limit);
-        
-        $limit = $request->has('limit') ? $request->limit : 10;
 
         return response()->json([
             'students' => $students

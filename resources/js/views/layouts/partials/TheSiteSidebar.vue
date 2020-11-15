@@ -36,7 +36,7 @@ export default {
             route: '/admin/dashboard'
           },
           {
-            title: 'navigation.customers',
+            title: 'navigation.students',
             icon: 'user',
             route: '/admin/students'
           },

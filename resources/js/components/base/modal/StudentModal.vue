@@ -1,6 +1,6 @@
 <template>
   <div class="customer-modal">
-    <form action="" @submit.prevent="submitCustomerData">
+    <form action="" @submit.prevent="submitStudentData">
       <div class="card-body">
         <!-- tab-1 -->
         <tabs :options="{defaultTabHash: 'basic-home' }" class="tabs-simple">
@@ -308,7 +308,7 @@
         </tabs>
       </div>
       <div class="card-footer">
-        <base-button :outline="true" class="mr-3" color="theme" @click="cancelCustomer">
+        <base-button :outline="true" class="mr-3" color="theme" @click="cancelStudent">
           {{ $t('general.cancel') }}
         </base-button>
         <base-button
@@ -439,15 +439,15 @@ export default {
   },
   methods: {
     ...mapActions('invoice', {
-      setInvoiceCustomer: 'selectCustomer'
+      setInvoiceStudent: 'selectStudent'
     }),
     ...mapActions('estimate', {
-      setEstimateCustomer: 'selectCustomer'
+      setEstimateStudent: 'selectStudent'
     }),
-    ...mapActions('customer', [
-      'fetchCustomer',
-      'addCustomer',
-      'updateCustomer'
+    ...mapActions('student', [
+      'fetchStudent',
+      'addStudent',
+      'updateStudent'
     ]),
     ...mapActions('modal', [
       'closeModal'
@@ -469,7 +469,7 @@ export default {
       this.shipping = {...AddressStub}
       this.$v.formData.$reset()
     },
-    cancelCustomer () {
+    cancelStudent () {
       this.resetData()
       this.closeModal()
     },
@@ -484,7 +484,7 @@ export default {
       }
     },
     async loadData () {
-      let response = await this.fetchCustomer()
+      let response = await this.fetchStudent()
       this.currencyList = this.currencies
       this.formData.currency_id = response.data.currency.id
       return true
@@ -528,7 +528,7 @@ export default {
         this.shippingCountry = this.modalData.shipping_address.country
       }
     },
-    async submitCustomerData () {
+    async submitStudentData () {
       this.$v.formData.$touch()
 
       if (this.$v.$invalid) {
@@ -547,9 +547,9 @@ export default {
       try {
         let response = null
         if (this.modalDataID) {
-          response = await this.updateCustomer(this.formData)
+          response = await this.updateStudent(this.formData)
         } else {
-          response = await this.addCustomer(this.formData)
+          response = await this.addStudent(this.formData)
         }
         if (response.data) {
           if (this.modalDataID) {
@@ -559,10 +559,10 @@ export default {
           }
           this.isLoading = false
           if (this.$route.name === 'invoices.create' || this.$route.name === 'invoices.edit') {
-            this.setInvoiceCustomer(response.data.customer.id)
+            this.setInvoiceStudent(response.data.student.id)
           }
           if (this.$route.name === 'estimates.create' || this.$route.name === 'estimates.edit') {
-            this.setEstimateCustomer(response.data.customer.id)
+            this.setEstimateStudent(response.data.student.id)
           }
           this.resetData()
           this.closeModal()

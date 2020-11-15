@@ -8,7 +8,7 @@ import VDropdown from './components/dropdown/VDropdown.vue'
 import VDropdownItem from './components/dropdown/VDropdownItem.vue'
 import VDropdownDivider from './components/dropdown/VDropdownDivider.vue'
 import DotIcon from './components/icon/DotIcon.vue'
-import CustomerModal from './components/base/modal/CustomerModal.vue'
+import StudentModal from './components/base/modal/StudentModal.vue'
 import TaxTypeModal from './components/base/modal/TaxTypeModal.vue'
 import CategoryModal from './components/base/modal/CategoryModal.vue'
 import money from 'v-money'
@@ -129,6 +129,6 @@ Vue.component('v-dropdown-item', VDropdownItem)
 Vue.component('v-dropdown-divider', VDropdownDivider)
 
 Vue.component('dot-icon', DotIcon)
-Vue.component('customer-modal', CustomerModal)
+Vue.component('student-modal', StudentModal)
 Vue.component('tax-type-modal', TaxTypeModal)
 Vue.component('category-modal', CategoryModal)

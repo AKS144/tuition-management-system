@@ -608,7 +608,7 @@ export default {
     editCustomer () {
       this.openModal({
         'title': this.$t('customers.edit_customer'),
-        'componentName': 'CustomerModal',
+        'componentName': 'StudentModal',
         'id': this.selectedCustomer.id,
         'data': this.selectedCustomer
       })

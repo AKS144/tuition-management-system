@@ -1,7 +1,7 @@
 {
     "navigation": {
       "dashboard": "Dashboard",
-      "customers": "Customers",
+      "students": "Students",
       "items": "Items",
       "invoices": "Invoices",
       "expenses": "Expenses",
@@ -168,6 +168,24 @@
       "created_message": "Customer created successfully",
       "updated_message": "Customer updated successfully",
       "deleted_message": "Customer deleted successfully | Customers deleted successfully"
+    },
+    "students": {
+      "title": "Students",
+      "student": "Student | Students",
+      "new_student": "New Student",
+      "full_name": "Full Name",
+      "nric": "NRIC",
+      "mobile_no": "Mobile Number",
+      "no_students": "No Student registered!",
+      "list_of_students": "This section will contain the list of students.",
+      "add_new_customer": "Add New Student",
+      "status": "Status",
+      "joined_date": "Date Joined",
+      "action": "Action",
+      "confirm_delete": "You will not be able to recover this student and all the related Subject, Class, Package, Invoices and etc. | You will not be able to recover these students and all the related Subject, Class, Payment, Invoices and etc.",
+      "created_message": "Student created successfully",
+      "updated_message": "Student updated successfully",
+      "deleted_message": "Student deleted successfully | Students deleted successfully"
     },
     "items": {
       "title": "Items",

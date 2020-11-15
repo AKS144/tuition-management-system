@@ -1,7 +1,7 @@
 <template>
   <div class="customer-create main-content">
     <div class="page-header">
-      <h3 class="page-title">{{ $t('customers.title') }}</h3>
+      <h3 class="page-title">{{ $t('students.title') }}</h3>
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
           <router-link
@@ -14,7 +14,7 @@
           <router-link
             slot="item-title"
             to="#">
-            {{ $tc('customers.customer',2) }}
+            {{ $tc('students.student',2) }}
           </router-link>
         </li>
       </ol>
@@ -37,7 +37,7 @@
             size="large"
             icon="plus"
             color="theme">
-            {{ $t('customers.new_customer') }}
+            {{ $t('students.new_student') }}
           </base-button>
         </router-link>
       </div>
@@ -47,29 +47,29 @@
       <div v-show="showFilters" class="filter-section">
         <div class="row">
           <div class="col-sm-4">
-            <label class="form-label">{{ $t('customers.display_name') }}</label>
+            <label class="form-label">{{ $t('students.full_name') }}</label>
             <base-input
-              v-model="filters.display_name"
+              v-model="filters.full_name"
               type="text"
               name="name"
               autocomplete="off"
             />
           </div>
           <div class="col-sm-4">
-            <label class="form-label">{{ $t('customers.contact_name') }}</label>
+            <label class="form-label">{{ $t('students.nric') }}</label>
             <base-input
-              v-model="filters.contact_name"
+              v-model="filters.nric"
               type="text"
-              name="address_name"
+              name="nric"
               autocomplete="off"
             />
           </div>
           <div class="col-sm-4">
-            <label class="form-label">{{ $t('customers.phone') }}</label>
+            <label class="form-label">{{ $t('students.mobile_no') }}</label>
             <base-input
-              v-model="filters.phone"
+              v-model="filters.mobile_no"
               type="text"
-              name="phone"
+              name="mobile_no"
               autocomplete="off"
             />
           </div>
@@ -81,10 +81,10 @@
     <div v-cloak v-show="showEmptyScreen" class="col-xs-1 no-data-info" align="center">
       <astronaut-icon class="mt-5 mb-4"/>
       <div class="row" align="center">
-        <label class="col title">{{ $t('customers.no_customers') }}</label>
+        <label class="col title">{{ $t('students.no_students') }}</label>
       </div>
       <div class="row">
-        <label class="description col mt-1" align="center">{{ $t('customers.list_of_customers') }}</label>
+        <label class="description col mt-1" align="center">{{ $t('students.list_of_students') }}</label>
       </div>
       <div class="btn-container">
         <base-button
@@ -94,14 +94,14 @@
           size="large"
           @click="$router.push('students/create')"
         >
-          {{ $t('customers.add_new_customer') }}
+          {{ $t('students.add_new_customer') }}
         </base-button>
       </div>
     </div>
 
     <div v-show="!showEmptyScreen" class="table-container">
       <div class="table-actions mt-5">
-        <p class="table-stats">{{ $t('general.showing') }}: <b>{{ customers.length }}</b> {{ $t('general.of') }} <b>{{ totalStudents }}</b></p>
+        <p class="table-stats">{{ $t('general.showing') }}: <b>{{ students.length }}</b> {{ $t('general.of') }} <b>{{ totalStudents }}</b></p>
 
         <transition name="fade">
           <v-dropdown v-if="selectedStudents.length" :show-arrow="false">
@@ -156,30 +156,25 @@
           </template>
         </table-column>
         <table-column
-          :label="$t('customers.display_name')"
-          show="name"
+          :label="$t('students.full_name')"
+          show="full_name"
         />
         <table-column
-          :label="$t('customers.contact_name')"
-          show="contact_name"
+          :label="$t('students.nric')"
+          show="nric"
         />
         <table-column
-          :label="$t('customers.phone')"
-          show="phone"
+          :label="$t('students.mobile_no')"
+          show="mobile_no"
         />
         <table-column
-          :label="$t('customers.amount_due')"
-          show="due_amount"
-        >
-          <template slot-scope="row">
-            <span> {{ $t('customers.amount_due') }} </span>
-            <div v-html="$utils.formatMoney(row.due_amount, row.currency)"/>
-          </template>
-        </table-column>
+          :label="$t('students.status')"
+          show="status"
+        />
         <table-column
-          :label="$t('customers.added_on')"
-          sort-as="created_at"
-          show="formattedCreatedAt"
+          :label="$t('students.joined_date')"
+          sort-as="date_joined"
+          show="formattedJoinedAt"
         />
         <table-column
           :sortable="false"
@@ -187,7 +182,7 @@
           cell-class="action-dropdown"
         >
           <template slot-scope="row">
-            <span> {{ $t('customers.action') }} </span>
+            <span> {{ $t('students.action') }} </span>
             <v-dropdown>
               <a slot="activator" href="#">
                 <dot-icon />
@@ -235,9 +230,9 @@ export default {
       filtersApplied: false,
       isRequestOngoing: true,
       filters: {
-        display_name: '',
-        contact_name: '',
-        phone: ''
+        full_name: '',
+        nric: '',
+        mobile_no: ''
       }
     }
   },
@@ -296,9 +291,9 @@ export default {
     },
     async fetchData ({ page, filter, sort }) {
       let data = {
-        display_name: this.filters.display_name,
-        contact_name: this.filters.contact_name,
-        phone: this.filters.phone,
+        full_name: this.filters.full_name,
+        nric: this.filters.nric,
+        mobile_no: this.filters.mobile_no,
         orderByField: sort.fieldName || 'created_at',
         orderBy: sort.order || 'desc',
         page
@@ -322,9 +317,9 @@ export default {
     },
     clearFilter () {
       this.filters = {
-        display_name: '',
-        contact_name: '',
-        phone: ''
+        full_name: '',
+        nric: '',
+        mobile_no: ''
       }
 
       this.$nextTick(() => {
@@ -342,15 +337,15 @@ export default {
     async removeStudent (id) {
       swal({
         title: this.$t('general.are_you_sure'),
-        text: this.$tc('customers.confirm_delete'),
-        icon: '/assets/icon/trash-solid.svg',
+        text: this.$tc('students.confirm_delete'),
+        icon: '/icon/trash-solid.svg',
         buttons: true,
         dangerMode: true
       }).then(async (willDelete) => {
         if (willDelete) {
           let res = await this.deleteStudent(id)
           if (res.data.success) {
-            window.toastr['success'](this.$tc('customers.deleted_message'))
+            window.toastr['success'](this.$tc('students.deleted_message'))
             this.refreshTable()
             return true
           } else if (request.data.error) {
@@ -362,7 +357,7 @@ export default {
     async removeMultipleStudents () {
       swal({
         title: this.$t('general.are_you_sure'),
-        text: this.$tc('customers.confirm_delete', 2),
+        text: this.$tc('students.confirm_delete', 2),
         icon: '/assets/icon/trash-solid.svg',
         buttons: true,
         dangerMode: true
@@ -370,7 +365,7 @@ export default {
         if (willDelete) {
           let request = await this.deleteMultipleStudents()
           if (request.data.success) {
-            window.toastr['success'](this.$tc('customers.deleted_message', 2))
+            window.toastr['success'](this.$tc('students.deleted_message', 2))
             this.refreshTable()
           } else if (request.data.error) {
             window.toastr['error'](request.data.message)
