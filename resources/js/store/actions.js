@@ -11,6 +11,7 @@ export default {
     bootstrap ({ commit, dispatch, state }) {
         return new Promise((resolve, reject) => {
           window.axios.get('/api/v1/bootstrap').then((response) => {
+            console.log(response);
             commit('branch/' + branchTypes.BOOTSTRAP_BRANCHES, response.data.branches)
             commit('branch/' + branchTypes.SET_SELECTED_BRANCH, response.data.branch)
             commit('currency/' + currencyTypes.BOOTSTRAP_CURRENCIES, response.data)

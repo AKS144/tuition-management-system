@@ -1,5 +1,5 @@
 import * as types from './mutation-types'
-import Ls from '@/services/ls'
+import Ls from '../../../services/ls'
 
 // export const updateCurrentUser = ({ commit, dispatch, state }, data) => {
 //   return new Promise((resolve, reject) => {

@@ -2,7 +2,7 @@ import * as types from './mutation-types'
 
 export const loadData = ({ commit, dispatch, state }, id) => {
   return new Promise((resolve, reject) => {
-    window.axios.get(`/api/settings/general`).then((response) => {
+    window.axios.get(`/api/v1/settings/general`).then((response) => {
       resolve(response)
     }).catch((err) => {
       reject(err)
@@ -12,7 +12,7 @@ export const loadData = ({ commit, dispatch, state }, id) => {
 
 export const editPreferences = ({ commit, dispatch, state }, data) => {
   return new Promise((resolve, reject) => {
-    window.axios.put('/api/settings/general', data).then((response) => {
+    window.axios.put('/api/v1/settings/general', data).then((response) => {
       // commit(types.UPDATE_USER, response.data)
       commit(types.SET_MOMENT_DATE_FORMAT, data.moment_date_format)
       resolve(response)

@@ -15,6 +15,12 @@ import currency from './modules/currency'
 import modal from './modules/modal'
 import taxType from './modules/tax-type'
 import student from './modules/student'
+import user from './modules/user'
+import companyInfo from './modules/settings/company-info'
+import userProfile from './modules/settings/user-profile'
+import preferences from './modules/settings/preferences'
+import general from './modules/settings/general'
+import item from './modules/item'
 
 Vue.use(Vuex)
 
@@ -39,6 +45,12 @@ export default new Vuex.Store({
         currency,
         modal,
         taxType,
-        student
+        student,
+        user,
+        companyInfo,
+        userProfile,
+        preferences,
+        general,
+        item
     }
 })
