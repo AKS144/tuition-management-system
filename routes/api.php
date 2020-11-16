@@ -66,6 +66,10 @@ Route::group(['prefix' => 'v1'], function () {
         //----------------------------------
         Route::resource('/tax-types', 'API\TaxTypeController');
 
+        // Levels
+        //----------------------------------
+        Route::resource('/levels', 'API\LevelController');
+
         // Expense Categories
         //----------------------------------
         Route::resource('/categories', 'API\ExpenseCategoryController');
