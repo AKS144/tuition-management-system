@@ -70,6 +70,10 @@ Route::group(['prefix' => 'v1'], function () {
         //----------------------------------
         Route::resource('/levels', 'API\LevelController');
 
+        // Subjects
+        //----------------------------------
+        Route::resource('/subjects', 'API\SubjectController');
+
         // Expense Categories
         //----------------------------------
         Route::resource('/categories', 'API\ExpenseCategoryController');
