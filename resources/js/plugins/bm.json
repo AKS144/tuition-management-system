@@ -170,33 +170,33 @@
       "deleted_message": "Rekod pelajar dibuang! | Rekod pelajar dibuang!"
     },
     "items": {
-      "title": "Items",
-      "items_list": "Items List",
-      "name": "Name",
-      "unit": "Unit",
-      "description": "Description",
-      "added_on": "Added On",
-      "price": "Price",
-      "date_of_creation": "Date Of Creation",
-      "action": "Action",
-      "add_item": "Add Item",
-      "save_item": "Save Item",
-      "update_item": "Update Item",
-      "item": "Item | Items",
-      "add_new_item": "Add New Item",
-      "new_item": "New Item",
-      "edit_item": "Edit Item",
-      "no_items": "No items yet!",
-      "list_of_items": "This section will contain the list of items.",
-      "select_a_unit": "select unit",
-      "taxes": "Taxes",
-      "item_attached_message": "Cannot delete an item which is already in use",
-      "confirm_delete": "You will not be able to recover this Item | You will not be able to recover these Items",
-      "created_message": "Item created successfully",
-      "updated_message": "Item updated successfully",
-      "deleted_message": "Item deleted successfully | Items deleted successfully"
+      "title": "Kelas",
+      "items_list": "Senarai Kelas",
+      "name": "Nama",
+      "unit": "Subjek",
+      "description": "Penerangan",
+      "added_on": "Ditambah pada",
+      "price": "Harga",
+      "date_of_creation": "Tarikh Tambah",
+      "action": "Aktiviti",
+      "add_item": "Tambah Kelas",
+      "save_item": "Simpan Kelas",
+      "update_item": "Kemaskini Kelas",
+      "item": "Kelas | Kelas",
+      "add_new_item": "Tambah Kelas Baharu",
+      "new_item": "Kelas Baharu",
+      "edit_item": "Ubah Kelas",
+      "no_items": "Senarai Kelas tidak wujud!",
+      "list_of_items": "Bahagian ini mengandungi senarai kelas.",
+      "select_a_unit": "Pilih subjek...",
+      "taxes": "Cukau",
+      "item_attached_message": "Gagal hapus kelas. Kelas sedang digunakan.",
+      "confirm_delete": "Rekod kelas akan dihapuskan. | Rekod kelas akan dihapuskan.",
+      "created_message": "Rekod kelas berjaya ditambah!",
+      "updated_message": "Rekod kelas berjaya dikemaskini!",
+      "deleted_message": "Rekod kelas telah dihapuskan. | Rekod kelas telah dihapuskan."
     },
-    "estimates": {
+/*    "estimates": {
       "title": "Estimates",
       "estimate": "Estimate | Estimates",
       "estimates_list": "Estimates List",
@@ -285,7 +285,7 @@
         "select_an_item": "Type or click to select an item",
         "type_item_description": "Type Item Description (optional)"
       }
-    },
+    },*/
     "invoices": {
       "title": "Invois",
       "invoices_list": "Senarai Invois",
@@ -344,7 +344,7 @@
       "clone_invoice": "Salin invois",
       "confirm_clone": "Invois ini akan disalin",
       "item": {
-        "title": "Perkara",
+        "title": "Kelas",
         "description": "Penerangan",
         "quantity": "Kuantiti",
         "price": "Harga",
@@ -354,8 +354,8 @@
         "sub_total": "Jumlah Keseluruhan",
         "tax": "Cukai",
         "amount": "Amaun",
-        "select_an_item": "Taip atau pilih perkara...",
-        "type_item_description": "Masukkan penerangan perkara (tidak mustahak)..."
+        "select_an_item": "Taip atau pilih kelas...",
+        "type_item_description": "Masukkan penerangan ringkas kelas (tidak mustahak)..."
       },
       "payment_attached_message": "Satu daripada pilihan invois mengandungi rekod pembayaran yang sah. Sila buang rekod tersebut terlebih dahulu sebelum membuang invois.",
       "confirm_delete": "Rekod invois akan dibuang. | Rekod invois akan dibuang.",
@@ -549,14 +549,14 @@
     },
     "settings": {
       "menu_title": {
-        "account_settings": "Account Settings",
-        "company_information": "Company Information",
-        "customization": "Customization",
-        "preferences": "Preferences",
-        "notifications": "Notifications",
-        "tax_types": "Tax Types",
-        "expense_category": "Expense Categories",
-        "update_app": "Update App"
+        "account_settings": "Tetapan Akaun",
+        "company_information": "Maklumat Syarikat",
+        "customization": "Tetapan Antara Muka",
+        "preferences": "Tetapan Pilihan",
+        "notifications": "Notifikasi",
+        "tax_types": "Jenis Cukai",
+        "expense_category": "Kategori Pengeluaran",
+        "update_app": "Kemaskini Sistem"
       },
       "title": "Tetapan",
       "setting": "Tetapan | Tetapan",
@@ -621,10 +621,10 @@
         "updated_message": "Maklumat syarikat berjaya dikemaskini!"
       },
       "customization": {
-        "customization": "customization",
-        "save": "Save",
+        "customization": "Tetapan Antara Muka",
+        "save": "Simpan",
         "addresses": {
-          "title": "Addresses",
+          "title": "Senarai Alamat //buang",
           "section_description": "You can set Customer Billing Address and Customer Shipping Address Format (Displayed in PDF only). ",
           "customer_billing_address": "Customer Billing Address",
           "customer_shipping_address": "Customer Shipping Address",
@@ -650,19 +650,19 @@
         "updated_message": "Company information updated successfully",
   
         "invoices": {
-          "title": "Invoices",
-          "notes": "Notes",
-          "invoice_prefix": "Invoice Prefix",
-          "invoice_settings": "Invoice Settings",
-          "autogenerate_invoice_number": "Auto-generate Invoice Number",
-          "invoice_setting_description": "Disable this, If you don't wish to auto-generate invoice numbers each time you create a new invoice.",
-          "enter_invoice_prefix": "Enter invoice prefix",
-          "terms_and_conditions": "Terms and Conditions",
-          "invoice_setting_updated": "Invoice Setting updated successfully"
+          "title": "Invois",
+          "notes": "Nota",
+          "invoice_prefix": "Prefix Invois",
+          "invoice_settings": "Tetapan Invois",
+          "autogenerate_invoice_number": "Hasilkan Nombor Invois secara Automatik",
+          "invoice_setting_description": "Batalkan fungsi ini jika anda tidak mahu nombor invois ditetapkan secara automatik setiap kali anda membuat rekod invois baharu.",
+          "enter_invoice_prefix": "Masukkan prefix invois",
+          "terms_and_conditions": "Terma dan Syarat",
+          "invoice_setting_updated": "Tetapan invois berjaya dikemaskini!"
         },
   
         "estimates": {
-          "title": "Estimates",
+          "title": "Estimates //buang",
           "estimate_prefix": "Estimate Prefix",
           "estimate_settings": "Estimate Settings",
           "autogenerate_estimate_number": "Auto-generate Estimate Number",
@@ -672,10 +672,10 @@
         },
   
         "payments": {
-          "title": "Payments",
-          "payment_prefix": "Payment Prefix",
-          "payment_settings": "Payment Settings",
-          "autogenerate_payment_number": "Auto-generate Payment Number",
+          "title": "Pembayaran",
+          "payment_prefix": "Prefix Pembayaran",
+          "payment_settings": "Tetapan Pembayaran",
+          "autogenerate_payment_number": "Hasilkan Nombor Bayaran secara Automatik",
           "payment_setting_description": "Disable this, If you don't wish to auto-generate payment numbers each time you create a new payment.",
           "enter_payment_prefix": "Enter Payment Prefix",
           "payment_setting_updated": "Payment Setting updated successfully",
