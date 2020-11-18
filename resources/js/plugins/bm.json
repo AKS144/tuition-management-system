@@ -41,15 +41,15 @@
       "showing": "Menunjuk: ",
       "of": "of",
       "actions": "Aktiviti",
-      "subtotal": "Jumlah Besar",
-      "discount": "Diskaun",
+      "subtotal": "JUMLAH KESELURUHAN",
+      "discount": "DISKAUN",
       "fixed": "Tetap",
       "percentage": "Peratus",
-      "tax": "Cukai",
-      "total_amount": "Jumlah Akhir",
+      "tax": "CUKAI",
+      "total_amount": "JUMLAH BESAR",
       "bill_to": "Kepada",
       "ship_to": "Penghantaran kepada",
-      "due": "Tunggak",
+      "due": "Luput",
       "draft": "Draf",
       "sent": "Telah dihantar",
       "all": "Semua",
@@ -77,7 +77,7 @@
       "select_city": "Bandar",
       "street_1": "Alamat (Baris 1)",
       "street_2": "Alamat (Baris 2)",
-      "action_failed": "Aktiviti gagal.",
+      "action_failed": "Gagal.",
       "retry": "Cuba lagi"
     },
     "dashboard": {
@@ -363,11 +363,11 @@
       "updated_message": "Rekod invois berjaya dikemaskini.",
       "deleted_message": "Invois telah dibuang. | Invois telah dibuang.",
       "marked_as_sent_message": "Status invois berjaya diubah menjadi Dihantar.",
-      "user_email_does_not_exist": "Emel pelajar tidak ditemui.",
+      "user_email_does_not_exist": "Emel akaun tidak ditemui.",
       "something_went_wrong": "Ralat.",
       "invalid_due_amount_message": "Jumlah Amaun Invois tidak boleh kurang daripada jumlah pembayaran bagi invois ini. Sila kemaskini invois atau buang rekod pembayaran yang berkaitan."
     },
-    "credit_notes": {
+    /* "credit_notes": {
       "title": "Credit Notes",
       "credit_notes_list": "Credit Notes List",
       "credit_notes": "Credit Notes",
@@ -389,7 +389,7 @@
         "sub_total": "Sub Total",
         "tax": "Tax"
       }
-    },
+    }, */
     "payments": {
       "title": "Pembayaran",
       "payments_list": "Senarai Bayaran",
@@ -676,53 +676,53 @@
           "payment_prefix": "Prefix Pembayaran",
           "payment_settings": "Tetapan Pembayaran",
           "autogenerate_payment_number": "Hasilkan Nombor Bayaran secara Automatik",
-          "payment_setting_description": "Disable this, If you don't wish to auto-generate payment numbers each time you create a new payment.",
-          "enter_payment_prefix": "Enter Payment Prefix",
-          "payment_setting_updated": "Payment Setting updated successfully",
-          "payment_mode": "Payment Mode",
-          "add_payment_mode": "Add Payment Mode",
-          "edit_payment_mode": "Edit Payment Mode",
-          "mode_name": "Mode Name",
-          "payment_mode_added": "Payment Mode Added",
-          "payment_mode_updated": "Payment Mode Updated",
-          "payment_mode_confirm_delete": "You will not be able to recover this Payment Mode",
-          "already_in_use": "Payment Mode is already in use",
-          "deleted_message": "Payment Mode deleted successfully"
+          "payment_setting_description": "Batalkan fungsi ini jika anda tidak mahu nombor bayaran ditetapkan secara automatik setiap kali anda membuat rekod pembayaran baharu.",
+          "enter_payment_prefix": "Masukkan prefix bayaran",
+          "payment_setting_updated": "Tetapan pembayaran berjaya dikemaskini!",
+          "payment_mode": "Kaedah Pembayaran",
+          "add_payment_mode": "Tambah Kaedah Pembayaran",
+          "edit_payment_mode": "Ubah Kaedah Pembayaran",
+          "mode_name": "Kaedah",
+          "payment_mode_added": "Kaedah Pembayaran Ditambah",
+          "payment_mode_updated": "Kaedah Pembayaran Dikemaskini",
+          "payment_mode_confirm_delete": "Kaedah Pembayaran akan dihapuskan.",
+          "already_in_use": "Kaedah Pembayaran telah wujud.",
+          "deleted_message": "Kaeda Pembayaran telah dihapuskan."
         },
   
         "items": {
-          "title": "Items",
-          "units": "units",
-          "add_item_unit": "Add Item Unit",
-          "edit_item_unit": "Edit Item Unit",
-          "unit_name": "Unit Name",
-          "item_unit_added": "Item Unit Added",
-          "item_unit_updated": "Item Unit Updated",
-          "item_unit_confirm_delete": "You will not be able to recover this Item unit",
-          "already_in_use": "Item Unit is already in use",
-          "deleted_message": "Item Unit deleted successfully"
+          "title": "Kelas",
+          "units": "Subjek",
+          "add_item_unit": "Tambah Subjek",
+          "edit_item_unit": "Ubah Subjek",
+          "unit_name": "Subjek",
+          "item_unit_added": "Subjek ditambah.",
+          "item_unit_updated": "Subjek dikemaskini.",
+          "item_unit_confirm_delete": "Subjek akan dihapuskan.",
+          "already_in_use": "Subjek telah wujud.",
+          "deleted_message": "Subjek telah dihapuskan"
         }
       },
       "account_settings": {
-        "profile_picture": "Profile Picture",
-        "name": "Name",
-        "email": "Email",
-        "password": "Password",
-        "confirm_password": "Confirm Password",
-        "account_settings": "Account Settings",
+        "profile_picture": "Gambar Profil",
+        "name": "Nama",
+        "email": "Alamat Emel",
+        "password": "Kata Laluan",
+        "confirm_password": "Sahkan Kata Laluan",
+        "account_settings": "Tetapan Akaun",
         "save": "Save",
-        "section_description": "You can update your name, email & password using the form below.",
-        "updated_message": "Account Settings updated successfully"
+        "section_description": "Anda boleh ubah nama, alamat emel dan kata laluan anda pada bahagian ini.",
+        "updated_message": "Akaun berjaya dikemaskini!"
       },
       "user_profile": {
-        "name": "Name",
-        "email": "Email",
-        "password": "Password",
-        "confirm_password": "Confirm Password"
+        "name": "Nama",
+        "email": "Alamat Emel",
+        "password": "Kata Laluan",
+        "confirm_password": "Sahkan Kata Laluan"
       },
       "notification": {
-        "title": "Notification",
-        "email": "Send Notifications to",
+        "title": "Notifikasi",
+        "email": "Hantar Notifikasi kepada",
         "description": "Which email notifications would you like to receive when something changes?",
         "invoice_viewed": "Invoice viewed",
         "invoice_viewed_desc": "When your customer views the invoice sent via crater dashboard.",
