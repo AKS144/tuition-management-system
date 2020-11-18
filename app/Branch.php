@@ -94,6 +94,13 @@ class Branch extends Model
         return $this->hasMany(Tax::class);
     }
 
+    /**
+     * Get the classroom associated with the branch
+     */
+    public function classrooms(){
+        return $this->hasMany(Classroom::class);
+    }
+
     
     /**
      * Get the of the branch address.
