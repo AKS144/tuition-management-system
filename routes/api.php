@@ -30,9 +30,13 @@ Route::group(['prefix' => 'v1'], function () {
         Route::get('/logout', 'API\AuthController@logout');
         Route::post('/password/reset', 'API\AuthController@reset');
 
-        Route::resource('/students', 'API\StudentController');
         Route::apiResource('/user', 'API\UserController');
         Route::apiResource('/tutor', 'API\TutorController');
+
+        // Student
+        //----------------------------------
+
+        Route::resource('/students', 'API\StudentController');
 
         // Bootstrap
         //----------------------------------
@@ -61,6 +65,14 @@ Route::group(['prefix' => 'v1'], function () {
         // Tax Types
         //----------------------------------
         Route::resource('/tax-types', 'API\TaxTypeController');
+
+        // Levels
+        //----------------------------------
+        Route::resource('/levels', 'API\LevelController');
+
+        // Subjects
+        //----------------------------------
+        Route::resource('/subjects', 'API\SubjectController');
 
         // Expense Categories
         //----------------------------------

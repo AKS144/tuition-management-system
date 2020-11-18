@@ -8,33 +8,33 @@
           focus
           type="text"
           icon="search"
-          @input="searchCustomer"
+          @input="searchStudent"
         />
       </div>
 
-      <div v-if="(customers.length > 0) && !loading" class="list">
+      <div v-if="(students.length > 0) && !loading" class="list">
         <div
-          v-for="(customer, index) in customers"
+          v-for="(student, index) in students"
           :key="index"
           class="list-item"
-          @click="selectNewCustomer(customer.id)"
+          @click="selectNewStudent(student.id)"
         >
-          <span class="avatar" >{{ initGenerator(customer.name) }}</span>
+          <span class="avatar" >{{ initGenerator(student.name) }}</span>
           <div class="name">
-            <label class="title">{{ customer.name }}</label>
-            <label class="sub-title">{{ customer.contact_name }}</label>
+            <label class="title">{{ student.name }}</label>
+            <label class="sub-title">{{ student.contact_name }}</label>
           </div>
         </div>
       </div>
       <div v-if="loading" class="list flex justify-content-center align-items-center">
         <font-awesome-icon icon="spinner" class="fa-spin"/>
       </div>
-      <div v-if="customers.length === 0" class="no-data-label">
+      <div v-if="students.length === 0" class="no-data-label">
         <label> {{ $t('customers.no_customers_found') }} </label>
       </div>
     </div>
 
-    <button type="button" class="list-add-button" @click="openCustomerModal">
+    <button type="button" class="list-add-button" @click="openStudentModal">
       <font-awesome-icon class="icon" icon="user-plus" />
       <label>{{ $t('customers.add_new_customer') }}</label>
     </button>
@@ -58,34 +58,34 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('customer', [
-      'customers'
+    ...mapGetters('student', [
+      'students'
     ])
   },
   created () {
-    this.fetchInitialCustomers()
+    this.fetchInitialStudents()
   },
   methods: {
     ...mapActions('modal', [
       'openModal'
     ]),
-    ...mapActions('customer', [
-      'fetchCustomers'
+    ...mapActions('student', [
+      'fetchStudents'
     ]),
     ...mapActions('invoice', {
-      setInvoiceCustomer: 'selectCustomer'
+      setInvoiceStudent: 'selectStudent'
     }),
     ...mapActions('estimate', {
-      setEstimateCustomer: 'selectCustomer'
+      setEstimateStudent: 'selectStudent'
     }),
-    async fetchInitialCustomers () {
-      await this.fetchCustomers({
+    async fetchInitialStudents () {
+      await this.fetchStudents({
         filter: {},
         orderByField: '',
         orderBy: ''
       })
     },
-    async searchCustomer () {
+    async searchStudent () {
       let data = {
         display_name: this.search,
         email: '',
@@ -97,14 +97,14 @@ export default {
 
       this.loading = true
 
-      await this.fetchCustomers(data)
+      await this.fetchStudents(data)
 
       this.loading = false
     },
-    openCustomerModal () {
+    openStudentModal () {
       this.openModal({
-        title: this.$t('customers.add_customer'),
-        componentName: 'CustomerModal',
+        title: this.$t('students.add_student'),
+        componentName: 'StudentModal',
         size: 'lg'
       })
     },
@@ -115,11 +115,11 @@ export default {
         return initials
       }
     },
-    selectNewCustomer (id) {
+    selectNewStudent (id) {
       if (this.type === 'estimate') {
-        this.setEstimateCustomer(id)
+        this.setEstimateStudent(id)
       } else {
-        this.setInvoiceCustomer(id)
+        this.setInvoiceStudent(id)
       }
     }
   }

@@ -260,8 +260,8 @@ export default {
     filterIcon () {
       return (this.showFilters) ? 'times' : 'filter'
     },
-    ...mapGetters('customer', [
-      'customers'
+    ...mapGetters('student', [
+      'students'
     ]),
     ...mapGetters('payment', [
       'selectedPayments',
@@ -310,7 +310,7 @@ export default {
       'deleteMultiplePayments',
       'setSelectAllState'
     ]),
-    ...mapActions('customer', [
+    ...mapActions('students', [
       'fetchCustomers'
     ]),
     async fetchData ({ page, filter, sort }) {

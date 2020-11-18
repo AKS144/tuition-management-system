@@ -4,9 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Branch;
+use Carbon\Carbon;
+use App\BranchSetting;
 
 class Student extends Model
 {
+    protected $table = 'students';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -22,6 +26,16 @@ class Student extends Model
         'status',
         'branch_id',
     ];
+
+    protected $appends = [
+        'formattedJoinedAt',
+    ];
+
+    public function getFormattedJoinedAtAttribute($value)
+    {
+        $dateFormat = BranchSetting::getSetting('carbon_date_format', $this->branch_id);
+        return Carbon::parse($this->date_joined)->format($dateFormat);
+    }
 
     /**
      * Get the branch associated with the student
@@ -41,7 +55,7 @@ class Student extends Model
      * Get the student associated with the parent
      */
     public function parents(){
-        return $this->belongsToMany(Parent::class, 'parent_student');
+        return $this->belongsToMany(Parents::class, 'parent_student');
     }
 
     /**
@@ -77,28 +91,57 @@ class Student extends Model
         $query->where('students.branch_id', $branch_id);
     }
 
+    public function scopeWhereOrder($query, $orderByField, $orderBy)
+    {
+        $query->orderBy($orderByField, $orderBy);
+    }
+
+    public function scopeWhereSearch($query, $search)
+    {
+        foreach (explode(' ', $search) as $term) {
+            $query->where(function ($query) use ($term) {
+                $query->where('full_name', 'LIKE', '%'.$term.'%');
+            });
+        }
+    }
+
+    public function scopeWhereFullName($query, $full_name)
+    {
+        return $query->where('full_name', 'LIKE', '%'.$full_name.'%');
+    }
+
+    public function scopeWhereNric($query, $nric)
+    {
+        return $query->where('nric', 'LIKE', '%'.$nric.'%');
+    }
+
+    public function scopeWhereMobileNo($query, $mobileNo)
+    {
+        return $query->where('mobile_no', 'LIKE', '%'.$mobileNo.'%');
+    }
+
     public function scopeApplyFilters($query, array $filters)
     {
         $filters = collect($filters);
 
-        // if ($filters->get('search')) {
-        //     $query->whereSearch($filters->get('search'));
-        // }
+        if ($filters->get('search')) {
+            $query->whereSearch($filters->get('search'));
+        }
 
-        // if ($filters->get('contact_name')) {
-        //     $query->whereContactName($filters->get('contact_name'));
-        // }
+        if ($filters->get('full_name')) {
+            $query->whereFullName($filters->get('full_name'));
+        }
 
-        // if ($filters->get('display_name')) {
-        //     $query->whereDisplayName($filters->get('display_name'));
-        // }
+        if ($filters->get('nric')) {
+            $query->whereNric($filters->get('nric'));
+        }
 
-        // if ($filters->get('phone')) {
-        //     $query->wherePhone($filters->get('phone'));
-        // }
+        if ($filters->get('mobile_no')) {
+            $query->whereMobileNo($filters->get('mobile_no'));
+        }
 
         if ($filters->get('orderByField') || $filters->get('orderBy')) {
-            $field = $filters->get('orderByField') ? $filters->get('orderByField') : 'name';
+            $field = $filters->get('orderByField') ? $filters->get('orderByField') : 'full_name';
             $orderBy = $filters->get('orderBy') ? $filters->get('orderBy') : 'asc';
             $query->whereOrder($field, $orderBy);
         }

@@ -1,8 +1,8 @@
 {
     "navigation": {
       "dashboard": "Dashboard",
-      "customers": "Students",
-      "items": "Class",
+      "students": "Students",
+      "items": "Items",
       "invoices": "Invoices",
       "expenses": "Expenses",
       "estimates": "Estimates",
@@ -169,6 +169,24 @@
       "updated_message": "Student updated successfully",
       "deleted_message": "Student deleted successfully | Students deleted successfully"
     },
+    "students": {
+      "title": "Students",
+      "student": "Student | Students",
+      "new_student": "New Student",
+      "full_name": "Full Name",
+      "nric": "NRIC",
+      "mobile_no": "Mobile Number",
+      "no_students": "No Student registered!",
+      "list_of_students": "This section will contain the list of students.",
+      "add_new_customer": "Add New Student",
+      "status": "Status",
+      "joined_date": "Date Joined",
+      "action": "Action",
+      "confirm_delete": "You will not be able to recover this student and all the related Subject, Class, Package, Invoices and etc. | You will not be able to recover these students and all the related Subject, Class, Payment, Invoices and etc.",
+      "created_message": "Student created successfully",
+      "updated_message": "Student updated successfully",
+      "deleted_message": "Student deleted successfully | Students deleted successfully"
+    },
     "items": {
       "title": "Class",
       "items_list": "Classes List",
@@ -196,7 +214,7 @@
       "updated_message": "Class updated successfully",
       "deleted_message": "Class deleted successfully | Classes deleted successfully"
     },
- /*   "estimates": {
+    "estimates": {
       "title": "Estimates",
       "estimate": "Estimate | Estimates",
       "estimates_list": "Estimates List",
@@ -285,7 +303,7 @@
         "select_an_item": "Type or click to select an item",
         "type_item_description": "Type Item Description (optional)"
       }
-    }, */
+    },
     "invoices": {
       "title": "Invoices",
       "invoices_list": "Invoices List",
@@ -367,7 +385,7 @@
       "something_went_wrong": "something went wrong",
       "invalid_due_amount_message": "Total Invoice amount cannot be less than total paid amount for this Invoice. Please update the invoice or delete the associated payments to continue."
     },
-    /* "credit_notes": {
+    "credit_notes": {
       "title": "Credit Notes",
       "credit_notes_list": "Credit Notes List",
       "credit_notes": "Credit Notes",
@@ -389,7 +407,7 @@
         "sub_total": "Sub Total",
         "tax": "Tax"
       }
-    }, */
+    },
     "payments": {
       "title": "Payments",
       "payments_list": "Payments List",

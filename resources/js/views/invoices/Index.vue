@@ -434,8 +434,8 @@ export default {
     filterIcon () {
       return (this.showFilters) ? 'times' : 'filter'
     },
-    ...mapGetters('customer', [
-      'customers'
+    ...mapGetters('student', [
+      'students'
     ]),
     ...mapGetters('invoice', [
       'selectedInvoices',

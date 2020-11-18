@@ -7,11 +7,11 @@ import BaseSwitch from './BaseSwitch.vue'
 import BaseTextArea from './BaseTextArea.vue'
 import BaseSelect from './base-select/BaseSelect.vue'
 import BaseLoader from './BaseLoader.vue'
-import BaseCustomerSelect from './BaseCustomerSelect.vue'
+import BaseStudentSelect from './BaseStudentSelect.vue'
 import BasePrefixInput from './BasePrefixInput.vue'
 
 import BasePopup from './popup/BasePopup.vue'
-import CustomerSelectPopup from './popup/CustomerSelectPopup.vue'
+import StudentSelectPopup from './popup/StudentSelectPopup.vue'
 import TaxSelectPopup from './popup/TaxSelectPopup.vue'
 
 import {TableColumn, TableComponent} from './base-table/index'
@@ -30,8 +30,8 @@ Vue.component('table-component', TableComponent)
 Vue.component('table-column', TableColumn)
 
 Vue.component('base-select', BaseSelect)
-Vue.component('base-customer-select', BaseCustomerSelect)
+Vue.component('base-student-select', BaseStudentSelect)
 
 Vue.component('base-popup', BasePopup)
-Vue.component('customer-select-popup', CustomerSelectPopup)
+Vue.component('student-select-popup', StudentSelectPopup)
 Vue.component('tax-select-popup', TaxSelectPopup)
