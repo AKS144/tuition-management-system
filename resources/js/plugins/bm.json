@@ -196,7 +196,7 @@
       "updated_message": "Rekod kelas berjaya dikemaskini!",
       "deleted_message": "Rekod kelas telah dihapuskan. | Rekod kelas telah dihapuskan."
     },
-/*    "estimates": {
+    "estimates": {
       "title": "Estimates",
       "estimate": "Estimate | Estimates",
       "estimates_list": "Estimates List",
@@ -285,7 +285,7 @@
         "select_an_item": "Type or click to select an item",
         "type_item_description": "Type Item Description (optional)"
       }
-    },*/
+    },
     "invoices": {
       "title": "Invois",
       "invoices_list": "Senarai Invois",
