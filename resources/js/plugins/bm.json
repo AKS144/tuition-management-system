@@ -367,7 +367,7 @@
       "something_went_wrong": "Ralat.",
       "invalid_due_amount_message": "Jumlah Amaun Invois tidak boleh kurang daripada jumlah pembayaran bagi invois ini. Sila kemaskini invois atau buang rekod pembayaran yang berkaitan."
     },
-    /* "credit_notes": {
+    "credit_notes": {
       "title": "Credit Notes",
       "credit_notes_list": "Credit Notes List",
       "credit_notes": "Credit Notes",
@@ -389,7 +389,7 @@
         "sub_total": "Sub Total",
         "tax": "Tax"
       }
-    }, */
+    },
     "payments": {
       "title": "Pembayaran",
       "payments_list": "Senarai Bayaran",
