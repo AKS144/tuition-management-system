@@ -38,6 +38,11 @@ Route::group(['prefix' => 'v1'], function () {
 
         Route::resource('/students', 'API\StudentController');
 
+        // Classroom
+        //----------------------------------
+
+        Route::resource('/class', 'API\ClassController');
+
         // Bootstrap
         //----------------------------------
 

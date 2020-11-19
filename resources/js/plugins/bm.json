@@ -41,15 +41,15 @@
       "showing": "Menunjuk: ",
       "of": "of",
       "actions": "Aktiviti",
-      "subtotal": "Jumlah Besar",
-      "discount": "Diskaun",
+      "subtotal": "JUMLAH KESELURUHAN",
+      "discount": "DISKAUN",
       "fixed": "Tetap",
       "percentage": "Peratus",
-      "tax": "Cukai",
-      "total_amount": "Jumlah Akhir",
+      "tax": "CUKAI",
+      "total_amount": "JUMLAH BESAR",
       "bill_to": "Kepada",
       "ship_to": "Penghantaran kepada",
-      "due": "Tunggak",
+      "due": "Luput",
       "draft": "Draf",
       "sent": "Telah dihantar",
       "all": "Semua",
@@ -77,7 +77,7 @@
       "select_city": "Bandar",
       "street_1": "Alamat (Baris 1)",
       "street_2": "Alamat (Baris 2)",
-      "action_failed": "Aktiviti gagal.",
+      "action_failed": "Gagal.",
       "retry": "Cuba lagi"
     },
     "dashboard": {
@@ -170,33 +170,33 @@
       "deleted_message": "Rekod pelajar dibuang! | Rekod pelajar dibuang!"
     },
     "items": {
-      "title": "Items",
-      "items_list": "Items List",
-      "name": "Name",
-      "unit": "Unit",
-      "description": "Description",
-      "added_on": "Added On",
-      "price": "Price",
-      "date_of_creation": "Date Of Creation",
-      "action": "Action",
-      "add_item": "Add Item",
-      "save_item": "Save Item",
-      "update_item": "Update Item",
-      "item": "Item | Items",
-      "add_new_item": "Add New Item",
-      "new_item": "New Item",
-      "edit_item": "Edit Item",
-      "no_items": "No items yet!",
-      "list_of_items": "This section will contain the list of items.",
-      "select_a_unit": "select unit",
-      "taxes": "Taxes",
-      "item_attached_message": "Cannot delete an item which is already in use",
-      "confirm_delete": "You will not be able to recover this Item | You will not be able to recover these Items",
-      "created_message": "Item created successfully",
-      "updated_message": "Item updated successfully",
-      "deleted_message": "Item deleted successfully | Items deleted successfully"
+      "title": "Kelas",
+      "items_list": "Senarai Kelas",
+      "name": "Nama",
+      "unit": "Subjek",
+      "description": "Penerangan",
+      "added_on": "Ditambah pada",
+      "price": "Harga",
+      "date_of_creation": "Tarikh Tambah",
+      "action": "Aktiviti",
+      "add_item": "Tambah Kelas",
+      "save_item": "Simpan Kelas",
+      "update_item": "Kemaskini Kelas",
+      "item": "Kelas | Kelas",
+      "add_new_item": "Tambah Kelas Baharu",
+      "new_item": "Kelas Baharu",
+      "edit_item": "Ubah Kelas",
+      "no_items": "Senarai Kelas tidak wujud!",
+      "list_of_items": "Bahagian ini mengandungi senarai kelas.",
+      "select_a_unit": "Pilih subjek...",
+      "taxes": "Cukau",
+      "item_attached_message": "Gagal hapus kelas. Kelas sedang digunakan.",
+      "confirm_delete": "Rekod kelas akan dihapuskan. | Rekod kelas akan dihapuskan.",
+      "created_message": "Rekod kelas berjaya ditambah!",
+      "updated_message": "Rekod kelas berjaya dikemaskini!",
+      "deleted_message": "Rekod kelas telah dihapuskan. | Rekod kelas telah dihapuskan."
     },
-    "estimates": {
+/*    "estimates": {
       "title": "Estimates",
       "estimate": "Estimate | Estimates",
       "estimates_list": "Estimates List",
@@ -285,7 +285,7 @@
         "select_an_item": "Type or click to select an item",
         "type_item_description": "Type Item Description (optional)"
       }
-    },
+    },*/
     "invoices": {
       "title": "Invois",
       "invoices_list": "Senarai Invois",
@@ -344,7 +344,7 @@
       "clone_invoice": "Salin invois",
       "confirm_clone": "Invois ini akan disalin",
       "item": {
-        "title": "Perkara",
+        "title": "Kelas",
         "description": "Penerangan",
         "quantity": "Kuantiti",
         "price": "Harga",
@@ -354,8 +354,8 @@
         "sub_total": "Jumlah Keseluruhan",
         "tax": "Cukai",
         "amount": "Amaun",
-        "select_an_item": "Taip atau pilih perkara...",
-        "type_item_description": "Masukkan penerangan perkara (tidak mustahak)..."
+        "select_an_item": "Taip atau pilih kelas...",
+        "type_item_description": "Masukkan penerangan ringkas kelas (tidak mustahak)..."
       },
       "payment_attached_message": "Satu daripada pilihan invois mengandungi rekod pembayaran yang sah. Sila buang rekod tersebut terlebih dahulu sebelum membuang invois.",
       "confirm_delete": "Rekod invois akan dibuang. | Rekod invois akan dibuang.",
@@ -363,11 +363,11 @@
       "updated_message": "Rekod invois berjaya dikemaskini.",
       "deleted_message": "Invois telah dibuang. | Invois telah dibuang.",
       "marked_as_sent_message": "Status invois berjaya diubah menjadi Dihantar.",
-      "user_email_does_not_exist": "Emel pelajar tidak ditemui.",
+      "user_email_does_not_exist": "Emel akaun tidak ditemui.",
       "something_went_wrong": "Ralat.",
       "invalid_due_amount_message": "Jumlah Amaun Invois tidak boleh kurang daripada jumlah pembayaran bagi invois ini. Sila kemaskini invois atau buang rekod pembayaran yang berkaitan."
     },
-    "credit_notes": {
+    /* "credit_notes": {
       "title": "Credit Notes",
       "credit_notes_list": "Credit Notes List",
       "credit_notes": "Credit Notes",
@@ -389,7 +389,7 @@
         "sub_total": "Sub Total",
         "tax": "Tax"
       }
-    },
+    }, */
     "payments": {
       "title": "Pembayaran",
       "payments_list": "Senarai Bayaran",
@@ -549,14 +549,14 @@
     },
     "settings": {
       "menu_title": {
-        "account_settings": "Account Settings",
-        "company_information": "Company Information",
-        "customization": "Customization",
-        "preferences": "Preferences",
-        "notifications": "Notifications",
-        "tax_types": "Tax Types",
-        "expense_category": "Expense Categories",
-        "update_app": "Update App"
+        "account_settings": "Tetapan Akaun",
+        "company_information": "Maklumat Syarikat",
+        "customization": "Tetapan Antara Muka",
+        "preferences": "Tetapan Pilihan",
+        "notifications": "Notifikasi",
+        "tax_types": "Jenis Cukai",
+        "expense_category": "Kategori Pengeluaran",
+        "update_app": "Kemaskini Sistem"
       },
       "title": "Tetapan",
       "setting": "Tetapan | Tetapan",
@@ -621,10 +621,10 @@
         "updated_message": "Maklumat syarikat berjaya dikemaskini!"
       },
       "customization": {
-        "customization": "customization",
-        "save": "Save",
+        "customization": "Tetapan Antara Muka",
+        "save": "Simpan",
         "addresses": {
-          "title": "Addresses",
+          "title": "Senarai Alamat //buang",
           "section_description": "You can set Customer Billing Address and Customer Shipping Address Format (Displayed in PDF only). ",
           "customer_billing_address": "Customer Billing Address",
           "customer_shipping_address": "Customer Shipping Address",
@@ -650,19 +650,19 @@
         "updated_message": "Company information updated successfully",
   
         "invoices": {
-          "title": "Invoices",
-          "notes": "Notes",
-          "invoice_prefix": "Invoice Prefix",
-          "invoice_settings": "Invoice Settings",
-          "autogenerate_invoice_number": "Auto-generate Invoice Number",
-          "invoice_setting_description": "Disable this, If you don't wish to auto-generate invoice numbers each time you create a new invoice.",
-          "enter_invoice_prefix": "Enter invoice prefix",
-          "terms_and_conditions": "Terms and Conditions",
-          "invoice_setting_updated": "Invoice Setting updated successfully"
+          "title": "Invois",
+          "notes": "Nota",
+          "invoice_prefix": "Prefix Invois",
+          "invoice_settings": "Tetapan Invois",
+          "autogenerate_invoice_number": "Hasilkan Nombor Invois secara Automatik",
+          "invoice_setting_description": "Batalkan fungsi ini jika anda tidak mahu nombor invois ditetapkan secara automatik setiap kali anda membuat rekod invois baharu.",
+          "enter_invoice_prefix": "Masukkan prefix invois",
+          "terms_and_conditions": "Terma dan Syarat",
+          "invoice_setting_updated": "Tetapan invois berjaya dikemaskini!"
         },
   
         "estimates": {
-          "title": "Estimates",
+          "title": "Estimates //buang",
           "estimate_prefix": "Estimate Prefix",
           "estimate_settings": "Estimate Settings",
           "autogenerate_estimate_number": "Auto-generate Estimate Number",
@@ -672,57 +672,57 @@
         },
   
         "payments": {
-          "title": "Payments",
-          "payment_prefix": "Payment Prefix",
-          "payment_settings": "Payment Settings",
-          "autogenerate_payment_number": "Auto-generate Payment Number",
-          "payment_setting_description": "Disable this, If you don't wish to auto-generate payment numbers each time you create a new payment.",
-          "enter_payment_prefix": "Enter Payment Prefix",
-          "payment_setting_updated": "Payment Setting updated successfully",
-          "payment_mode": "Payment Mode",
-          "add_payment_mode": "Add Payment Mode",
-          "edit_payment_mode": "Edit Payment Mode",
-          "mode_name": "Mode Name",
-          "payment_mode_added": "Payment Mode Added",
-          "payment_mode_updated": "Payment Mode Updated",
-          "payment_mode_confirm_delete": "You will not be able to recover this Payment Mode",
-          "already_in_use": "Payment Mode is already in use",
-          "deleted_message": "Payment Mode deleted successfully"
+          "title": "Pembayaran",
+          "payment_prefix": "Prefix Pembayaran",
+          "payment_settings": "Tetapan Pembayaran",
+          "autogenerate_payment_number": "Hasilkan Nombor Bayaran secara Automatik",
+          "payment_setting_description": "Batalkan fungsi ini jika anda tidak mahu nombor bayaran ditetapkan secara automatik setiap kali anda membuat rekod pembayaran baharu.",
+          "enter_payment_prefix": "Masukkan prefix bayaran",
+          "payment_setting_updated": "Tetapan pembayaran berjaya dikemaskini!",
+          "payment_mode": "Kaedah Pembayaran",
+          "add_payment_mode": "Tambah Kaedah Pembayaran",
+          "edit_payment_mode": "Ubah Kaedah Pembayaran",
+          "mode_name": "Kaedah",
+          "payment_mode_added": "Kaedah Pembayaran Ditambah",
+          "payment_mode_updated": "Kaedah Pembayaran Dikemaskini",
+          "payment_mode_confirm_delete": "Kaedah Pembayaran akan dihapuskan.",
+          "already_in_use": "Kaedah Pembayaran telah wujud.",
+          "deleted_message": "Kaeda Pembayaran telah dihapuskan."
         },
   
         "items": {
-          "title": "Items",
-          "units": "units",
-          "add_item_unit": "Add Item Unit",
-          "edit_item_unit": "Edit Item Unit",
-          "unit_name": "Unit Name",
-          "item_unit_added": "Item Unit Added",
-          "item_unit_updated": "Item Unit Updated",
-          "item_unit_confirm_delete": "You will not be able to recover this Item unit",
-          "already_in_use": "Item Unit is already in use",
-          "deleted_message": "Item Unit deleted successfully"
+          "title": "Kelas",
+          "units": "Subjek",
+          "add_item_unit": "Tambah Subjek",
+          "edit_item_unit": "Ubah Subjek",
+          "unit_name": "Subjek",
+          "item_unit_added": "Subjek ditambah.",
+          "item_unit_updated": "Subjek dikemaskini.",
+          "item_unit_confirm_delete": "Subjek akan dihapuskan.",
+          "already_in_use": "Subjek telah wujud.",
+          "deleted_message": "Subjek telah dihapuskan"
         }
       },
       "account_settings": {
-        "profile_picture": "Profile Picture",
-        "name": "Name",
-        "email": "Email",
-        "password": "Password",
-        "confirm_password": "Confirm Password",
-        "account_settings": "Account Settings",
+        "profile_picture": "Gambar Profil",
+        "name": "Nama",
+        "email": "Alamat Emel",
+        "password": "Kata Laluan",
+        "confirm_password": "Sahkan Kata Laluan",
+        "account_settings": "Tetapan Akaun",
         "save": "Save",
-        "section_description": "You can update your name, email & password using the form below.",
-        "updated_message": "Account Settings updated successfully"
+        "section_description": "Anda boleh ubah nama, alamat emel dan kata laluan anda pada bahagian ini.",
+        "updated_message": "Akaun berjaya dikemaskini!"
       },
       "user_profile": {
-        "name": "Name",
-        "email": "Email",
-        "password": "Password",
-        "confirm_password": "Confirm Password"
+        "name": "Nama",
+        "email": "Alamat Emel",
+        "password": "Kata Laluan",
+        "confirm_password": "Sahkan Kata Laluan"
       },
       "notification": {
-        "title": "Notification",
-        "email": "Send Notifications to",
+        "title": "Notifikasi",
+        "email": "Hantar Notifikasi kepada",
         "description": "Which email notifications would you like to receive when something changes?",
         "invoice_viewed": "Invoice viewed",
         "invoice_viewed_desc": "When your customer views the invoice sent via crater dashboard.",
