@@ -687,7 +687,7 @@
           "payment_mode_updated": "Kaedah Pembayaran Dikemaskini",
           "payment_mode_confirm_delete": "Kaedah Pembayaran akan dihapuskan.",
           "already_in_use": "Kaedah Pembayaran telah wujud.",
-          "deleted_message": "Kaeda Pembayaran telah dihapuskan."
+          "deleted_message": "Kaedah Pembayaran telah dihapuskan."
         },
   
         "items": {
@@ -723,7 +723,7 @@
       "notification": {
         "title": "Notifikasi",
         "email": "Hantar Notifikasi kepada",
-        "description": "Which email notifications would you like to receive when something changes?",
+        "description": "Pilih notifikasi emel yang anda hendak terima apabila berlaku perubahan pada sistem.",
         "invoice_viewed": "Invoice viewed",
         "invoice_viewed_desc": "When your customer views the invoice sent via crater dashboard.",
         "estimate_viewed": "Estimate viewed",
