@@ -24,6 +24,10 @@ import StudentCreate from './views/students/Create.vue'
 import ItemsIndex from './views/items/Index.vue'
 import ItemCreate from './views/items/Create.vue'
 
+// Class
+import ClassIndex from './views/class/Index.vue'
+import ClassCreate from './views/class/Create.vue'
+
 // Payments
 import PaymentsIndex from './views/payments/Index.vue'
 import PaymentCreate from './views/payments/Create.vue'
@@ -171,6 +175,22 @@ const routes = [
                 path: 'items/:id/edit',
                 name: 'items.edit',
                 component: ItemCreate
+            },
+
+            // Class
+            {
+                path: 'class',
+                component: ClassIndex
+            },
+            {
+                path: 'class/create',
+                name: 'class.create',
+                component: ClassCreate
+            },
+            {
+                path: 'class/:id/edit',
+                name: 'class.edit',
+                component: ClassCreate
             },
 
             // Invoice
