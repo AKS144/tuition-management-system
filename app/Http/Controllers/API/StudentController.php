@@ -137,18 +137,29 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
-        if(auth()->user()){
-            $student->delete();
+        $student->delete();
 
-            return response([
-                'status' => true,
-                'message' => 'Student successfully deleted'
-            ], 200);
-        } else {
-            return response([
-                'status' => false,
-                'message' => 'Failed to delete the student'
-            ], 401);
+        return response()->json([
+            'success' => true,
+        ]);
+    }
+
+    /**
+     * Remove a list of Customers along side all their resources (ie. Estimates, Invoices, Payments and Addresses)
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function delete(Request $request)
+    {
+        foreach ($request->id as $id) {
+            $student = Student::find($id);
+
+            $student->delete();
         }
+
+        return response()->json([
+            'success' => true
+        ]);
     }
 }

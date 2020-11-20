@@ -36,6 +36,11 @@ Route::group(['prefix' => 'v1'], function () {
         // Student
         //----------------------------------
 
+        Route::post('/students/delete', [
+            'as' => 'students.delete',
+            'uses' => 'API\StudentController@delete'
+        ]);
+
         Route::resource('/students', 'API\StudentController');
 
         // Classroom
