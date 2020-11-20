@@ -15,7 +15,8 @@ export const fetchStudents = ({ commit, dispatch, state }, params) => {
 
 export const fetchStudent = ({ commit, dispatch }, id) => {
   return new Promise((resolve, reject) => {
-    window.axios.get(`/api/v1/students/${id}/edit`).then((response) => {
+    window.axios.get(`/api/v1/students/${id}`).then((response) => {
+      console.log(response);
       resolve(response)
     }).catch((err) => {
       reject(err)

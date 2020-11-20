@@ -13,7 +13,6 @@ $factory->define(Student::class, function (Faker $faker) {
         'level' => $faker->numberBetween(1,14),
         'mobile_no' => $faker->e164PhoneNumber(),
         'date_joined'=> now(),
-        'status' => $faker->numberBetween(0,2),
         'branch_id' => $faker->numberBetween(1,2),
     ];
 });

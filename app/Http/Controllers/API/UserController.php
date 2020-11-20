@@ -197,6 +197,12 @@ class UserController extends Controller
             BranchSetting::getSetting('currency', $branch)
         );
 
+        $status = [
+            ['key' => 'Active' , 'value' => '1'],
+            ['key' => 'Not Active' , 'value' => '0'],
+            ['key' => 'Terminated' , 'value' => '2'],
+        ];
+
         $moment_date_format = BranchSetting::getSetting(
             'moment_date_format',
             $branch
@@ -232,6 +238,7 @@ class UserController extends Controller
             'moment_date_format' => $moment_date_format,
             'paymentMethods' => $paymentMethods,
             'units' => $units,
+            'status' => $status,
             'fiscal_year' => $fiscal_year,
         ]);
     }

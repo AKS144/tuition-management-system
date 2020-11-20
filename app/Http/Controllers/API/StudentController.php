@@ -86,15 +86,21 @@ class StudentController extends Controller
      * @param  \App\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function show(Student $student)
+    public function show(Request $request, Student $student)
     {
-        $students = Student::with('parents')
+        $students = Student::where('students.id', '=', $student->id)
+            ->whereBranch($request->header('branch'))
+            ->first();
+
+        $parent = Student::with(['parents', 'parents.addresses', 'parents.addresses.country'])
             ->where('students.id', '=', $student->id)
-            ->get();
+            ->first()
+            ->parents;
         
-        return response([
+        return response()->json([
             'status' => true,
-            'data' => $students
+            'student' => $students,
+            'parent' => $parent
         ], 200);
     }
 

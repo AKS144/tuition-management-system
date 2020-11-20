@@ -20,7 +20,7 @@ class CreateStudentsTable extends Migration
             $table->bigInteger('age');
             $table->string('level');
             $table->string('mobile_no')->nullable();
-            $table->bigInteger('status');
+            $table->string('status')->default('Not Active');
             $table->bigInteger('branch_id')->unsigned();
             $table->dateTime('date_joined');
             $table->timestamps();
