@@ -61,7 +61,6 @@ class StudentController extends Controller
             'nric' => 'required',
             'age' => 'required',
             'level' => 'required',
-            'mobile_no' => 'required',
         ]);
 
         if($validator->fails()){
@@ -89,18 +88,14 @@ class StudentController extends Controller
      */
     public function show(Student $student)
     {
-        if(auth()->user()){
-            return response([
-                'status' => true,
-                'message' => 'Student successfully retrieved',
-                'data' => new StudentResource($student),
-            ], 200);
-        } else {
-            return response([
-                'status' => false,
-                'message' => 'Failed to view the student details'
-            ], 401);
-        }
+        $students = Student::with('parents')
+            ->where('students.id', '=', $student->id)
+            ->get();
+        
+        return response([
+            'status' => true,
+            'data' => $students
+        ], 200);
     }
 
     /**
