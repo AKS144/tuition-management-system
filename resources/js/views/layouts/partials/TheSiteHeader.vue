@@ -3,14 +3,14 @@
     <a href="/" class="brand-main">
       <img
         id="logo-white"
-        src="/img/logo-white.png"
-        alt="Crater Logo"
+        src="/img/jomfikir-logo.png"
+        alt="Jomfikir Logo"
         class="d-none d-md-inline"
       >
       <img
         id="logo-mobile"
-        src="/img/crater-white-small.png"
-        alt="Laraspace Logo"
+        src="/img/jomfikir-logo-mobile.png"
+        alt="Jomfikir Logo"
         class="d-md-none">
     </a>
 
