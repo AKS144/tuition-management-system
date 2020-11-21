@@ -3,13 +3,13 @@
     <a href="/" class="brand-main">
       <img
         id="logo-white"
-        src="/img/jomfikir-logo.png"
+        src="/img/logo-white.png"
         alt="Jomfikir Logo"
         class="d-none d-md-inline"
       >
       <img
         id="logo-mobile"
-        src="/img/jomfikir-logo-mobile.png"
+        src="/img/logo-white-mobile.png"
         alt="Jomfikir Logo"
         class="d-md-none">
     </a>

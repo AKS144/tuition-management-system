@@ -86,7 +86,7 @@
         "due_amount": "Jumlah tertunggak",
         "customers": "Pelajar",
         "invoices": "Invois",
-        "estimates": "Estimates"
+        "items": "Kelas"
       },
       "chart_info": {
         "total_sales": "Jualan",
@@ -109,8 +109,8 @@
         "actions": "Aktiviti",
         "view_all": "Lihat semua"
       },
-      "recent_estimate_card": {
-        "title": "Recent Estimates",
+      "student_list_card": {
+        "title": "Senarai Pelajar",
         "date": "Date",
         "customer": "Customer",
         "amount_due": "Amount Due",
@@ -163,7 +163,7 @@
       "select_currency": "Pilih matawang",
       "select_a_customer": "Pilih pelajar",
       "type_or_click": "Taip atau tekan untuk pilih",
-  
+
       "confirm_delete": "Maklumat pelajar termasuk invois dan maklumat pembayaran akan dihapuskan serta merta. | Maklumat pelajar termasuk invois dan maklumat pembayaran akan dihapuskan serta merta.",
       "created_message": "Rekod pelajar ditambah!",
       "updated_message": "Rekod pelajar dikemaskini!",
@@ -262,7 +262,7 @@
       "list_of_estimates": "This section will contain the list of estimates.",
       "mark_as_rejected": "Mark as rejected",
       "mark_as_accepted": "Mark as accepted",
-  
+
       "marked_as_accepted_message": "Estimate marked as accepted",
       "marked_as_rejected_message": "Estimate marked as rejected",
       "confirm_delete": "You will not be able to recover this Estimate | You will not be able to recover these Estimates",
@@ -419,7 +419,7 @@
       "send_payment_successfully": "Rekod bayaran berjaya dihantar!",
       "user_email_does_not_exist": "Emel pelajar tidak wujud.",
       "something_went_wrong": "Ralat",
-  
+
       "confirm_delete": "Rekod bayaran akan dihapuskan. | Rekod bayaran akan dihapuskan.",
       "created_message": "Rekod bayaran berjaya ditambah!",
       "updated_message": "Rekod bayaran berjaya dikemaskini",
@@ -454,7 +454,7 @@
       "expense": "Pengeluaran | Pengeluaran",
       "no_expenses": "Rekod pengeluaran tidak wujud!",
       "list_of_expenses": "Bahagian ini mengandungi senarai pengeluaran.",
-  
+
       "confirm_delete": "Rekod pengeluaran akan dihapuskan. | Rekod pengeluaran akan dihapuskan.",
       "created_message": "Rekod pengeluaran berjaya ditambah!",
       "updated_message": "Rekod pengeluaran berjaya dikemaskini.",
@@ -648,7 +648,7 @@
           "address_setting_updated": "Address Setting updated successfully"
         },
         "updated_message": "Company information updated successfully",
-  
+
         "invoices": {
           "title": "Invois",
           "notes": "Nota",
@@ -660,7 +660,7 @@
           "terms_and_conditions": "Terma dan Syarat",
           "invoice_setting_updated": "Tetapan invois berjaya dikemaskini!"
         },
-  
+
         "estimates": {
           "title": "Estimates //buang",
           "estimate_prefix": "Estimate Prefix",
@@ -670,7 +670,7 @@
           "enter_estimate_prefix": "Enter estmiate prefix",
           "estimate_setting_updated": "Estimate Setting updated successfully"
         },
-  
+
         "payments": {
           "title": "Pembayaran",
           "payment_prefix": "Penghadapan Pembayaran",
@@ -689,7 +689,7 @@
           "already_in_use": "Kaedah Pembayaran telah wujud.",
           "deleted_message": "Kaedah Pembayaran telah dihapuskan."
         },
-  
+
         "items": {
           "title": "Kelas",
           "units": "Subjek",
@@ -802,7 +802,7 @@
         "running_migrations": "Proses migrasi dijalankan",
         "finishing_update": "Menyuraikan kemaskini",
         "update_failed": "Kemaskini gagal.",
-        "update_failed_text": "Maaf. Kemaskini gagal pada proses {step}."   
+        "update_failed_text": "Maaf. Kemaskini gagal pada proses {step}."
       }
     },
     "wizard": {
@@ -933,4 +933,3 @@
       "something_went_wrong": "Ralat."
     }
   }
-  
