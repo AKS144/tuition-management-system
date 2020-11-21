@@ -19,6 +19,7 @@ import Dashboard from './views/dashboard/Dashboard.vue'
 // Students
 import StudentIndex from './views/students/Index.vue'
 import StudentCreate from './views/students/Create.vue'
+import StudentView from './views/students/View.vue'
 
 // Items
 import ItemsIndex from './views/items/Index.vue'
@@ -159,6 +160,11 @@ const routes = [
                 path: 'students/:id/edit',
                 name: 'students.edit',
                 component: StudentCreate
+            },
+            {
+                path: 'students/:id/view',
+                name: 'students.view',
+                component: StudentView
             },
 
             // Items

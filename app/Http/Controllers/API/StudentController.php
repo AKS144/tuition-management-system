@@ -86,15 +86,21 @@ class StudentController extends Controller
      * @param  \App\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function show(Student $student)
+    public function show(Request $request, Student $student)
     {
-        $students = Student::with('parents')
+        $students = Student::where('students.id', '=', $student->id)
+            ->whereBranch($request->header('branch'))
+            ->first();
+
+        $parent = Student::with(['parents', 'parents.addresses', 'parents.addresses.country'])
             ->where('students.id', '=', $student->id)
-            ->get();
+            ->first()
+            ->parents;
         
-        return response([
+        return response()->json([
             'status' => true,
-            'data' => $students
+            'student' => $students,
+            'parent' => $parent
         ], 200);
     }
 
@@ -131,18 +137,29 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
-        if(auth()->user()){
-            $student->delete();
+        $student->delete();
 
-            return response([
-                'status' => true,
-                'message' => 'Student successfully deleted'
-            ], 200);
-        } else {
-            return response([
-                'status' => false,
-                'message' => 'Failed to delete the student'
-            ], 401);
+        return response()->json([
+            'success' => true,
+        ]);
+    }
+
+    /**
+     * Remove a list of Customers along side all their resources (ie. Estimates, Invoices, Payments and Addresses)
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function delete(Request $request)
+    {
+        foreach ($request->id as $id) {
+            $student = Student::find($id);
+
+            $student->delete();
         }
+
+        return response()->json([
+            'success' => true
+        ]);
     }
 }

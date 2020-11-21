@@ -188,18 +188,24 @@
                 <dot-icon />
               </a>
               <v-dropdown-item>
-
                 <router-link :to="{path: `students/${row.id}/edit`}" class="dropdown-item">
                   <font-awesome-icon :icon="['fas', 'pencil-alt']" class="dropdown-item-icon"/>
                   {{ $t('general.edit') }}
                 </router-link>
-
               </v-dropdown-item>
+              
               <v-dropdown-item>
                 <div class="dropdown-item" @click="removeStudent(row.id)">
                   <font-awesome-icon :icon="['fas', 'trash']" class="dropdown-item-icon" />
                   {{ $t('general.delete') }}
                 </div>
+              </v-dropdown-item>
+
+              <v-dropdown-item>
+              <router-link :to="{path: `students/${row.id}/view`}" class="dropdown-item">
+                  <font-awesome-icon :icon="['fas', 'eye']" class="dropdown-item-icon" />
+                  {{ $t('general.view') }}
+                </router-link>
               </v-dropdown-item>
             </v-dropdown>
           </template>
