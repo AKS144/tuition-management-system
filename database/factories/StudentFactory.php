@@ -10,7 +10,6 @@ $factory->define(Student::class, function (Faker $faker) {
         'full_name' => $faker->name,
         'nric' => $faker->e164PhoneNumber(),
         'age' => $faker->numberBetween(5, 18),
-        'level' => $faker->numberBetween(1,14),
         'mobile_no' => $faker->e164PhoneNumber(),
         'date_joined'=> now(),
         'branch_id' => $faker->numberBetween(1,2),

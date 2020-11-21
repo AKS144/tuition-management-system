@@ -2,7 +2,7 @@
   <div class="customer-create main-content">
     <form action="" @submit.prevent="submitStudentData">
       <div class="page-header">
-        <h3 class="page-title">{{ isEdit ? $t('customers.edit_customer') : $t('customers.new_customer') }}</h3>
+        <h3 class="page-title">{{ isEdit ? $t('students.edit_student') : $t('students.new_student') }}</h3>
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
             <router-link slot="item-title" to="/admin/dashboard">{{ $t('general.home') }}</router-link>
@@ -11,7 +11,7 @@
             <router-link slot="item-title" to="/admin/students">{{ $tc('customers.customer', 2) }}</router-link>
           </li>
           <li class="breadcrumb-item">
-            {{ isEdit ? $t('customers.edit_customer') : $t('customers.new_customer') }}
+            {{ isEdit ? $t('students.edit_student') : $t('students.new_student') }}
           </li>
         </ol>
         <div class="page-actions header-button-container">
@@ -23,316 +23,105 @@
             color="theme"
             type="submit"
           >
-            {{ isEdit ? $t('customers.update_customer') : $t('customers.save_customer') }}
+            {{ isEdit ? $t('students.update_student') : $t('students.save_student') }}
           </base-button>
         </div>
       </div>
       <div class="customer-card card">
         <div class="card-body">
           <div class="row">
-            <div class="section-title col-sm-2">{{ $t('customers.basic_info') }}</div>
+            <div class="section-title col-sm-2">{{ $t('students.basic_info') }}</div>
             <div class="col-sm-5">
               <div class="form-group">
-                <label class="form-label">{{ $t('customers.display_name') }}</label><span class="text-danger"> *</span>
+                <label class="form-label">{{ $t('students.full_name') }}</label><span class="text-danger"> *</span>
                 <base-input
-                  :invalid="$v.formData.name.$error"
-                  v-model="formData.name"
+                  :invalid="$v.formData.full_name.$error"
+                  v-model="formData.full_name"
                   focus
                   type="text"
-                  name="name"
+                  name="full_name"
                   tab-index="1"
-                  @input="$v.formData.name.$touch()"
+                  @input="$v.formData.full_name.$touch()"
                 />
-                <div v-if="$v.formData.name.$error">
-                  <span v-if="!$v.formData.name.required" class="text-danger">
+                <div v-if="$v.formData.full_name.$error">
+                  <span v-if="!$v.formData.full_name.required" class="text-danger">
                     {{ $tc('validation.required') }}
                   </span>
-                  <span v-if="!$v.formData.name.minLength" class="text-danger">
-                    {{ $tc('validation.name_min_length', $v.formData.name.$params.minLength.min, { count: $v.formData.name.$params.minLength.min }) }}
-                  </span>
                 </div>
               </div>
               <div class="form-group">
-                <label class="form-label">{{ $t('customers.email') }}</label>
+                <label class="form-label">{{ $t('students.age') }}</label>
                 <base-input
-                  :invalid="$v.formData.email.$error"
-                  v-model.trim="formData.email"
-                  type="text"
-                  name="email"
+                  :invalid="$v.formData.age.$error"
+                  v-model.trim="formData.age"
+                  type="number"
+                  name="age"
                   tab-index="3"
-                  @input="$v.formData.email.$touch()"
+                  @input="$v.formData.age.$touch()"
                 />
-                <div v-if="$v.formData.email.$error">
-                  <span v-if="!$v.formData.email.email" class="text-danger">
-                    {{ $tc('validation.email_incorrect') }}
+                <div v-if="$v.formData.age.$error">
+                  <span v-if="!$v.formData.age.required" class="text-danger">
+                    {{ $tc('validation.required') }}
+                  </span>
+                  <span v-if="!$v.formData.age.numeric" class="text-danger">
+                    {{ $tc('validation.numbers_only') }}
                   </span>
                 </div>
               </div>
               <div class="form-group">
-                <label class="form-label">{{ $t('customers.primary_currency') }}</label>
-                <base-select
-                  v-model="currency"
-                  :options="currencies"
-                  :custom-label="currencyNameWithCode"
-                  :allow-empty="false"
-                  :searchable="true"
-                  :show-labels="false"
-                  :tabindex="5"
-                  :placeholder="$t('customers.select_currency')"
-                  label="name"
-                  track-by="id"
+                <label class="form-label">{{ $t('students.joined_date') }}</label>
+                <base-date-picker
+                  v-model="formData.date_joined"
+                  :calendar-button="true"
+                  calendar-button-icon="calendar"
+                  @change="$v.formData.date_joined.$touch()"
                 />
+                <span v-if="$v.formData.date_joined.$error && !$v.formData.date_joined.required" class="text-danger"> {{ $t('validation.required') }} </span>
               </div>
             </div>
             <div class="col-sm-5">
               <div class="form-group">
-                <label class="form-label">{{ $t('customers.primary_contact_name') }}</label>
+                <label class="form-label">{{ $t('students.nric') }}</label>
                 <base-input
-                  v-model.trim="formData.contact_name"
-                  :label="$t('customers.contact_name')"
+                  v-model.trim="formData.nric"
                   type="text"
                   tab-index="2"
+                  @input="$v.formData.nric.$touch()"
                 />
+                <div v-if="$v.formData.nric.$error">
+                  <span v-if="!$v.formData.nric.required" class="text-danger">
+                    {{ $tc('validation.required') }}
+                  </span>
+                  <span v-if="!$v.formData.nric.minLength" class="text-danger"> 
+                    {{ $tc('validation.nric_minlength', $v.formData.nric.$params.minLength.min, { count: $v.formData.nric.$params.minLength.min }) }} 
+                  </span>
+                </div>
               </div>
               <div class="form-group">
-                <label class="form-label">{{ $t('customers.phone') }}</label>
+                <label class="form-label">{{ $t('students.mobile_no') }}</label>
                 <base-input
-                  v-model.trim="formData.phone"
+                  v-model.trim="formData.mobile_no"
                   type="text"
-                  name="phone"
+                  name="mobile_no"
                   tab-index="4"
                 />
               </div>
               <div class="form-group">
-                <label class="form-label">{{ $t('customers.website') }}</label>
-                <base-input
-                  v-model="formData.website"
-                  :invalid="$v.formData.website.$error"
-                  type="url"
-                  tab-index="6"
-                  @input="$v.formData.website.$touch()"
-                />
-                <div v-if="$v.formData.website.$error">
-                  <span v-if="!$v.formData.website.url" class="text-danger">
-                    {{ $tc('validation.invalid_url') }}
-                  </span>
-                </div>
+                <label class="form-label">{{ $t('students.status') }}</label>
+                  <base-select
+                    v-model="status_key"
+                    :options="status"
+                    :allow-empty="false"
+                    :searchable="true"
+                    :show-labels="false"
+                    :tabindex="5"
+                    :placeholder="$t('students.set_student_status')"
+                    label="key"
+                    track-by="key"
+                  />
               </div>
             </div>
-          </div>
-          <hr> <!-- first row complete  -->
-          <div class="row">
-            <div class="section-title col-sm-2">{{ $t('customers.billing_address') }}</div>
-            <div class="col-sm-5">
-              <div class="form-group">
-                <label class="form-label">{{ $t('customers.name') }}</label>
-                <base-input
-                  v-model.trim="billing.name"
-                  type="text"
-                  name="address_name"
-                  tab-index="7"
-                />
-              </div>
-              <div class="form-group">
-                <label class="form-label">{{ $t('customers.state') }}</label>
-                <base-input
-                  v-model="billing.state"
-                  name="billing.state"
-                  type="text"
-                  tab-index="9"
-                />
-              </div>
-              <div class="form-group">
-                <label class="form-label">{{ $t('customers.address') }}</label>
-                <base-text-area
-                  v-model.trim="billing.address_street_1"
-                  :tabindex="11"
-                  :placeholder="$t('general.street_1')"
-                  type="text"
-                  name="billing_street1"
-                  rows="2"
-                  @input="$v.billing.address_street_1.$touch()"
-                />
-                <div v-if="$v.billing.address_street_1.$error">
-                  <span v-if="!$v.billing.address_street_1.maxLength" class="text-danger">
-                    {{ $t('validation.address_maxlength') }}
-                  </span>
-                </div>
-                <base-text-area
-                  :tabindex="12"
-                  v-model.trim="billing.address_street_2"
-                  :placeholder="$t('general.street_2')"
-                  type="text"
-                  name="billing_street2"
-                  rows="2"
-                  @input="$v.billing.address_street_2.$touch()"
-                />
-                <div v-if="$v.billing.address_street_2.$error">
-                  <span v-if="!$v.billing.address_street_2.maxLength" class="text-danger">
-                    {{ $t('validation.address_maxlength') }}
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-5">
-              <div class="form-group">
-                <label class="form-label">{{ $t('customers.country') }}</label>
-                <base-select
-                  v-model="billing_country"
-                  :options="billingCountries"
-                  :searchable="true"
-                  :show-labels="false"
-                  :allow-empty="true"
-                  :tabindex="8"
-                  :placeholder="$t('general.select_country')"
-                  label="name"
-                  track-by="id"
-                />
-              </div>
-              <div class="form-group">
-                <label class="form-label">{{ $t('customers.city') }}</label>
-                <base-input
-                  v-model="billing.city"
-                  name="billing.city"
-                  type="text"
-                  tab-index="10"
-                />
-              </div>
-              <div class="form-group">
-                <label class="form-label">{{ $t('customers.phone') }}</label>
-                <base-input
-                  v-model.trim="billing.phone"
-                  type="text"
-                  name="phone"
-                  tab-index="13"
-                />
-              </div>
-              <div class="form-group">
-                <label class="form-label">{{ $t('customers.zip_code') }}</label>
-                <base-input
-                  v-model.trim="billing.zip"
-                  type="text"
-                  name="zip"
-                  tab-index="14"
-                />
-              </div>
-            </div>
-          </div>
-          <hr> <!-- second row complete  -->
-          <div class="same-address-checkbox-container">
-            <div class="p-1">
-              <base-button ref="sameAddress" icon="copy" color="theme" class="btn-sm" @click="copyAddress(true)">
-                {{ $t('customers.copy_billing_address') }}
-              </base-button>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="section-title col-sm-2">
-              {{ $t('customers.shipping_address') }}
-            </div>
-            <div class="col-sm-5">
-              <div class="form-group">
-                <label class="form-label">{{ $t('customers.name') }}</label>
-                <base-input
-                  v-model.trim="shipping.name"
-                  type="text"
-                  name="address_name"
-                  tab-index="15"
-                />
-              </div>
-              <div class="form-group">
-                <label class="form-label">{{ $t('customers.state') }}</label>
-                <base-input
-                  v-model="shipping.state"
-                  name="shipping.state"
-                  type="text"
-                  tab-index="17"
-                />
-              </div>
-              <div class="form-group">
-                <label class="form-label">{{ $t('customers.address') }}</label>
-                <base-text-area
-                  v-model.trim="shipping.address_street_1"
-                  :tabindex="19"
-                  :placeholder="$t('general.street_1')"
-                  type="text"
-                  name="street_1"
-                  rows="2"
-                  @input="$v.shipping.address_street_1.$touch()"
-                />
-                <div v-if="$v.shipping.address_street_1.$error">
-                  <span v-if="!$v.shipping.address_street_1.maxLength" class="text-danger">{{ $t('validation.address_maxlength') }}</span>
-                </div>
-                <base-text-area
-                  v-model.trim="shipping.address_street_2"
-                  :tabindex="20"
-                  :placeholder="$t('general.street_2')"
-                  type="text"
-                  name="street_2"
-                  rows="2"
-                  @input="$v.shipping.address_street_2.$touch()"
-                />
-                <div v-if="$v.shipping.address_street_2.$error">
-                  <span v-if="!$v.shipping.address_street_2.maxLength" class="text-danger">{{ $t('validation.address_maxlength') }}</span>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-5">
-              <div class="form-group">
-                <label class="form-label">{{ $t('customers.country') }}</label>
-                <base-select
-                  v-model="shipping_country"
-                  :options="shippingCountries"
-                  :searchable="true"
-                  :show-labels="false"
-                  :tabindex="16"
-                  :allow-empty="true"
-                  :placeholder="$t('general.select_country')"
-                  label="name"
-                  track-by="id"
-                />
-              </div>
-              <div class="form-group">
-                <label class="form-label">{{ $t('customers.city') }}</label>
-                <base-input
-                  v-model="shipping.city"
-                  name="shipping.city"
-                  type="text"
-                  tab-index="18"
-                />
-              </div>
-              <div class="form-group">
-                <label class="form-label">{{ $t('customers.phone') }}</label>
-                <base-input
-                  v-model.trim="shipping.phone"
-                  type="text"
-                  name="phone"
-                  tab-index="21"
-                />
-              </div>
-              <div class="form-group">
-                <label class="form-label">{{ $t('customers.zip_code') }}</label>
-                <base-input
-                  v-model.trim="shipping.zip"
-                  type="text"
-                  name="zip"
-                  tab-index="22"
-                />
-              </div>
-              <div class="form-group collapse-button-container">
-                <base-button
-                  :tabindex="23"
-                  icon="save"
-                  color="theme"
-                  class="collapse-button"
-                  type="submit"
-                >
-                  {{ $t('customers.save_customer') }}
-                </base-button>
-              </div>
-            </div>
-          </div>
+          </div>          
         </div>
       </div>
     </form>
@@ -344,157 +133,75 @@ import { mapActions, mapGetters } from 'vuex'
 import MultiSelect from 'vue-multiselect'
 import { validationMixin } from 'vuelidate'
 import AddressStub from '../../stub/address'
-const { required, minLength, email, url, maxLength } = require('vuelidate/lib/validators')
+const { required, minLength, url, maxLength, numeric } = require('vuelidate/lib/validators')
 
 export default {
   components: { MultiSelect },
   mixins: [validationMixin],
   data () {
     return {
-      isCopyFromBilling: false,
       isLoading: false,
       formData: {
-        name: null,
-        contact_name: null,
-        email: null,
-        phone: null,
-        currency_id: null,
-        website: null,
-        addresses: []
+        full_name: null,
+        age: null,
+        nric: null,
+        mobile_no: null,
+        status: null,
+        date_joined: null
       },
-      currency: null,
-      billing: {
-        name: null,
-        country_id: null,
-        state: null,
-        city: null,
-        phone: null,
-        zip: null,
-        address_street_1: null,
-        address_street_2: null,
-        type: 'billing'
-      },
-      shipping: {
-        name: null,
-        country_id: null,
-        state: null,
-        city: null,
-        phone: null,
-        zip: null,
-        address_street_1: null,
-        address_street_2: null,
-        type: 'shipping'
-      },
-      currencyList: [],
 
-      billing_country: null,
-      shipping_country: null,
-
-      billingCountries: [],
-      shippingCountries: []
+      status_key: null
     }
   },
   validations: {
     formData: {
-      name: {
+      full_name: {
+        required
+      },
+      age: {
         required,
-        minLength: minLength(3)
+        numeric
       },
-      email: {
-        email
+      date_joined:{
+        required
       },
-      website: {
-        url
-      }
-    },
-    billing: {
-      address_street_1: {
-        maxLength: maxLength(255)
+      nric: {
+        required,
+        minLength: minLength(7)
       },
-      address_street_2: {
-        maxLength: maxLength(255)
-      }
-    },
-    shipping: {
-      address_street_1: {
-        maxLength: maxLength(255)
-      },
-      address_street_2: {
-        maxLength: maxLength(255)
-      }
     }
   },
   computed: {
-    ...mapGetters('currency', [
-      'defaultCurrency',
-      'currencies'
+    ...mapGetters('user', [
+      'status',
     ]),
     isEdit () {
       if (this.$route.name === 'students.edit') {
         return true
       }
       return false
-    },
-    hasBillingAdd () {
-      let billing = this.billing
-      if (
-        billing.name ||
-        billing.country_id ||
-        billing.state ||
-        billing.city ||
-        billing.phone ||
-        billing.zip ||
-        billing.address_street_1 ||
-        billing.address_street_2) {
-        return true
-      }
-      return false
-    },
-    hasShippingAdd () {
-      let shipping = this.shipping
-      if (
-        shipping.name ||
-        shipping.country_id ||
-        shipping.state ||
-        shipping.city ||
-        shipping.phone ||
-        shipping.zip ||
-        shipping.address_street_1 ||
-        shipping.address_street_2) {
-        return true
-      }
-      return false
     }
   },
   watch: {
-    billing_country (newCountry) {
-      if (newCountry) {
-        this.billing.country_id = newCountry.id
-        this.isDisabledBillingState = false
+    status_key(key){
+      if(key){
+        this.formData.status = key
       } else {
-        this.billing.country_id = null
-      }
-    },
-    shipping_country (newCountry) {
-      if (newCountry) {
-        this.shipping.country_id = newCountry.id
-        return true
-      } else {
-        this.shipping.country_id = null
+        this.formData.status = null
       }
     }
   },
   mounted () {
-    this.fetchCountry()
     if (this.isEdit) {
       this.loadStudent()
     } else {
-      this.currency = this.defaultCurrency
+      this.currency = this.defaultCurrency,
+      this.status = this.status
     }
   },
   methods: {
-    currencyNameWithCode ({name, code}) {
-      return `${code} - ${name}`
+    statusName ({key, value}) {
+      return `${key}`
     },
     ...mapActions('student', [
       'addStudent',
@@ -502,56 +209,17 @@ export default {
       'updateStudent'
     ]),
     async loadStudent () {
-      let { data: { student, currencies, currency } } = await this.fetchStudent(this.$route.params.id)
+      let { data: { student, parent } } = await this.fetchStudent(this.$route.params.id)
 
       this.formData.id = student.id
-      this.formData.name = student.name
-      this.formData.contact_name = student.contact_name
-      this.formData.email = student.email
-      this.formData.phone = student.phone
-      this.formData.currency_id = student.currency_id
-      this.formData.website = student.website
+      this.formData.full_name = student.full_name
+      this.formData.nric = student.nric
+      this.formData.age = student.age
+      this.formData.mobile_no = student.mobile_no
+      this.formData.status = student.status
+      this.formData.date_joined = student.formattedJoinedAt
 
-      if (student.billing_address) {
-        this.billing = student.billing_address
-
-        if (student.billing_address.country_id) {
-          this.billing_country = this.billingCountries.find((c) => c.id === student.billing_address.country_id)
-        }
-      }
-
-      if (student.shipping_address) {
-        this.shipping = student.shipping_address
-
-        if (student.shipping_address.country_id) {
-          this.shipping_country = this.shippingCountries.find((c) => c.id === student.shipping_address.country_id)
-        }
-      }
-
-      this.currencyList = currencies
-      this.formData.currency_id = student.currency_id
-      this.currency = currency
-    },
-    async fetchCountry () {
-      let res = await window.axios.get('/api/countries')
-      if (res) {
-        this.billingCountries = res.data.countries
-        this.shippingCountries = res.data.countries
-      }
-    },
-    copyAddress (val) {
-      if (val === true) {
-        this.isCopyFromBilling = true
-        this.shipping = {...this.billing, type: 'shipping'}
-        this.shipping_country = this.billing_country
-        this.shipping_state = this.billing_state
-        this.shipping_city = this.billing_city
-      } else {
-        this.shipping = {...AddressStub, type: 'shipping'}
-        this.shipping_country = null
-        this.shipping_state = null
-        this.shipping_city = null
-      }
+      this.status_key = student.status
     },
     async submitStudentData () {
       this.$v.formData.$touch()
@@ -559,26 +227,19 @@ export default {
       if (this.$v.$invalid) {
         return true
       }
-      if (this.hasBillingAdd && this.hasShippingAdd) {
-        this.formData.addresses = [{...this.billing}, {...this.shipping}]
-      } else {
-        if (this.hasBillingAdd) {
-          this.formData.addresses = [{...this.billing}]
+
+      if (this.status_key) {
+          this.formData.status = this.status_key.key
         }
-        if (this.hasShippingAdd) {
-          this.formData.addresses = [{...this.shipping}]
-        }
-      }
 
       if (this.isEdit) {
-        if (this.currency) {
-          this.formData.currency_id = this.currency.id
-        }
         this.isLoading = true
         try {
+          console.log(this.formData)
           let response = await this.updateStudent(this.formData)
+          console.log(response);
           if (response.data.success) {
-            window.toastr['success'](this.$t('customers.updated_message'))
+            window.toastr['success'](this.$t('students.updated_message'))
             this.$router.push('/admin/students')
             this.isLoading = false
             return true
@@ -589,30 +250,24 @@ export default {
             }
           }
         } catch (err) {
-          if (err.response.data.errors.email) {
-            this.isLoading = false
-            window.toastr['error'](this.$t('validation.email_already_taken'))
-          }
+          console.log(err);
         }
       } else {
         this.isLoading = true
         if (this.currency) {
           this.isLoading = true
-          this.formData.currency_id = this.currency.id
         }
         try {
+          console.log(this.formData)
           let response = await this.addStudent(this.formData)
           if (response.data.success) {
-            window.toastr['success'](this.$t('customers.created_message'))
+            window.toastr['success'](this.$t('students.created_message'))
             this.$router.push('/admin/students')
             this.isLoading = false
             return true
           }
         } catch (err) {
-          if (err.response.data.errors.email) {
-            this.isLoading = false
-            window.toastr['error'](this.$t('validation.email_already_taken'))
-          }
+          console.log(err)
         }
       }
     }

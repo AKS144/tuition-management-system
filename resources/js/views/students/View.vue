@@ -119,7 +119,7 @@
               <div v-if="item.addresses !== null" class="form-group">
                 <label class="form-label">{{ $t('students.state') }}</label>
                 <base-input
-                  v-model=" item.addresses.state"
+                  v-model="item.addresses.state"
                   :readOnly="true"
                   type="text"
                   tab-index="9"

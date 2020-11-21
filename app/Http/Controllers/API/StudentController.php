@@ -5,8 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Student;
 use App\Parents;
-use Illuminate\Http\Request;
-use App\Http\Resources\StudentResource;
+use Illuminate\Http\Request; 
 use Illuminate\Support\Facades\Validator;
 
 class StudentController extends Controller
@@ -60,22 +59,29 @@ class StudentController extends Controller
             'full_name' => 'required',
             'nric' => 'required',
             'age' => 'required',
-            'level' => 'required',
         ]);
 
         if($validator->fails()){
             return response([
-                'status' => false,
+                'success' => false,
                 'error' => $validator->errors(),
                 'message' => 'Validation Error'
             ], 401);
         }
 
-        $student = Student::create($student);
+        $student = new Student();
+        $student->full_name = $request->full_name;
+        $student->nric = $request->nric;
+        $student->age = $request->age;
+        $student->status = $request->status;
+        $student->date_joined = $request->date_joined;
+        $student->mobile_no = $request->mobile_no;
+        $student->branch_id = $request->header('branch');
+        $student->save();
 
         return response([
-            'status' => true,
-            'data' => new StudentResource($student),
+            'success' => true,
+            'data' => $student,
             'message' => 'Student successfully created',
         ], 200);
     }
@@ -111,22 +117,31 @@ class StudentController extends Controller
      * @param  \App\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Student $student)
+    public function update($id, Request $request)
     {
-        if(auth()->user()){
-            $student->update($request->all());
+        $student = Student::find($id);
+        $req = $request->all();
 
+        $validator = Validator::make($req, [
+            'full_name' => 'required',
+            'nric' => 'required',
+            'age' => 'required',
+        ]);
+
+        if($validator->fails()){
             return response([
-                'status' => true,
-                'message' => 'Student successfully updated',
-                'data' => new StudentResource($student),
-            ], 200);
-        } else {
-            return response([
-                'status' => false,
-                'message' => 'Failed to update the student'
+                'error' => $validator->errors(),
+                'message' => 'Validation Error'
             ], 401);
         }
+
+        $student->update($request->all());
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Student successfully updated',
+            'data' => $student,
+        ], 200);
     }
 
     /**

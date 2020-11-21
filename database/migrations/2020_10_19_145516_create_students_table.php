@@ -18,7 +18,6 @@ class CreateStudentsTable extends Migration
             $table->string('full_name');
             $table->string('nric');
             $table->bigInteger('age');
-            $table->string('level');
             $table->string('mobile_no')->nullable();
             $table->string('status')->default('Not Active');
             $table->bigInteger('branch_id')->unsigned();

@@ -94,7 +94,7 @@
           size="large"
           @click="$router.push('students/create')"
         >
-          {{ $t('students.add_new_customer') }}
+          {{ $t('students.add_new_student') }}
         </base-button>
       </div>
     </div>
