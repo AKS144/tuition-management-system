@@ -5,8 +5,8 @@
         <div class="box-wrapper">
           <div class="logo-main">
               <img
-                src="/img/crater-logo.png"
-                alt="Crater Logo">
+                src="/img/logo-white.png"
+                alt="Logo">
           </div>
           <router-view></router-view>
           <div class="page-copyright">
