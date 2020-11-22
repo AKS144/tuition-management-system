@@ -4,13 +4,15 @@
       <img
         id="logo-white"
         src="/img/logo-white.png"
-        alt="Crater Logo"
+        alt="Jomfikir Logo"
         class="d-none d-md-inline"
+        width='150px'
+        height='150px'
       >
       <img
         id="logo-mobile"
-        src="/img/crater-white-small.png"
-        alt="Laraspace Logo"
+        src="/img/logo-white-mobile.png"
+        alt="Jomfikir Logo"
         class="d-md-none">
     </a>
 

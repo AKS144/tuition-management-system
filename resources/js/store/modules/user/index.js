@@ -6,7 +6,8 @@ const initialState = {
   currentUser: null,
   roles: [],
   permissions: [],
-  stations: []
+  stations: [],
+  status: []
 }
 
 export default {

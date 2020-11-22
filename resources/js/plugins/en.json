@@ -86,7 +86,7 @@
         "due_amount": "Amount Due",
         "customers": "Students",
         "invoices": "Invoices",
-        "estimates": "Estimates"
+        "items": "Classes"
       },
       "chart_info": {
         "total_sales": "Sales",
@@ -109,8 +109,8 @@
         "actions": "Actions",
         "view_all": "View All"
       },
-      "recent_estimate_card": {
-        "title": "Recent Estimates",
+      "student_list_card": {
+        "title": "Students List",
         "date": "Date",
         "customer": "Customer",
         "amount_due": "Amount Due",
@@ -163,25 +163,41 @@
       "select_currency": "Select currency",
       "select_a_customer": "Select a student",
       "type_or_click": "Type or click to select",
-  
+
       "confirm_delete": "You will not be able to recover this student's record and any related invoices and payments. | You will not be able to recover these students' record and any related invoices and payments.",
       "created_message": "Student created successfully",
       "updated_message": "Student updated successfully",
       "deleted_message": "Student deleted successfully | Students deleted successfully"
     },
     "students": {
+      "age": "Age",
       "title": "Students",
       "student": "Student | Students",
       "new_student": "New Student",
+      "edit_student": "Edit Student",
+      "view_student": "View Student",
+      "update_student": "Update Student",
+      "save_student": "Save Student",
+      "basic_info": "Student Info",
       "full_name": "Full Name",
       "nric": "NRIC",
+      "email": "Email",
+      "country": "Country",
+      "state": "State",
+      "city": "City",
+      "zip_code": "Zip Code",
+      "address": "Address",
+      "job": "Job",
       "mobile_no": "Mobile Number",
       "no_students": "No Student registered!",
       "list_of_students": "This section will contain the list of students.",
-      "add_new_customer": "Add New Student",
+      "add_new_student": "Add New Student",
       "status": "Status",
+      "parent_info": "Parents/Guardian Info",
+      "relationship": "Relationship",
       "joined_date": "Date Joined",
       "action": "Action",
+      "set_student_status": "Select Status",
       "confirm_delete": "You will not be able to recover this student and all the related Subject, Class, Package, Invoices and etc. | You will not be able to recover these students and all the related Subject, Class, Payment, Invoices and etc.",
       "created_message": "Student created successfully",
       "updated_message": "Student updated successfully",
@@ -280,7 +296,7 @@
       "list_of_estimates": "This section will contain the list of estimates.",
       "mark_as_rejected": "Mark as rejected",
       "mark_as_accepted": "Mark as accepted",
-  
+
       "marked_as_accepted_message": "Estimate marked as accepted",
       "marked_as_rejected_message": "Estimate marked as rejected",
       "confirm_delete": "You will not be able to recover this Estimate | You will not be able to recover these Estimates",
@@ -437,7 +453,7 @@
       "send_payment_successfully": "Payment sent successfully",
       "user_email_does_not_exist": "User email does not exist",
       "something_went_wrong": "something went wrong",
-  
+
       "confirm_delete": "You will not be able to recover this Payment | You will not be able to recover these Payments",
       "created_message": "Payment created successfully",
       "updated_message": "Payment updated successfully",
@@ -472,7 +488,7 @@
       "expense": "Expense | Expenses",
       "no_expenses": "No expenses yet!",
       "list_of_expenses": "This section will contain the list of expenses.",
-  
+
       "confirm_delete": "You will not be able to recover this Expense | You will not be able to recover these Expenses",
       "created_message": "Expense created successfully",
       "updated_message": "Expense updated successfully",
@@ -669,7 +685,7 @@
           "address_setting_updated": "Address Setting updated successfully"
         },
         "updated_message": "Company information updated successfully",
-  
+
         "invoices": {
           "title": "Invoices",
           "notes": "Notes",
@@ -681,7 +697,7 @@
           "terms_and_conditions": "Terms and Conditions",
           "invoice_setting_updated": "Invoice Setting updated successfully"
         },
-  
+
         "estimates": {
           "title": "Estimates",
           "estimate_prefix": "Estimate Prefix",
@@ -691,7 +707,7 @@
           "enter_estimate_prefix": "Enter estmiate prefix",
           "estimate_setting_updated": "Estimate Setting updated successfully"
         },
-  
+
         "payments": {
           "title": "Payments",
           "payment_prefix": "Payment Prefix",
@@ -710,7 +726,7 @@
           "already_in_use": "Payment Mode is already in use",
           "deleted_message": "Payment Mode deleted successfully"
         },
-  
+
         "items": {
           "title": "Class",
           "units": "Subject",
@@ -823,7 +839,7 @@
         "running_migrations": "Running Migrations",
         "finishing_update": "Finishing Update",
         "update_failed": "Update Failed",
-        "update_failed_text": "Sorry! Your update failed on : {step} step"   
+        "update_failed_text": "Sorry! Your update failed on : {step} step"
       }
     },
     "wizard": {
@@ -949,9 +965,9 @@
       "maximum_options_error": "Maximum  of {max} options selected. First remove a selected option to select another.",
       "notes_maxlength": "Notes should not be greater than 255 characters.",
       "address_maxlength": "Address should not be greater than 255 characters.",
+      "nric_minlength": "NRIC must have at least {count} character",
       "ref_number_maxlength": "Ref Number should not be greater than 255 characters.",
       "prefix_maxlength": "Prefix should not be greater than 5 characters.",
       "something_went_wrong": "something went wrong"
     }
   }
-  

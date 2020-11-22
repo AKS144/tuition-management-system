@@ -10,6 +10,6 @@ $factory->define(Parents::class, function (Faker $faker) {
         'full_name' => $faker->name,
         'nric' => $faker->e164PhoneNumber(),
         'mobile_no' => $faker->e164PhoneNumber(),
-        'email' => $faker->unique()->safeEmail
+        'email' => $faker->unique()->safeEmail,
     ];
 });

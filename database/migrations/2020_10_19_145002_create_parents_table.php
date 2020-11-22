@@ -20,6 +20,7 @@ class CreateParentsTable extends Migration
             $table->bigInteger('home_no')->nullable();
             $table->string('email');
             $table->string('nric')->nullable();
+            $table->string('type')->default('Penjaga');
             $table->string('job')->nullable();
         });
     }

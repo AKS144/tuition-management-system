@@ -58,15 +58,15 @@
         </router-link>
       </div>
       <div class="dash-item col-sm-6">
-        <router-link slot="item-title" to="/admin/estimates">
+        <router-link slot="item-title" to="/admin/items">
           <div class="dashbox">
             <div class="desc">
               <span v-if="isLoaded"
                     class="amount">
-                {{ getEstimates }}
+                {{ getItems }}
               </span>
               <span class="title">
-                {{ $t('dashboard.cards.estimates') }}
+                {{ $t('dashboard.cards.items') }}
               </span>
             </div>
             <div class="icon">
@@ -230,7 +230,7 @@
       <div class="col-lg-12 col-xl-6 mt-2 mob-table">
         <div class="table-header">
           <h6 class="table-title">
-            {{ $t('dashboard.recent_estimate_card.title') }}
+            {{ $t('dashboard.student_list_card.title') }}
           </h6>
           <router-link to="/admin/estimates">
             <base-button
