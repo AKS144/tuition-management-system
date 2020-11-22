@@ -3,8 +3,9 @@ import * as types from './mutation-types'
 export const fetchClasses = ({ commit, dispatch, state }, params) => {
   return new Promise((resolve, reject) => {
     window.axios.get(`/api/v1/class`, {params}).then((response) => {
-      commit(types.BOOTSTRAP_CLASSES, response.data.class.data)
-      commit(types.SET_TOTAL_CLASSES, response.data.class.total)
+      console.log(response);
+      commit(types.BOOTSTRAP_CLASSES, response.data.classroom.data)
+      commit(types.SET_TOTAL_CLASSES, response.data.classroom.total)
       resolve(response)
     }).catch((err) => {
       reject(err)
@@ -115,6 +116,7 @@ export const updateClassTutor = ({ commit, dispatch, state }, data) => {
 export const fetchClassTutors = ({ commit, dispatch, state }) => {
   return new Promise((resolve, reject) => {
     window.axios.get(`/api/v1/tutors`).then((response) => {
+      console.log(response)
       commit(types.SET_CLASS_TUTORS, response.data.tutors)
       resolve(response)
     }).catch((err) => {

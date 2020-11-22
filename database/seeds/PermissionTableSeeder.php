@@ -27,6 +27,11 @@ class PermissionTableSeeder extends Seeder
             'student-delete',
             'student-edit',
 
+            'class-list',
+            'class-create',
+            'class-delete',
+            'class-edit',
+
             'tutor-list',
             'tutor-create',
             'tutor-delete',

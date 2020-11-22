@@ -45,6 +45,11 @@ Route::group(['prefix' => 'v1'], function () {
 
         // Classroom
         //----------------------------------
+        
+        Route::post('/class/delete', [
+            'as' => 'class.delete',
+            'uses' => 'API\ClassController@delete'
+        ]);
 
         Route::resource('/class', 'API\ClassController');
 

@@ -21,6 +21,7 @@ import userProfile from './modules/settings/user-profile'
 import preferences from './modules/settings/preferences'
 import general from './modules/settings/general'
 import item from './modules/item'
+import classroom from './modules/class'
 
 Vue.use(Vuex)
 
@@ -51,6 +52,7 @@ export default new Vuex.Store({
         userProfile,
         preferences,
         general,
-        item
+        item,
+        classroom
     }
 })

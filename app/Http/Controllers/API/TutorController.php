@@ -23,22 +23,16 @@ class TutorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        if(auth()->user()){
-            $tutor = Tutor::all();
 
-            return response([
-                'status' => true,
-                'message' => 'Tutor successfully retrieved',
-                'data' => TutorResource::collection($tutor),
-            ], 200);
-        } else {
-            return response([
-                'status' => false,
-                'message' => 'Failed to retrieved tutor data'
-            ], 401);
-        }
+        $tutors = Tutor::whereBranch($request->header('branch'))
+            ->latest()
+            ->get();
+        
+        return response()->json([
+            'tutors' => $tutors
+        ]);
     }
 
     /**
