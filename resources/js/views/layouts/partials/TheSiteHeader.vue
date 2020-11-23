@@ -85,24 +85,19 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
   computed: {
-    ...mapGetters('userProfile', [
-      'user'
+    ...mapGetters('user', [
+      'currentUser'
     ]),
     profilePicture () {
-      if (this.user && this.user.avatar !== null) {
-        return this.user.avatar
+      if (this.currentUser && this.currentUser.image !== null) {
+        console.log(this.currentUser.image)
+        return '/images/' + this.currentUser.image
       } else {
         return '/images/default-avatar.jpg'
       }
     }
   },
-  created () {
-    this.loadData()
-  },
   methods: {
-    ...mapActions('userProfile', [
-      'loadData'
-    ]),
     ...mapActions({
       companySelect: 'changeCompany'
     }),
