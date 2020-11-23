@@ -2,14 +2,19 @@ import * as types from './mutation-types'
 
 export default {
   [types.SET_INITIAL_DATA] (state, data) {
-    state.contacts = data.customersCount
+    state.students = data.studentsCount
+    state.tutors = data.tutorCount
+    state.classes = data.classCount
     state.invoices = data.invoicesCount
     state.expenses = data.expenses
     state.recentInvoices = data.invoices
-    state.newContacts = data.contacts
+    state.newContacts = data.students
     state.totalDueAmount = data.totalDueAmount
 
     state.dueInvoices = data.dueInvoices
+
+    state.recentStudents = data.student
+    state.recentClasses = data.class
 
     state.weeklyInvoices.days = data.weekDays
     state.weeklyInvoices.counter = data.counters

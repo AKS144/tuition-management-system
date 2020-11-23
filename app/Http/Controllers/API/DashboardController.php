@@ -11,6 +11,7 @@ use App\BranchSetting;
 use App\Expense;
 use App\Payment;
 use App\Student;
+use App\Classroom;
 use App\Tutor;
 use App\User;
 
@@ -124,12 +125,15 @@ class DashboardController extends Controller
         ];
 
         $studentsCount = Student::whereBranch($request->header('branch'))->get()->count();
+        $classesCount = Classroom::whereBranch($request->header('branch'))->get()->count();
         $invoicesCount = Invoice::whereBranch($request->header('branch'))->get()->count();
         $expensesCount = Expense::get()->count();
         $totalDueAmount = Invoice::whereBranch($request->header('branch'))->sum('due_amount');
         $dueInvoices = Invoice::with('user')->whereBranch($request->header('branch'))->where('due_amount', '>', 0)->take(5)->latest()->get();
         $expenses = Expense::take(5)->latest()->get();
         $tutorCount = Tutor::whereBranch($request->header('branch'))->get()->count();
+        $students = Student::whereBranch($request->header('branch'))->take(5)->latest()->get();
+        $classes = Classroom::with('tutor')->whereBranch($request->header('branch'))->take(5)->latest()->get();
 
         return response()->json([
             'dueInvoices' => $dueInvoices,
@@ -138,12 +142,15 @@ class DashboardController extends Controller
             'totalDueAmount' => $totalDueAmount,
             'invoicesCount' => $invoicesCount,
             'studentsCount' => $studentsCount,
+            'classCount' => $classesCount,
             'chartData' => $chartData,
             'salesTotal' => $salesTotal,
             'totalReceipts' => $totalReceipts,
             'totalExpenses' => $totalExpenses,
             'netProfit' => $netProfit,
-            'tutorCount' => $tutorCount
+            'tutorCount' => $tutorCount,
+            'class' => $classes,
+            'student' => $students,
         ]);
     }
 }
