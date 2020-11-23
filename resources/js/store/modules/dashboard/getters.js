@@ -1,9 +1,14 @@
-export const getContacts = (state) => state.contacts
+export const getStudents = (state) => state.students
+export const getTutors = (state) => state.tutors
+export const getClasses = (state) => state.classes
 export const getInvoices = (state) => state.invoices
 export const getExpenses = (state) => state.expenses
 export const getRecentInvoices = (state) => state.recentInvoices
 export const getNewContacts = (state) => state.newContacts
 export const getTotalDueAmount = (state) => state.totalDueAmount
+
+export const getRecentStudents = (state) => state.recentStudents
+export const getRecentClasses = (state) => state.recentClasses
 
 export const getDueInvoices = (state) => state.dueInvoices
 

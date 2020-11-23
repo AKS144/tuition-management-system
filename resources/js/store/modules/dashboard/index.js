@@ -3,7 +3,9 @@ import * as actions from './actions'
 import * as getters from './getters'
 
 const initialState = {
-  contacts: 0,
+  students: 0,
+  tutors: 0,
+  classes: 0,
   invoices: 0,
   expenses: 0,
   totalDueAmount: [],
@@ -28,7 +30,10 @@ const initialState = {
   netProfit: null,
 
   dueInvoices: [],
-  newContacts: []
+  newContacts: [],
+
+  recentStudents: [],
+  recentClasses: []
 }
 
 export default {
