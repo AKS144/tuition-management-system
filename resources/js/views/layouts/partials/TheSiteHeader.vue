@@ -90,7 +90,7 @@ export default {
     ]),
     profilePicture () {
       if (this.currentUser && this.currentUser.image !== null) {
-        console.log(this.currentUser.image)
+        // console.log(this.currentUser.image)
         return '/images/' + this.currentUser.image
       } else {
         return '/images/default-avatar.jpg'

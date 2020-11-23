@@ -3,6 +3,7 @@ import * as types from './mutation-types'
 export const fetchCategories = ({ commit, dispatch, state }, data) => {
   return new Promise((resolve, reject) => {
     window.axios.get(`/api/v1/categories`).then((response) => {
+      console.log(response);
       commit(types.SET_CATEGORIES, response.data)
       resolve(response)
     }).catch((err) => {
