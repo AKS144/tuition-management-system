@@ -5,8 +5,9 @@
         <div class="box-wrapper">
           <div class="logo-main">
               <img
-                src="/img/logo-white.png"
-                alt="Logo">
+                src="/img/logo-black.png"
+                alt="Logo"
+                >
           </div>
           <router-view></router-view>
           <div class="page-copyright">

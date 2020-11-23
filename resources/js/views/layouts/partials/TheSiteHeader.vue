@@ -6,8 +6,7 @@
         src="/img/logo-white.png"
         alt="Jomfikir Logo"
         class="d-none d-md-inline"
-        width='150px'
-        height='150px'
+        style='max-width: 100%; max-height: 100%;'
       >
       <img
         id="logo-mobile"

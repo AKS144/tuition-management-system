@@ -110,11 +110,18 @@
         "actions": "Actions",
         "view_all": "View All"
       },
+      "classes_list_card": {
+        "title": "Classes List",
+        "classes": "Class Name",
+        "class_code" : "Class Code",
+        "tutor": "Tutor Name",
+        "actions": "Actions",
+        "view_all": "View All"
+      },
       "student_list_card": {
         "title": "Students List",
-        "date": "Date",
-        "customer": "Customer",
-        "amount_due": "Amount Due",
+        "students": "Student",
+        "status": "Status",
         "actions": "Actions",
         "view_all": "View All"
       }

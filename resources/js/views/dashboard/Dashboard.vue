@@ -22,7 +22,7 @@
         </router-link>
       </div>
       <div class="dash-item col-sm-6">
-        <router-link slot="item-title" to="/admin/customers">
+        <router-link slot="item-title" to="/admin/students">
           <div class="dashbox">
             <div class="desc">
               <span v-if="isLoaded"
@@ -68,9 +68,6 @@
               <span class="title">
                 {{ $t('dashboard.cards.items') }}
               </span>
-            </div>
-            <div class="icon">
-              <estimate-icon class="card-icon" />
             </div>
           </div>
         </router-link>
@@ -146,15 +143,15 @@
       <div class="col-lg-12 col-xl-6 mt-2">
         <div class="table-header">
           <h6 class="table-title">
-            {{ $t('dashboard.recent_invoices_card.title') }}
+            {{ $t('dashboard.classes_list_card.title') }}
           </h6>
-          <router-link to="/admin/invoices">
+          <router-link to="/admin/classes">
             <base-button
               :outline="true"
               color="theme"
               class="btn-sm"
             >
-              {{ $t('dashboard.recent_invoices_card.view_all') }}
+              {{ $t('dashboard.classes_list_card.view_all') }}
             </base-button>
           </router-link>
         </div>
@@ -166,23 +163,9 @@
             table-class="table"
             class="dashboard"
           >
-            <table-column :label="$t('dashboard.recent_invoices_card.due_on')" show="formattedDueDate" />
-            <table-column :label="$t('dashboard.recent_invoices_card.customer')" show="user.name" />
-            <table-column
-              :label="$t('invoices.status')"
-              sort-as="status"
-            >
-              <template slot-scope="row" >
-                <span> {{ $t('invoices.status') }}</span>
-                <span :class="'inv-status-'+row.status.toLowerCase()">{{ (row.status != 'PARTIALLY_PAID')? row.status : row.status.replace('_', ' ') }}</span>
-              </template>
-            </table-column>
-            <table-column :label="$t('dashboard.recent_invoices_card.amount_due')" show="due_amount" sort-as="due_amount">
-              <template slot-scope="row">
-                <span>{{ $t('dashboard.recent_invoices_card.amount_due') }}</span>
-                <div v-html="$utils.formatMoney(row.due_amount, row.user.currency)"/>
-              </template>
-            </table-column>
+            <table-column :label="$t('dashboard.classes_list_card.classes')" show="user.name" />
+            <table-column :label="$t('dashboard.classes_list_card.class_code')" show="user.name" />
+            <table-column :label="$t('dashboard.classes_list_card.tutor')" show="user.name" />
             <table-column
               :sortable="false"
               :filterable="false"
@@ -232,13 +215,13 @@
           <h6 class="table-title">
             {{ $t('dashboard.student_list_card.title') }}
           </h6>
-          <router-link to="/admin/estimates">
+          <router-link to="/admin/students">
             <base-button
               :outline="true"
               color="theme"
               class="btn-sm"
             >
-              {{ $t('dashboard.recent_estimate_card.view_all') }}
+              {{ $t('dashboard.student_list_card.view_all') }}
             </base-button>
           </router-link>
         </div>
@@ -249,20 +232,13 @@
             :show-filter="false"
             table-class="table"
           >
-            <table-column :label="$t('dashboard.recent_estimate_card.date')" show="formattedExpiryDate" />
-            <table-column :label="$t('dashboard.recent_estimate_card.customer')" show="user.name" />
+            <table-column :label="$t('dashboard.student_list_card.students')" show="user.name" />
             <table-column
               :label="$t('estimates.status')"
               show="status" >
               <template slot-scope="row" >
                 <span> {{ $t('estimates.status') }}</span>
                 <span :class="'est-status-'+row.status.toLowerCase()">{{ row.status }}</span>
-              </template>
-            </table-column>
-            <table-column :label="$t('dashboard.recent_estimate_card.amount_due')" show="total" sort-as="total">
-              <template slot-scope="row">
-                <span>{{ $t('dashboard.recent_estimate_card.amount_due') }}</span>
-                <div v-html="$utils.formatMoney(row.total, row.user.currency)"/>
               </template>
             </table-column>
             <table-column
@@ -340,7 +316,7 @@ import LineChart from '../../components/chartjs/LineChart'
 import DollarIcon from '../../components/icon/DollarIcon'
 import ContactIcon from '../../components/icon/ContactIcon'
 import InvoiceIcon from '../../components/icon/InvoiceIcon'
-import EstimateIcon from '../../components/icon/EstimateIcon'
+import UsersIcon from '../../components/icon/users-solid'
 
 export default {
   components: {
@@ -348,7 +324,7 @@ export default {
     DollarIcon,
     ContactIcon,
     InvoiceIcon,
-    EstimateIcon
+    UsersIcon
   },
   data () {
     return {
