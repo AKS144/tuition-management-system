@@ -90,9 +90,9 @@ class Classroom extends Model
         return $query->where('code', 'LIKE', '%'.$nric.'%');
     }
 
-    public function scopeWhereBatchYear($query, $mobileNo)
+    public function scopeWhereTutor($query, $mobileNo)
     {
-        return $query->where('batch_year', 'LIKE', '%'.$mobileNo.'%');
+        return $query->where('tutor_id', 'LIKE', '%'.$mobileNo.'%');
     }
 
     public function scopeApplyFilters($query, array $filters)
@@ -111,8 +111,8 @@ class Classroom extends Model
             $query->scopeWhereCode($filters->get('code'));
         }
 
-        if ($filters->get('batch_year')) {
-            $query->scopeWhereBatchYear($filters->get('batch_year'));
+        if ($filters->get('tutor_id')) {
+            $query->scopeWhereTutor($filters->get('batch_year'));
         }
 
         if ($filters->get('orderByField') || $filters->get('orderBy')) {

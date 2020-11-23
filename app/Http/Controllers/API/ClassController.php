@@ -9,6 +9,14 @@ use Illuminate\Support\Facades\Validator;
 
 class ClassController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['permission:student-list'], ['only' => ['index']]);
+        $this->middleware(['permission:student-create'], ['only' => ['store']]);
+        $this->middleware(['permission:student-edit'], ['only' => ['update']]);
+        $this->middleware(['permission:student-delete'], ['only' => ['destroy']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -23,7 +31,7 @@ class ClassController extends Controller
                 'search',
                 'name',
                 'code',
-                'batch_year',
+                'tutor',
                 'orderByField',
                 'orderBy'
             ]))
@@ -32,7 +40,7 @@ class ClassController extends Controller
             ->paginate($limit);
 
         return response()->json([
-            'class' => $class
+            'classroom' => $class
         ]);
     }
 
@@ -48,7 +56,7 @@ class ClassController extends Controller
 
         $validator = Validator::make($class, [
             'name' => 'required',
-            'code' => 'required',
+            'code' => 'required|unique:App\Classroom,code',
             'batch_year' => 'required',
             'tutor_id' => 'required',
         ]);
@@ -95,7 +103,7 @@ class ClassController extends Controller
         $class->update($request->all());
 
         return response([
-            'status' => true,
+            'success' => true,
             'data' => $class,
         ], 200);
     }
@@ -106,12 +114,26 @@ class ClassController extends Controller
      * @param  \App\Classroom  $classroom
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Classroom $classroom)
+    public function destroy($id)
     {
-        $classroom->delete();
+        $item = Classroom::find($id);
+        $item->delete();
 
-        return response([
-            'status' => true,
-        ], 200);
+        return response()->json([
+            'success' => true,
+        ]);
+    }
+
+    public function delete(Request $request)
+    {
+        foreach ($request->id as $id) {
+            $student = Classroom::find($id);
+
+            $student->delete();
+        }
+
+        return response()->json([
+            'success' => true
+        ]);
     }
 }
