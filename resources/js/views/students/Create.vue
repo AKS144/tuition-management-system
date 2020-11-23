@@ -27,6 +27,7 @@
           </base-button>
         </div>
       </div>
+      <!-- Student basic info -->
       <div class="customer-card card">
         <div class="card-body">
           <div class="row">
@@ -121,7 +122,83 @@
                   />
               </div>
             </div>
-          </div>          
+          </div>
+          <hr>
+          <div class="row">
+            <div class="section-title col-sm-2">{{ $t('students.parent_info') }}</div>
+            <div class="col-sm-5">
+              <div class="form-group">
+                <label class="form-label">{{ $t('students.parent_name') }}</label><span class="text-danger"> *</span>
+                <base-input
+                  :invalid="$v.formData.parent_name.$error"
+                  v-model="formData.parent_name"
+                  focus
+                  type="text"
+                  name="parent_name"
+                  tab-index="1"
+                  @input="$v.formData.parent_name.$touch()"
+                />
+                <div v-if="$v.formData.parent_name.$error">
+                  <span v-if="!$v.formData.parent_name.required" class="text-danger">
+                    {{ $tc('validation.required') }}
+                  </span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">{{ $t('students.relationship') }}</label>
+                <base-input
+                  :invalid="$v.formData.relationship.$error"
+                  v-model.trim="formData.relationship"
+                  type="text"
+                  name="relatonship"
+                  tab-index="3"
+                  @input="$v.formData.relationship.$touch()"
+                />
+                <div v-if="$v.formData.relationship.$error">
+                  <span v-if="!$v.formData.relationship.required" class="text-danger">
+                    {{ $tc('validation.required') }}
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-5">
+              <div class="form-group">
+                <label class="form-label">{{ $t('students.parent_nric') }}</label>
+                <base-input
+                  v-model.trim="formData.parent_nric"
+                  type="text"
+                  tab-index="2"
+                  @input="$v.formData.parent_nric.$touch()"
+                />
+                <div v-if="$v.formData.parent_nric.$error">
+                  <span v-if="!$v.formData.parent_nric.required" class="text-danger">
+                    {{ $tc('validation.required') }}
+                  </span>
+                  <span v-if="!$v.formData.parent_nric.minLength" class="text-danger"> 
+                    {{ $tc('validation.parent_nric', $v.formData.nric.$params.minLength.min, { count: $v.formData.parent_nric.$params.minLength.min }) }} 
+                  </span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">{{ $t('students.parent_mobile') }}</label>
+                <base-input
+                  v-model.trim="formData.parent_mobile"
+                  type="text"
+                  name="parent_mobile"
+                  tab-index="4"
+                />
+              </div>
+              <div class="form-group">
+                <label class="form-label">{{ $t('students.parent_email') }}</label>
+                <base-input
+                  v-model.trim="formData.parent_email"
+                  type="text"
+                  name="parent_email"
+                  tab-index="5"
+                />
+              </div>
+            </div>
+          </div>             
         </div>
       </div>
     </form>
