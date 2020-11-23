@@ -41,15 +41,9 @@ export default {
             route: '/admin/students'
           },
           {
-<<<<<<< HEAD
-            title: 'navigation.items',
-            icon: 'users',
-            route: '/admin/items'
-=======
             title: 'navigation.class',
-            icon: 'star',
+            icon: 'users',
             route: '/admin/class'
->>>>>>> dd9b9e797de29a6761bf07895dcee808a893180d
           }
         ],
 
