@@ -11,6 +11,8 @@ class AddressSeeder extends Seeder
      */
     public function run()
     {
-        factory('App\Address')->create();
+        factory('App\Address')->create(['addressable_id' => 1, 'addressable_type' => 'App\Branch']);
+        factory('App\Address')->create(['addressable_id' => 2, 'addressable_type' => 'App\Branch']);
+        factory('App\Address')->create(['addressable_id' => 1, 'addressable_type' => "App\Parents"]);
     }
 }

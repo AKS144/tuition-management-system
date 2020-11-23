@@ -17,7 +17,7 @@ $factory->define(Address::class, function (Faker $faker) {
         'phone' => $faker->phoneNumber,
         'fax' => $faker->phoneNumber,
         'type' => Address::BILLING_TYPE,
-        'addressable_id' => 1,
-        'addressable_type' => "App\Parents"
+        // 'addressable_id' => 1,
+        // 'addressable_type' => "App\Parents"
     ];
 });
