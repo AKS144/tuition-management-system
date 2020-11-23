@@ -1,7 +1,7 @@
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
   faUser,
-  faTachometerAlt,
+  faUsers,
   faFileAlt,
   faCreditCard,
   faSpaceShuttle,
@@ -56,6 +56,8 @@ import {
   faRocket,
   faCamera,
   faLink,
+  faHome,
+  faMoneyBillWave,
 } from '@fortawesome/free-solid-svg-icons'
 import { far } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
@@ -65,12 +67,13 @@ window.Vue = require('vue')
 library.add(
   far,
   faUser,
+  faUsers,
   faTrashAlt,
-  faTachometerAlt,
   faFileAlt,
   faFile,
   faStar,
   faCreditCard,
+  faMoneyBillWave,
   faSpaceShuttle,
   faSignal,
   faCog,
@@ -121,7 +124,8 @@ library.add(
   faSyncAlt,
   faRocket,
   faCamera,
-  faLink
+  faLink,
+  faHome
 )
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)

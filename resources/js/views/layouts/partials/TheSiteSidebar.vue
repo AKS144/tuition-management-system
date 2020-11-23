@@ -32,7 +32,7 @@ export default {
         [
           {
             title: 'navigation.dashboard',
-            icon: 'tachometer-alt',
+            icon: 'home',
             route: '/admin/dashboard'
           },
           {
@@ -42,17 +42,12 @@ export default {
           },
           {
             title: 'navigation.items',
-            icon: 'star',
+            icon: 'users',
             route: '/admin/items'
           }
         ],
 
         [
-          {
-            title: 'navigation.estimates',
-            icon: 'file',
-            route: '/admin/subjects'
-          },
           {
             title: 'navigation.invoices',
             icon: 'file-alt',
@@ -65,7 +60,7 @@ export default {
           },
           {
             title: 'navigation.expenses',
-            icon: 'space-shuttle',
+            icon: 'money-bill-wave',
             route: '/admin/expenses'
           }
         ],
