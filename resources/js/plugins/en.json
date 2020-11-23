@@ -110,6 +110,14 @@
         "actions": "Actions",
         "view_all": "View All"
       },
+      "classes_list_card": {
+        "title": "Classes List",
+        "classes": "Class Name",
+        "class_code" : "Class Code",
+        "tutor": "Tutor Name",
+        "actions": "Actions",
+        "view_all": "View All"
+      },
       "student_list_card": {
         "title": "Students List",
         "students": "Student",

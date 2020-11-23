@@ -109,13 +109,20 @@
         "actions": "Aktiviti",
         "view_all": "Lihat semua"
       },
+      "classes_list_card": {
+        "title": "Senarai Kelas",
+        "classes": "Kelas",
+        "class_code" : "Kod Kelas",
+        "tutor": "Nama Pengajar",
+        "actions": "Aktiviti",
+        "view_all": "Lihat Semua"
+      },
       "student_list_card": {
         "title": "Senarai Pelajar",
-        "date": "Date",
-        "customer": "Customer",
-        "amount_due": "Amount Due",
-        "actions": "Actions",
-        "view_all": "View All"
+        "students": "Nama Pelajar",
+        "status": "Status",
+        "actions": "Aktiviti",
+        "view_all": "Lihat Semua"
       }
     },
     "tax_types": {
