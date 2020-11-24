@@ -137,6 +137,7 @@ export default {
       title: 'Add Class',
       units: [],
       taxes: [],
+      tutorName: [],
       taxPerItem: '',
       formData: {
         name: '',
