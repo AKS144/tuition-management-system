@@ -237,6 +237,7 @@
       "no_items": "No class(es) yet!",
       "list_of_items": "This section will contain the list of classes.",
       "select_a_unit": "Select subject...",
+      "select_a_tutor": "Select tutor...",
       "taxes": "Taxes",
       "item_attached_message": "Cannot delete a class which is already in use",
       "confirm_delete": "You will not be able to recover this class. | You will not be able to recover these classes",
@@ -766,6 +767,20 @@
           "payment_mode_confirm_delete": "You will not be able to recover this Payment Mode",
           "already_in_use": "Payment Mode is already in use",
           "deleted_message": "Payment Mode deleted successfully"
+        },
+
+        "subjects": {
+          "title": "Class",
+          "subjects": "Subject",
+          "code": "Subject Code",
+          "add_subject": "Add New Subject",
+          "edit_subject": "Edit Subject",
+          "subject_name": "Subject Name",
+          "subject_added": "Subject Added",
+          "subject_updated": "Subject Updated",
+          "subject_confirm_delete": "You will not be able to recover this Subject",
+          "already_in_use": "Subject is already in use",
+          "deleted_message": "Subject deleted successfully"
         },
 
         "items": {

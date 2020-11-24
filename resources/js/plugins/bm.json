@@ -181,6 +181,7 @@
       "items_list": "Senarai Kelas",
       "name": "Nama",
       "unit": "Subjek",
+      "tutor": "Pengajar",
       "description": "Penerangan",
       "added_on": "Ditambah pada",
       "price": "Harga",
@@ -196,7 +197,8 @@
       "no_items": "Senarai Kelas tidak wujud!",
       "list_of_items": "Bahagian ini mengandungi senarai kelas.",
       "select_a_unit": "Pilih subjek...",
-      "taxes": "Cukau",
+      "select_a_tutor": "Pilih pengajar...",
+      "taxes": "Cukai",
       "item_attached_message": "Gagal hapus kelas. Kelas sedang digunakan.",
       "confirm_delete": "Rekod kelas akan dihapuskan. | Rekod kelas akan dihapuskan.",
       "created_message": "Rekod kelas berjaya ditambah!",
@@ -695,6 +697,20 @@
           "payment_mode_confirm_delete": "Kaedah Pembayaran akan dihapuskan.",
           "already_in_use": "Kaedah Pembayaran telah wujud.",
           "deleted_message": "Kaedah Pembayaran telah dihapuskan."
+        },
+
+        "subjects": {
+          "title": "Kelas",
+          "subjects": "Subjek",
+          "code": "Kod Subjek",
+          "add_subject": "Tambah Subjek",
+          "edit_subject": "Ubah Subjek",
+          "subject_name": "Subjek",
+          "subject_added": "Subjek ditambah.",
+          "subject_updated": "Subjek dikemaskini.",
+          "subject_confirm_delete": "Subjek akan dihapuskan.",
+          "already_in_use": "Subjek telah wujud.",
+          "deleted_message": "Subjek telah dihapuskan"
         },
 
         "items": {
