@@ -31,7 +31,7 @@ class ClassController extends Controller
                 'search',
                 'name',
                 'code',
-                'tutor',
+                'tutor_id',
                 'orderByField',
                 'orderBy'
             ]))
