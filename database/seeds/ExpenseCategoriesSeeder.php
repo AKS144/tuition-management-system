@@ -27,8 +27,8 @@ class ExpenseCategoriesSeeder extends Seeder
             ]
         ];
 
-        foreach ($expenseCategories as $expensecategory) {
-            ExpenseCategory::create($expensecategory);
+        foreach ($expenseCategories as $key => $value) {
+            ExpenseCategory::create($value);
         }
     }
 }
