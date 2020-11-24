@@ -27,9 +27,9 @@
           </base-button>
         </div>
       </div>
-      <!-- Student basic info -->
       <div class="customer-card card">
         <div class="card-body">
+        <!-- student basic info -->
           <div class="row">
             <div class="section-title col-sm-2">{{ $t('students.basic_info') }}</div>
             <div class="col-sm-5">
@@ -124,6 +124,7 @@
             </div>
           </div>
           <hr>
+          <!-- parents basic info -->
           <div class="row">
             <div class="section-title col-sm-2">{{ $t('students.parent_info') }}</div>
             <div class="col-sm-5">
