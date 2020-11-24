@@ -153,6 +153,16 @@ Route::group(['prefix' => 'v1'], function () {
                 'uses' => 'API\SettingsController@getCompanyDetail'
             ]);
 
+            Route::post('/company/upload-logo', [
+                'as' => 'company.logo',
+                'uses' => 'API\SettingsController@uploadBranchLogo'
+            ]);
+
+            Route::post('/company', [
+                'as' => 'get.company',
+                'uses' => 'API\SettingsController@updateBranchDetail'
+            ]);
+
             Route::put('/profile', [
                 'as' => 'profile',
                 'uses' => 'API\SettingsController@updateProfile'

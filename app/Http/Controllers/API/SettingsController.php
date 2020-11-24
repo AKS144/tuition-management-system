@@ -10,6 +10,7 @@ use App\BranchSetting;
 use App\Currency;
 use App\Branch;
 use App\User;
+use App\Address;
 
 class SettingsController extends Controller
 {
@@ -67,8 +68,7 @@ class SettingsController extends Controller
     }
 
     /**
-     * Get Admin Account alongside the country from the addresses table and
-     * The company from companies table
+     * Get Admin Account alongside the country from the addresses table and branch
      *
      * @return \Illuminate\Http\JsonResponse
     */
@@ -116,7 +116,7 @@ class SettingsController extends Controller
     }
 
     /**
-     * Upload the Admin Avatar to public storage.
+     * Upload the User Avatar to public storage.
      */
     public function uploadAvatar(Request $request){
         $data = json_decode($request->admin_avatar);
@@ -135,6 +135,55 @@ class SettingsController extends Controller
 
         return response()->json([
             'user' => $user,
+            'success' => true
+        ]);
+    }
+
+    /**
+     * Upload the Compony logo to public storage.
+     */
+    public function uploadBranchLogo(Request $request){
+        $data = json_decode($request->company_logo);
+
+        if($data) {
+            $branch = Branch::find($request->header('branch'));
+
+            if($branch) {
+                $branch->clearMediaCollection('logo');
+
+                $branch->addMediaFromBase64($data->data)
+                    ->usingFileName($data->name)
+                    ->toMediaCollection('logo');
+            }
+        }
+
+        return response()->json([
+            'success' => true
+        ]);
+    }
+
+    /**
+     * Update Company details
+     */
+    public function updateBranchDetail(Request $request){
+        $branch = Branch::find($request->header('branch'));
+        $branch->name = $request->name;
+        $branch->save();
+
+        if ($request->has('logo')) {
+            $branch->clearMediaCollection('logo');
+            $branch->addMediaFromRequest('logo')->toMediaCollection('logo');
+        }
+
+        $fields = $request->only(['address_street_1', 'address_street_2', 'city', 'state', 'country_id', 'zip', 'phone']);
+        $address = Address::updateOrCreate([
+            'addressable_id' => $request->header('branch'), 
+            'addressable_type' => 'App\Branch'
+        ], $fields);
+        $branch = Branch::with(['addresses', 'addresses.country'])->find($request->header('branch'));
+
+        return response()->json([
+            'user' => $branch,
             'success' => true
         ]);
     }
