@@ -9,6 +9,7 @@ use App\Space\TimeZones;
 use App\BranchSetting;
 use App\Currency;
 use App\Branch;
+use App\User;
 
 class SettingsController extends Controller
 {
@@ -77,6 +78,64 @@ class SettingsController extends Controller
 
         return response()->json([
             'user' => $branch
+        ]);
+    }
+
+    /**
+     * Update the User profile.
+     * Includes name, email and (or) password
+     *
+     */
+    public function updateProfile(Request $request){
+
+        $verifyemail = User::where('email', $request->email)->first();
+
+        $user = auth()->user();
+
+        if($verifyemail){
+            if($verifyemail->id !== $user->id){
+                return respomse()->json([
+                    'error' => 'Email already in use'
+                ]);
+            }
+        }
+
+        $user->full_name = $request->name;
+        $user->email = $request->email;
+
+        if ($request->has('password')) {
+            $user->password = bcrypt($request->password);
+        }
+
+        $user->save();
+
+        return response()->json([
+            'user' => $user,
+            'success' => true
+        ]);
+    }
+
+    /**
+     * Upload the Admin Avatar to public storage.
+     */
+    public function uploadAvatar(Request $request){
+        $data = json_decode($request->admin_avatar);
+
+        if($data) {
+            $user = auth()->user();
+
+            if($user) {
+                $user->clearMediaCollection('admin_avatar');
+
+                $user->addMediaFromBase64($data->data)
+                    ->usingFileName($data->name)
+                    ->toMediaCollection('admin_avatar');
+            }
+        }
+
+        return response()->json([
+            'user' => $user,
+            'success' => true
         ]);
     }
 }

@@ -105,7 +105,7 @@
 </template>
 <script>
 import { validationMixin } from 'vuelidate'
-import { mapActions } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import AvatarCropper from 'vue-avatar-cropper'
 const { required, requiredIf, sameAs, email, minLength } = require('vuelidate/lib/validators')
 
@@ -154,6 +154,9 @@ export default {
     }
   },
   computed: {
+    ...mapGetters('user', [
+      'currentUser'
+    ]),
     isRequired () {
       if (this.formData.password === null || this.formData.password === undefined || this.formData.password === '') {
         return false
@@ -166,7 +169,6 @@ export default {
   },
   methods: {
     ...mapActions('userProfile', [
-      'loadData',
       'editUser',
       'uploadAvatar'
     ]),
@@ -180,13 +182,13 @@ export default {
       window.toastr['error']('Oops! Something went wrong...')
     },
     async setInitialData () {
-      let response = await this.loadData()
-      this.formData.name = response.data.name
-      this.formData.email = response.data.email
-      if (response.data.avatar) {
-        this.previewAvatar = response.data.avatar
+      console.log(this.currentUser);
+      this.formData.name = this.currentUser.full_name
+      this.formData.email = this.currentUser.email
+      if (this.currentUser.image) {
+        this.previewAvatar = '/images/' + this.currentUser.image
       } else {
-        this.previewAvatar = '/images/default-avatar.jpg'
+        this.previewAvatar = '/images/default.jpg'
       }
     },
     async updateUserData () {

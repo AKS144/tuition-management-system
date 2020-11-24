@@ -149,8 +149,18 @@ Route::group(['prefix' => 'v1'], function () {
             ]);
 
             Route::get('/company', [
-                'as' => 'get.admin.company',
+                'as' => 'get.company',
                 'uses' => 'API\SettingsController@getCompanyDetail'
+            ]);
+
+            Route::put('/profile', [
+                'as' => 'profile',
+                'uses' => 'API\SettingsController@updateProfile'
+            ]);
+
+            Route::post('/profile/upload-avatar', [
+                'as' => 'profile.avatar',
+                'uses' => 'API\SettingsController@uploadAvatar'
             ]);
         });
     });
