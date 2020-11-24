@@ -69,18 +69,18 @@ export default {
           icon: 'list-alt',
           iconType: 'far'
         },
-        {
-          link: '/admin/settings/mail-configuration',
-          title: 'settings.mail.mail_config',
-          icon: 'envelope',
-          iconType: 'fa'
-        },
-        {
-          link: '/admin/settings/notifications',
-          title: 'settings.menu_title.notifications',
-          icon: 'bell',
-          iconType: 'far'
-        }
+        // {
+        //   link: '/admin/settings/mail-configuration',
+        //   title: 'settings.mail.mail_config',
+        //   icon: 'envelope',
+        //   iconType: 'fa'
+        // },
+        // {
+        //   link: '/admin/settings/notifications',
+        //   title: 'settings.menu_title.notifications',
+        //   icon: 'bell',
+        //   iconType: 'far'
+        // }
       ]
     }
   },
