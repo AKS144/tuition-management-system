@@ -1,7 +1,7 @@
 <template>
   <div class="main-content item-create">
     <div class="page-header">
-      <h3 class="page-title">{{ isEdit ? $t('items.edit_item') : $t('items.new_item') }}</h3>
+      <h3 class="page-title">{{ isEdit ? $t('class.edit_item') : $t('class.new_item') }}</h3>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><router-link slot="item-title" to="/admin/dashboard">{{ $t('general.home') }}</router-link></li>
         <li class="breadcrumb-item"><router-link slot="item-title" to="/admin/class">{{ $tc('items.item',2) }}</router-link></li>
@@ -45,6 +45,17 @@
                   <span v-if="!$v.formData.price.maxLength" class="text-danger">{{ $t('validation.price_maxlength') }}</span>
                   <span v-if="!$v.formData.price.minValue" class="text-danger">{{ $t('validation.price_minvalue') }}</span>
                 </div>
+              </div>
+              <div class="form-group">
+                <label>{{ $t('class.tutor')}}</label><span class="text-danger"> *</span>
+                <base-select
+                  v-model="formData.tutorName"
+                  :options="tutor"
+                  :searchable="true"
+                  :show-labels="false"
+                  :placeholder="$t('class.select_a_tutor')"
+                  label="name"
+                ></base-select>
               </div>
               <div class="form-group">
                 <label>{{ $t('items.unit') }}</label>
@@ -123,13 +134,14 @@ export default {
   data () {
     return {
       isLoading: false,
-      title: 'Add Item',
+      title: 'Add Class',
       units: [],
       taxes: [],
       taxPerItem: '',
       formData: {
         name: '',
         description: '',
+        tutorName: '',
         price: '',
         unit_id: null,
         unit: null,
@@ -151,6 +163,9 @@ export default {
     ]),
     ...mapGetters('item', [
       'itemUnits'
+    ]),
+    ...mapGetters('tutor', [
+      'tutor'
     ]),
     price: {
       get: function () {
@@ -198,6 +213,10 @@ export default {
       },
       description: {
         maxLength: maxLength(255)
+      },
+      tutorName: {
+        required,
+        minLength: minLength(3)
       }
     }
   },
@@ -222,6 +241,7 @@ export default {
       let response = await this.fetchItem(this.$route.params.id)
 
       this.formData = {...response.data.item, unit: null}
+      this.formData.tutorName = this.tutor.find(_tutor => response.data.tutor.tutor_id === _tutor.id)
       this.formData.taxes = response.data.item.taxes.map(tax => {
         return {...tax, tax_name: tax.name + ' (' + tax.percent + '%)'}
       })
