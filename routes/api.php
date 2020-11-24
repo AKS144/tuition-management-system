@@ -31,7 +31,7 @@ Route::group(['prefix' => 'v1'], function () {
         Route::post('/password/reset', 'API\AuthController@reset');
 
         Route::apiResource('/user', 'API\UserController');
-        Route::apiResource('/tutor', 'API\TutorController');
+        Route::apiResource('/tutors', 'API\TutorController');
 
         // Student
         //----------------------------------

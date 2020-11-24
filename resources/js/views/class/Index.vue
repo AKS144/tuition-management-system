@@ -61,23 +61,23 @@
             />
           </div>
           <div class="col-sm-4">
-            <label class="form-label"> {{ $tc('class.code') }} </label>
+            <label class="form-label"> {{ $tc('class.tutor') }} </label>
             <base-select
-              v-model="filters.code"
+              v-model="filters.tutor"
               :options="classTutors"
               :searchable="true"
               :show-labels="false"
               :placeholder="$t('class.select_a_unit')"
-              label="name"
+              label="full_name"
               autocomplete="off"
             />
           </div>
           <div class="col-sm-4">
-            <label class="form-label"> {{ $tc('class.tutor') }} </label>
+            <label class="form-label"> {{ $tc('class.code') }} </label>
             <base-input
-              v-model="filters.tutor"
+              v-model="filters.code"
               type="text"
-              name="name"
+              name="code"
               autocomplete="off"
             />
           </div>
@@ -282,6 +282,9 @@ export default {
       this.selectAllClasses()
     }
   },
+  created () {
+    this.fetchClassTutors()
+  },
   methods: {
     ...mapActions('classroom', [
       'fetchClasses',
@@ -289,7 +292,8 @@ export default {
       'selectClass',
       'deleteClass',
       'deleteMultipleClasses',
-      'setSelectAllState'
+      'setSelectAllState',
+      'fetchClassTutors'
     ]),
     refreshTable () {
       this.$refs.table.refresh()
@@ -298,12 +302,12 @@ export default {
       let data = {
         search: this.filters.name !== null ? this.filters.name : '',
         code: this.filters.code,
-        tutor: this.filters.tutor !== null ? this.filters.tutor.id : '',
+        tutor_id: this.filters.tutor !== null ? this.filters.tutor.id : '',
         orderByField: sort.fieldName || 'created_at',
         orderBy: sort.order || 'desc',
         page
       }
-
+      console.log(data)
       this.isRequestOngoing = true
       let response = await this.fetchClasses(data)
       this.isRequestOngoing = false

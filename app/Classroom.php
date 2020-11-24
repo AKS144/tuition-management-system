@@ -85,14 +85,14 @@ class Classroom extends Model
         return $query->where('name', 'LIKE', '%'.$full_name.'%');
     }
 
-    public function scopeWhereCode($query, $nric)
+    public function scopeWhereCode($query, $code)
     {
-        return $query->where('code', 'LIKE', '%'.$nric.'%');
+        return $query->where('classrooms.code', 'LIKE', '%'.$code.'%');
     }
 
-    public function scopeWhereTutor($query, $mobileNo)
+    public function scopeWhereTutor($query, $tutor_id)
     {
-        return $query->where('tutor_id', 'LIKE', '%'.$mobileNo.'%');
+        return $query->where('classrooms.tutor_id', 'LIKE', '%'.$tutor_id.'%');
     }
 
     public function scopeApplyFilters($query, array $filters)
@@ -104,15 +104,15 @@ class Classroom extends Model
         }
 
         if ($filters->get('name')) {
-            $query->scopeWhereName($filters->get('name'));
+            $query->whereName($filters->get('name'));
         }
 
         if ($filters->get('code')) {
-            $query->scopeWhereCode($filters->get('code'));
+            $query->whereCode($filters->get('code'));
         }
 
         if ($filters->get('tutor_id')) {
-            $query->scopeWhereTutor($filters->get('batch_year'));
+            $query->whereTutor($filters->get('tutor_id'));
         }
 
         if ($filters->get('orderByField') || $filters->get('orderBy')) {
