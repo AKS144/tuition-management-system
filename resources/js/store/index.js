@@ -22,6 +22,7 @@ import preferences from './modules/settings/preferences'
 import general from './modules/settings/general'
 import item from './modules/item'
 import classroom from './modules/class'
+import subject from './modules/subject'
 
 Vue.use(Vuex)
 
@@ -53,6 +54,7 @@ export default new Vuex.Store({
         preferences,
         general,
         item,
-        classroom
+        classroom,
+        subject
     }
 })

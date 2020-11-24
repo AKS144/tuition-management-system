@@ -187,4 +187,51 @@ class SettingsController extends Controller
             'success' => true
         ]);
     }
+
+    public function getCustomizeSetting(Request $request){
+        $invoice_prefix = BranchSetting::getSetting('invoice_prefix', $request->header('branch'));
+        $invoice_auto_generate = BranchSetting::getSetting('invoice_auto_generate', $request->header('branch'));
+
+        $payment_prefix = BranchSetting::getSetting('payment_prefix', $request->header('branch'));
+        $payment_auto_generate = BranchSetting::getSetting('payment_auto_generate', $request->header('branch'));
+
+        return  response()->json([
+            'invoice_prefix' => $invoice_prefix,
+            'invoice_auto_generate' => $invoice_auto_generate,
+            'payment_prefix' => $payment_prefix,
+            'payment_auto_generate' => $payment_auto_generate,
+        ]);
+    }
+
+    public function updateCustomizeSetting(Request $request){
+        $sets = [];
+
+        if ($request->type == "PAYMENTS") {
+            $sets = [
+                'payment_prefix'
+            ];
+        }
+
+        if ($request->type == "INVOICES") {
+            $sets = [
+                'invoice_prefix',
+            ];
+        }
+
+        foreach ($sets as $key) {
+            BranchSetting::setSetting($key, $request->$key, $request->header('branch'));
+        }
+
+        return response()->json([
+            'success' => true
+        ]);
+    }
+
+    public function updateSetting(Request $request){
+        BranchSetting::setSetting($request->key, $request->value, $request->header('branch'));
+
+        return response()->json([
+            'success' => true
+        ]);
+    }
 }

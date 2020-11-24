@@ -172,6 +172,21 @@ Route::group(['prefix' => 'v1'], function () {
                 'as' => 'profile.avatar',
                 'uses' => 'API\SettingsController@uploadAvatar'
             ]);
+
+            Route::get('/get-customize-setting', [
+                'as' => 'get.customize.setting',
+                'uses' => 'API\SettingsController@getCustomizeSetting'
+            ]);
+
+            Route::put('/update-customize-setting', [
+                'as' => 'update.customize.setting',
+                'uses' => 'API\SettingsController@updateCustomizeSetting'
+            ]);
+
+            Route::put('/update-setting', [
+                'as' => 'update.setting',
+                'uses' => 'API\SettingsController@updateSetting'
+            ]);
         });
     });
 

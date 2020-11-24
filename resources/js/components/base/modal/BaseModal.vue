@@ -22,7 +22,7 @@ import InvoiceTemplate from './InvoiceTemplate'
 import StudentModal from './StudentModal'
 import CategoryModal from './CategoryModal'
 import PaymentMode from './PaymentModeModal'
-import ItemUnit from './ItemUnitModal'
+import Subject from './SubjectModal'
 import MailTestModal from './MailTestModal'
 
 export default {
@@ -34,7 +34,7 @@ export default {
     StudentModal,
     CategoryModal,
     PaymentMode,
-    ItemUnit,
+    Subject,
     MailTestModal
   },
   data () {

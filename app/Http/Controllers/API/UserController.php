@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\User;
-use App\Student;
+use App\Subject;
 use App\Currency;
 use App\BranchSetting;
 use App\Item;
@@ -184,10 +184,6 @@ class UserController extends Controller
         $user = Auth::user();
 
         $branch = $request->header('branch_id') ?? 1;
-
-        $students = Student::whereBranch($branch)
-            ->latest()
-            ->get();
         
         $currencies = Currency::latest()->get();
 
@@ -225,9 +221,12 @@ class UserController extends Controller
         $units = Unit::latest()
             ->get();
         
+        $subject = Subject::latest()
+            ->get();
+
         return response()->json([
             'user' => $user,
-            'students' => $students,
+            'subject' => $subject,
             'currencies' => $currencies,
             'default_currency' => $default_currency,
             'default_language' => $default_language,

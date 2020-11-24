@@ -767,8 +767,8 @@
           "deleted_message": "Payment Mode deleted successfully"
         },
 
-        "items": {
-          "title": "Class",
+        "class": {
+          "title": "Subject",
           "units": "Subject",
           "code": "Class Code",
           "tutor": "Tutor",

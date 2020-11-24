@@ -1,9 +1,9 @@
 <template>
   <div class="item-unit-modal">
-    <form action="" @submit.prevent="submitItemUnit">
+    <form action="" @submit.prevent="submitSubject">
       <div class="card-body">
         <div class="form-group row">
-          <label class="col-sm-4 col-form-label input-label">{{ $t('settings.customization.items.unit_name') }} <span class="required"> *</span></label>
+          <label class="col-sm-4 col-form-label input-label">{{ $t('settings.customization.class.unit_name') }} <span class="required"> *</span></label>
           <div class="col-sm-7">
             <base-input
               ref="name"
@@ -17,6 +17,21 @@
             </div>
           </div>
         </div>
+        <div class="form-group row">
+          <label class="col-sm-4 col-form-label input-label">{{ $t('settings.customization.class.code') }} <span class="required"> *</span></label>
+          <div class="col-sm-7">
+            <base-input
+              ref="code"
+              :invalid="$v.formData.code.$error"
+              v-model="formData.code"
+              type="text"
+              @input="$v.formData.code.$touch()"
+            />
+            <div v-if="$v.formData.code.$error">
+              <span v-if="!$v.formData.code.required" class="form-group__message text-danger">{{ $tc('validation.required') }}</span>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="card-footer">
         <base-button
@@ -24,7 +39,7 @@
           class="mr-3"
           color="theme"
           type="button"
-          @click="closePaymentModeModal"
+          @click="closeSubjectModal"
         >
           {{ $t('general.cancel') }}
         </base-button>
@@ -53,7 +68,8 @@ export default {
       isLoading: false,
       formData: {
         id: null,
-        name: null
+        name: null,
+        code: null
       }
     }
   },
@@ -67,6 +83,10 @@ export default {
   validations: {
     formData: {
       name: {
+        required,
+        minLength: minLength(2)
+      },
+      code: {
         required,
         minLength: minLength(2)
       }
@@ -84,19 +104,19 @@ export default {
       'closeModal',
       'resetModalData'
     ]),
-    ...mapActions('item', [
-      'addItemUnit',
-      'updateItemUnit',
-      'fatchItemUnit'
+    ...mapActions('subject', [
+      'addSubject',
+      'updateSubject'
     ]),
     resetFormData () {
       this.formData = {
         id: null,
-        name: null
+        name: null,
+        code: null
       }
       this.$v.formData.$reset()
     },
-    async submitItemUnit () {
+    async submitSubject () {
       this.$v.formData.$touch()
       if (this.$v.$invalid) {
         return true
@@ -106,24 +126,26 @@ export default {
       let response
 
       if (this.isEdit) {
-        response = await this.updateItemUnit(this.formData)
+        response = await this.updateSubject(this.formData)
 
         if (response.data) {
-          window.toastr['success'](this.$t('settings.customization.items.item_unit_updated'))
-          this.closePaymentModeModal()
+          window.toastr['success'](this.$t('settings.customization.class.item_unit_updated'))
+          this.closeSubjectModal()
           return true
         }
 
         window.toastr['error'](response.data.error)
+        this.isLoading = false
       } else {
         try {
-          response = await this.addItemUnit(this.formData)
+          response = await this.addSubject(this.formData)
           if (response.data) {
             this.isLoading = false
-            window.toastr['success'](this.$t('settings.customization.items.item_unit_added'))
-            this.closePaymentModeModal()
+            window.toastr['success'](this.$t('settings.customization.class.item_unit_added'))
+            this.closeSubjectModal()
             return true
           } window.toastr['error'](response.data.error)
+          this.isLoading = false
         } catch (err) {
           if (err.response.data.errors.name) {
             this.isLoading = true
@@ -135,10 +157,11 @@ export default {
     async setData () {
       this.formData = {
         id: this.modalData.id,
-        name: this.modalData.name
+        name: this.modalData.name,
+        code: this.modalData.code
       }
     },
-    closePaymentModeModal () {
+    closeSubjectModal () {
       this.resetModalData()
       this.resetFormData()
       this.closeModal()

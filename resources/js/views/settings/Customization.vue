@@ -5,14 +5,11 @@
         <li class="tab" @click="setActiveTab('INVOICES')">
           <a :class="['tab-link', {'a-active': activeTab === 'INVOICES'}]" href="#">{{ $t('settings.customization.invoices.title') }}</a>
         </li>
-        <li class="tab" @click="setActiveTab('ESTIMATES')">
-          <a :class="['tab-link', {'a-active': activeTab === 'ESTIMATES'}]" href="#">{{ $t('settings.customization.estimates.title') }}</a>
-        </li>
         <li class="tab" @click="setActiveTab('PAYMENTS')">
           <a :class="['tab-link', {'a-active': activeTab === 'PAYMENTS'}]" href="#">{{ $t('settings.customization.payments.title') }}</a>
         </li>
-        <li class="tab" @click="setActiveTab('ITEMS')">
-          <a :class="['tab-link', {'a-active': activeTab === 'ITEMS'}]" href="#">{{ $t('settings.customization.items.title') }}</a>
+        <li class="tab" @click="setActiveTab('SUBJECTS')">
+          <a :class="['tab-link', {'a-active': activeTab === 'SUBJECTS'}]" href="#">{{ $t('settings.customization.class.title') }}</a>
         </li>
       </ul>
 
@@ -63,59 +60,6 @@
               <div class="right ml-15">
                 <p class="box-title">  {{ $t('settings.customization.invoices.autogenerate_invoice_number') }} </p>
                 <p class="box-desc">  {{ $t('settings.customization.invoices.invoice_setting_description') }} </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </transition>
-
-      <!-- Estimates Tab -->
-      <transition name="fade-customize">
-        <div v-if="activeTab === 'ESTIMATES'" class="estimate-tab">
-          <form action="" class="mt-3" @submit.prevent="updateEstimateSetting">
-            <div class="row">
-              <div class="col-md-12 mb-4">
-                <label class="input-label">{{ $t('settings.customization.estimates.estimate_prefix') }}</label>
-                <base-input
-                  v-model="estimates.estimate_prefix"
-                  :invalid="$v.estimates.estimate_prefix.$error"
-                  class="prefix-input"
-                  @input="$v.estimates.estimate_prefix.$touch()"
-                  @keyup="changeToUppercase('ESTIMATES')"
-                />
-                <span v-show="!$v.estimates.estimate_prefix.required" class="text-danger mt-1">{{ $t('validation.required') }}</span>
-                <span v-if="!$v.estimates.estimate_prefix.maxLength" class="text-danger">{{ $t('validation.prefix_maxlength') }}</span>
-                <span v-if="!$v.estimates.estimate_prefix.alpha" class="text-danger">{{ $t('validation.characters_only') }}</span>
-              </div>
-            </div>
-            <div class="row pb-3">
-              <div class="col-md-12">
-                <base-button
-                  icon="save"
-                  color="theme"
-                  type="submit"
-                >
-                  {{ $t('settings.customization.save') }}
-                </base-button>
-              </div>
-            </div>
-            <hr>
-          </form>
-          <div class="page-header pt-3">
-            <h3 class="page-title">
-              {{ $t('settings.customization.estimates.estimate_settings') }}
-            </h3>
-            <div class="flex-box">
-              <div class="left">
-                <base-switch
-                  v-model="estimateAutogenerate"
-                  class="btn-switch"
-                  @change="setEstimateSetting"
-                />
-              </div>
-              <div class="right ml-15">
-                <p class="box-title">  {{ $t('settings.customization.estimates.autogenerate_estimate_number') }} </p>
-                <p class="box-desc">  {{ $t('settings.customization.estimates.estimate_setting_description') }} </p>
               </div>
             </div>
           </div>
@@ -234,14 +178,14 @@
         </div>
       </transition>
 
-      <!-- Items Tab -->
+      <!-- Subjects Tab -->
       <transition name="fade-customize">
-        <div v-if="activeTab === 'ITEMS'" class="item-tab">
+        <div v-if="activeTab === 'SUBJECTS'" class="item-tab">
           <div class="page-header">
             <div class="row">
               <div class="col-md-8">
                 <!-- <h3 class="page-title">
-                  {{ $t('settings.customization.items.title') }}
+                  {{ $t('settings.customization.class.title') }}
                 </h3> -->
               </div>
               <div class="col-md-4 d-flex flex-row-reverse">
@@ -249,24 +193,29 @@
                   outline
                   class="add-new-tax"
                   color="theme"
-                  @click="addItemUnit"
+                  @click="addSubject"
                 >
-                  {{ $t('settings.customization.items.add_item_unit') }}
+                  {{ $t('settings.customization.class.add_item_unit') }}
                 </base-button>
               </div>
             </div>
           </div>
           <table-component
-            ref="itemTable"
+            ref="subjectTable"
             :show-filter="false"
-            :data="itemUnits"
+            :data="subjects"
             table-class="table tax-table"
             class="mb-3"
           >
             <table-column
               :sortable="true"
-              :label="$t('settings.customization.items.units')"
+              :label="$t('settings.customization.class.units')"
               show="name"
+            />
+            <table-column
+              :sortable="true"
+              :label="$t('settings.customization.class.code')"
+              show="code"
             />
             <table-column
               :sortable="false"
@@ -286,7 +235,7 @@
                     </div>
                   </v-dropdown-item>
                   <v-dropdown-item>
-                    <div class="dropdown-item" @click="removeItemUnit(row.id)">
+                    <div class="dropdown-item" @click="removeSubject(row.id)">
                       <font-awesome-icon :icon="['fas', 'trash']" class="dropdown-item-icon" />
                       {{ $t('general.delete') }}
                     </div>
@@ -311,30 +260,24 @@ export default {
     return {
       activeTab: 'INVOICES',
       invoiceAutogenerate: false,
-      estimateAutogenerate: false,
       paymentAutogenerate: false,
       invoices: {
         invoice_prefix: null,
         invoice_notes: null,
         invoice_terms_and_conditions: null
       },
-      estimates: {
-        estimate_prefix: null,
-        estimate_notes: null,
-        estimate_terms_and_conditions: null
-      },
       payments: {
         payment_prefix: null
       },
-      items: {
+      subject: {
         units: []
       },
       currentData: null
     }
   },
   computed: {
-    ...mapGetters('item', [
-      'itemUnits'
+    ...mapGetters('subject', [
+      'subjects'
     ]),
     ...mapGetters('payment', [
       'paymentModes'
@@ -348,13 +291,6 @@ export default {
   validations: {
     invoices: {
       invoice_prefix: {
-        required,
-        maxLength: maxLength(5),
-        alpha
-      }
-    },
-    estimates: {
-      estimate_prefix: {
         required,
         maxLength: maxLength(5),
         alpha
@@ -378,62 +314,52 @@ export default {
     ...mapActions('payment', [
       'deletePaymentMode'
     ]),
-    ...mapActions('item', [
-      'deleteItemUnit'
+    ...mapActions('subject', [
+      'deleteSubject'
     ]),
     async setInvoiceSetting () {
       let data = {
         key: 'invoice_auto_generate',
         value: this.invoiceAutogenerate ? 'YES' : 'NO'
       }
-      let response = await window.axios.put('/api/settings/update-setting', data)
+      let response = await window.axios.put('/api/v1/settings/update-setting', data)
       if (response.data) {
         window.toastr['success'](this.$t('general.setting_updated'))
       }
     },
-    async setEstimateSetting () {
-      let data = {
-        key: 'estimate_auto_generate',
-        value: this.estimateAutogenerate ? 'YES' : 'NO'
-      }
-      let response = await window.axios.put('/api/settings/update-setting', data)
-      if (response.data) {
-        window.toastr['success'](this.$t('general.setting_updated'))
-      }
-    },
-    async addItemUnit () {
+    async addSubject () {
       this.openModal({
-        'title': this.$t('settings.customization.items.add_item_unit'),
-        'componentName': 'ItemUnit'
+        'title': this.$t('settings.customization.class.add_item_unit'),
+        'componentName': 'Subject'
       })
-      this.$refs.itemTable.refresh()
+      this.$refs.subjectTable.refresh()
     },
     async editItemUnit (data) {
       this.openModal({
-        'title': this.$t('settings.customization.items.edit_item_unit'),
-        'componentName': 'ItemUnit',
+        'title': this.$t('settings.customization.class.edit_item_unit'),
+        'componentName': 'Subject',
         'id': data.id,
         'data': data
       })
-      this.$refs.itemTable.refresh()
+      this.$refs.subjectTable.refresh()
     },
-    async removeItemUnit (id) {
+    async removeSubject (id) {
       swal({
         title: this.$t('general.are_you_sure'),
-        text: this.$t('settings.customization.items.item_unit_confirm_delete'),
-        icon: '/assets/icon/trash-solid.svg',
+        text: this.$t('settings.customization.class.item_unit_confirm_delete'),
+        icon: '/icon/trash-solid.svg',
         buttons: true,
         dangerMode: true
       }).then(async (value) => {
         if (value) {
-          let response = await this.deleteItemUnit(id)
+          let response = await this.deleteSubject(id)
           if (response.data.success) {
-            window.toastr['success'](this.$t('settings.customization.items.deleted_message'))
+            window.toastr['success'](this.$t('settings.customization.class.deleted_message'))
             this.id = null
-            this.$refs.itemTable.refresh()
+            this.$refs.subjectTable.refresh()
             return true
           }
-          window.toastr['error'](this.$t('settings.customization.items.already_in_use'))
+          window.toastr['error'](this.$t('settings.customization.class.already_in_use'))
         }
       })
     },
@@ -479,11 +405,6 @@ export default {
         return true
       }
 
-      if (currentTab === 'ESTIMATES') {
-        this.estimates.estimate_prefix = this.estimates.estimate_prefix.toUpperCase()
-        return true
-      }
-
       if (currentTab === 'PAYMENTS') {
         this.payments.payment_prefix = this.payments.payment_prefix.toUpperCase()
         return true
@@ -494,33 +415,24 @@ export default {
         key: 'payment_auto_generate',
         value: this.paymentAutogenerate ? 'YES' : 'NO'
       }
-      let response = await window.axios.put('/api/settings/update-setting', data)
+      let response = await window.axios.put('/api/v1/settings/update-setting', data)
       if (response.data) {
         window.toastr['success'](this.$t('general.setting_updated'))
       }
     },
     async loadData () {
-      let res = await window.axios.get('/api/settings/get-customize-setting')
+      let res = await window.axios.get('/api/v1/settings/get-customize-setting')
 
       if (res.data) {
         this.invoices.invoice_prefix = res.data.invoice_prefix
         this.invoices.invoice_notes = res.data.invoice_notes
         this.invoices.invoice_terms_and_conditions = res.data.invoice_terms_and_conditions
-        this.estimates.estimate_prefix = res.data.estimate_prefix
-        this.estimates.estimate_notes = res.data.estimate_notes
-        this.estimates.estimate_terms_and_conditions = res.data.estimate_terms_and_conditions
         this.payments.payment_prefix = res.data.payment_prefix
 
         if (res.data.invoice_auto_generate === 'YES') {
           this.invoiceAutogenerate = true
         } else {
           this.invoiceAutogenerate = false
-        }
-
-        if (res.data.estimate_auto_generate === 'YES') {
-          this.estimateAutogenerate = true
-        } else {
-          this.estimateAutogenerate = false
         }
 
         if (res.data.payment_auto_generate === 'YES') {
@@ -543,19 +455,6 @@ export default {
         window.toastr['success'](this.$t('settings.customization.invoices.invoice_setting_updated'))
       }
     },
-    async updateEstimateSetting () {
-      this.$v.estimates.$touch()
-
-      if (this.$v.estimates.$invalid) {
-        return false
-      }
-
-      let data = {type: 'ESTIMATES', ...this.estimates}
-
-      if (this.updateSetting(data)) {
-        window.toastr['success'](this.$t('settings.customization.estimates.estimate_setting_updated'))
-      }
-    },
     async updatePaymentSetting () {
       this.$v.payments.$touch()
 
@@ -570,7 +469,7 @@ export default {
       }
     },
     async updateSetting (data) {
-      let res = await window.axios.put('/api/settings/update-customize-setting', data)
+      let res = await window.axios.put('/api/v1/settings/update-customize-setting', data)
 
       if (res.data.success) {
         return true
