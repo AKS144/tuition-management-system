@@ -14,20 +14,20 @@ class ExpenseCategoriesSeeder extends Seeder
     {
         $expenseCategories = [
             [
-                'name' => 'Utilities'
+                'name' => 'Utilities',
             ],
             [
-                'name' => 'Food and Beverages'
+                'name' => 'Food and beverages',
             ],
             [
-                'name' => 'Stationeries'
+                'name' => 'Rental',
             ],
             [
-                'name' => 'Rental'
+                'name' => 'Stationeries',
             ]
         ];
 
-        foreach ($expenseCategories as $key => $value) {
+        foreach ($expenseCategories as $key => $value){
             ExpenseCategory::create($value);
         }
     }
