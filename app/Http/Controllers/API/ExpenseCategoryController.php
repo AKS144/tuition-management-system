@@ -21,8 +21,7 @@ class ExpenseCategoryController extends Controller
         $expenseCategory = ExpenseCategory::all();
 
         return response([
-            'status' => true,
-            'data' => $expenseCategory,
+            'categories' => $expenseCategory,
         ], 200);
     }
 
@@ -48,11 +47,15 @@ class ExpenseCategoryController extends Controller
             ], 401);
         }
 
-        $expenseCategory = ExpenseCategory::create($expenseCategory);
+        $category = new ExpenseCategory();
+        $category->name = $request->name;
+        $category->description = $request->description;
+        $category->branch_id = $request->header('branch');
+        $category->save();
 
         return response([
             'status' => true,
-            'data' => $expenseCategory,
+            'category' => $category,
         ], 200);
     }
 
@@ -65,9 +68,23 @@ class ExpenseCategoryController extends Controller
     public function show(ExpenseCategory $category)
     {
         return response([
-            'status' => true,
-            'data' => $category,
+            'category' => $category,
         ], 200);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \Crater\ExpensesCategory $ExpensesCategory
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $category = ExpenseCategory::findOrFail($id);
+
+        return response()->json([
+            'category' => $category
+        ]);
     }
 
     /**
@@ -77,14 +94,17 @@ class ExpenseCategoryController extends Controller
      * @param  \App\ExpenseCategory  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ExpenseCategory $category)
+    public function update(Request $request, $id)
     {
-        $category->update($request->all());
+        $category = ExpenseCategory::findOrFail($id);
+        $category->name = $request->name;
+        $category->description = $request->description;
+        $category->save();
 
-        return response([
-            'status' => true,
-            'data' => $category,
-        ], 200);
+        return response()->json([
+            'category' => $category,
+            'success' => true
+        ]);
     }
 
     /**
@@ -95,10 +115,16 @@ class ExpenseCategoryController extends Controller
      */
     public function destroy(ExpenseCategory $category)
     {
+        $category = ExpenseCategory::find($id);
+        if ($category->expenses() && $category->expenses()->count() > 0) {
+            return response()->json([
+                'success' => false
+            ]);
+        }
         $category->delete();
 
-        return response([
-            'status' => true,
-        ], 200);
+        return response()->json([
+            'success' => true
+        ]);
     }
 }

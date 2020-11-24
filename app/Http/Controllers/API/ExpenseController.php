@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Expense;
+use App\ExpenseCategory;
 use App\Currency;
 use App\BranchSetting;
 use Carbon\Carbon;
@@ -58,7 +59,7 @@ class ExpenseController extends Controller
      */
     public function create(Request $request)
     {
-        $categories = ExpenseCategory::whereCompany($request->header('branch'))->get();
+        $categories = ExpenseCategory::whereBranch($request->header('branch'))->get();
 
         return response()->json([
             'categories' => $categories
@@ -131,7 +132,7 @@ class ExpenseController extends Controller
      */
     public function edit(Request $request, $id)
     {
-        $categories = ExpenseCategory::whereCompany($request->header('branch'))->get();
+        $categories = ExpenseCategory::whereBranch($request->header('branch'))->get();
         $expense = Expense::with('category')->where('id', $id)->first();
 
         return response()->json([
@@ -180,7 +181,7 @@ class ExpenseController extends Controller
         $expense->delete();
 
         return response([
-            'status' => true,
+            'success' => true,
         ], 200);
     }
 

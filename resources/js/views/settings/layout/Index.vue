@@ -80,12 +80,6 @@ export default {
           title: 'settings.menu_title.notifications',
           icon: 'bell',
           iconType: 'far'
-        },
-        {
-          link: '/admin/settings/update-app',
-          title: 'settings.menu_title.update_app',
-          icon: 'sync-alt',
-          iconType: 'fas'
         }
       ]
     }

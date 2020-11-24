@@ -8,6 +8,7 @@ use App\Space\DateFormatter;
 use App\Space\TimeZones;
 use App\BranchSetting;
 use App\Currency;
+use App\Branch;
 
 class SettingsController extends Controller
 {
@@ -61,6 +62,21 @@ class SettingsController extends Controller
             'carbon_date_format' => $carbon_date_format,
             'moment_date_format' => $moment_date_format,
             'status' => $status,
+        ]);
+    }
+
+    /**
+     * Get Admin Account alongside the country from the addresses table and
+     * The company from companies table
+     *
+     * @return \Illuminate\Http\JsonResponse
+    */
+    public function getCompanyDetail(Request $request)
+    {
+        $branch = Branch::with(['addresses', 'addresses.country'])->find($request->header('branch'));
+
+        return response()->json([
+            'user' => $branch
         ]);
     }
 }

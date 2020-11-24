@@ -16,7 +16,9 @@ class BranchSettingSeeder extends Seeder
     {
         $user = User::find(1);
 
-        // factory('App\Address', 1)->create();
+        // $address = Address::create(['addressable_id' => 1, 'addressable_type' => 'App\Branch']);
+        // $address = Address::create(['addressable_id' => 2, 'addressable_type' => 'App\Branch']);
+        // $address = Address::create(['addressable_id' => 1, 'addressable_type' => "App\Parents"]);
 
         $sets = [
             'currency'           => 1,

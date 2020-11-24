@@ -231,15 +231,15 @@ export default {
     async setInitialData () {
       let response = await this.loadData()
       this.isFetchingData = true
-      this.formData.name = response.data.user.company.name
-      this.formData.address_street_1 = response.data.user.addresses[0].address_street_1
-      this.formData.address_street_2 = response.data.user.addresses[0].address_street_2
-      this.formData.zip = response.data.user.addresses[0].zip
-      this.formData.phone = response.data.user.addresses[0].phone
-      this.formData.state = response.data.user.addresses[0].state
-      this.formData.city = response.data.user.addresses[0].city
-      this.country = response.data.user.addresses[0].country
-      this.previewLogo = response.data.user.company.logo
+      this.formData.name = response.data.user.name
+      this.formData.address_street_1 = response.data.user.addresses.address_street_1
+      this.formData.address_street_2 = response.data.user.addresses.address_street_2
+      this.formData.zip = response.data.user.addresses.zip
+      this.formData.phone = response.data.user.addresses.phone
+      this.formData.state = response.data.user.addresses.state
+      this.formData.city = response.data.user.addresses.city
+      this.country = response.data.user.addresses.country
+      this.previewLogo = response.data.user.logo
     },
     async updateCompany () {
       this.$v.formData.$touch()
@@ -268,7 +268,7 @@ export default {
       return true
     },
     async fetchCountry () {
-      let res = await window.axios.get('/api/countries')
+      let res = await window.axios.get('/api/v1/countries')
       if (res) {
         this.countries = res.data.countries
       }

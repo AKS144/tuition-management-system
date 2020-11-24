@@ -147,6 +147,11 @@ Route::group(['prefix' => 'v1'], function () {
                 'as' => 'get.admin.branch.setting',
                 'uses' => 'API\SettingsController@getGeneralSettings'
             ]);
+
+            Route::get('/company', [
+                'as' => 'get.admin.company',
+                'uses' => 'API\SettingsController@getCompanyDetail'
+            ]);
         });
     });
 

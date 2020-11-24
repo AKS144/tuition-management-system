@@ -43,19 +43,7 @@
     <transition name="fade">
       <div v-show="showFilters" class="filter-section">
         <div class="row">
-          <div class="col-md-3">
-            <label>{{ $t('expenses.customer') }}</label>
-            <base-select
-              v-model="filters.user"
-              :options="customers"
-              :searchable="true"
-              :show-labels="false"
-              :placeholder="$t('expenses.select_a_customer')"
-              label="name"
-              @click="filter = ! filter"
-            />
-          </div>
-          <div class="col-md-3">
+          <div class="col-md-4">
             <label>{{ $t('expenses.category') }}</label>
             <base-select
               v-model="filters.category"
@@ -67,7 +55,7 @@
               @click="filter = ! filter"
             />
           </div>
-          <div class="col-md-3">
+          <div class="col-md-4">
             <label>{{ $t('expenses.from_date') }}</label>
             <base-date-picker
               v-model="filters.from_date"
@@ -75,7 +63,7 @@
               calendar-button-icon="calendar"
             />
           </div>
-          <div class="col-md-3">
+          <div class="col-md-4">
             <label>{{ $t('expenses.to_date') }}</label>
             <base-date-picker
               v-model="filters.to_date"
@@ -174,11 +162,6 @@
           show="category.name"
         />
         <table-column
-          :label="$t('expenses.customer')"
-          sort-as="user_name"
-          show="user_name"
-        />
-        <table-column
           :label="$t('expenses.date')"
           sort-as="expense_date"
           show="formattedExpenseDate"
@@ -254,12 +237,10 @@ export default {
       showFilters: false,
       filtersApplied: false,
       isRequestOngoing: true,
-      customers: [],
       filters: {
         category: null,
         from_date: '',
         to_date: '',
-        user: ''
       }
     }
   },
@@ -327,7 +308,6 @@ export default {
     ]),
     async fetchData ({ page, filter, sort }) {
       let data = {
-        user_id: this.filters.user ? this.filters.user.id : null,
         expense_category_id: this.filters.category !== null ? this.filters.category.id : '',
         from_date: this.filters.from_date === '' ? this.filters.from_date : moment(this.filters.from_date).format('DD/MM/YYYY'),
         to_date: this.filters.to_date === '' ? this.filters.to_date : moment(this.filters.to_date).format('DD/MM/YYYY'),
@@ -338,7 +318,6 @@ export default {
 
       this.isRequestOngoing = true
       let response = await this.fetchExpenses(data)
-      this.customers = response.data.customers
       this.isRequestOngoing = false
 
       return {
@@ -361,8 +340,7 @@ export default {
       this.filters = {
         category: null,
         from_date: '',
-        to_date: '',
-        user: null
+        to_date: ''
       }
 
       this.$nextTick(() => {
@@ -381,7 +359,7 @@ export default {
       swal({
         title: this.$t('general.are_you_sure'),
         text: this.$tc('expenses.confirm_delete'),
-        icon: '/assets/icon/trash-solid.svg',
+        icon: '/icon/trash-solid.svg',
         buttons: true,
         dangerMode: true
       }).then(async (willDelete) => {

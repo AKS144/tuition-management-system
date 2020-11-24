@@ -25,4 +25,9 @@ class ExpenseCategory extends Model
     {
         return $this->hasMany(Expense::class);
     }
+
+    public function scopeWhereBranch($query, $branch_id)
+    {
+        $query->where('expense_categories.branch_id', $branch_id);
+    }
 }
