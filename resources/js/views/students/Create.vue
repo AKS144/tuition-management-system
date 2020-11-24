@@ -135,7 +135,7 @@
                   focus
                   type="text"
                   name="parent_name"
-                  tab-index="1"
+                  tab-index="6"
                   @input="$v.formData.parent_name.$touch()"
                 />
                 <div v-if="$v.formData.parent_name.$error">
@@ -151,7 +151,7 @@
                   v-model.trim="formData.relationship"
                   type="text"
                   name="relatonship"
-                  tab-index="3"
+                  tab-index="8"
                   @input="$v.formData.relationship.$touch()"
                 />
                 <div v-if="$v.formData.relationship.$error">
@@ -167,7 +167,7 @@
                 <base-input
                   v-model.trim="formData.parent_nric"
                   type="text"
-                  tab-index="2"
+                  tab-index="7"
                   @input="$v.formData.parent_nric.$touch()"
                 />
                 <div v-if="$v.formData.parent_nric.$error">
@@ -185,7 +185,7 @@
                   v-model.trim="formData.parent_mobile"
                   type="text"
                   name="parent_mobile"
-                  tab-index="4"
+                  tab-index="9"
                 />
               </div>
               <div class="form-group">
@@ -194,7 +194,7 @@
                   v-model.trim="formData.parent_email"
                   type="text"
                   name="parent_email"
-                  tab-index="5"
+                  tab-index="10"
                 />
               </div>
             </div>
