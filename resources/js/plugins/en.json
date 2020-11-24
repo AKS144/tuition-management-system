@@ -244,8 +244,11 @@
       "title": "Class",
       "items_list": "Classes List",
       "name": "Name",
+      "code": "Class Code",
+      "tutor": "Tutor",
       "unit": "Subject",
       "description": "Description",
+      "batch_year": "Batch Year",
       "added_on": "Added On",
       "price": "Price",
       "date_of_creation": "Date Of Creation",
@@ -767,6 +770,8 @@
         "items": {
           "title": "Class",
           "units": "Subject",
+          "code": "Class Code",
+          "tutor": "Tutor",
           "add_item_unit": "Add New Subject",
           "edit_item_unit": "Edit Subject",
           "unit_name": "Subject Name",
@@ -774,7 +779,8 @@
           "item_unit_updated": "Subject Updated",
           "item_unit_confirm_delete": "You will not be able to recover this Subject",
           "already_in_use": "Subject is already in use",
-          "deleted_message": "Subject deleted successfully"
+          "deleted_message": "Subject deleted successfully",
+          "updated_message": "Class successfully updated"
         }
       },
       "account_settings": {

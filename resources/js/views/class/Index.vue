@@ -307,7 +307,6 @@ export default {
         orderBy: sort.order || 'desc',
         page
       }
-      console.log(data)
       this.isRequestOngoing = true
       let response = await this.fetchClasses(data)
       this.isRequestOngoing = false
@@ -348,7 +347,7 @@ export default {
       swal({
         title: this.$t('general.are_you_sure'),
         text: this.$tc('class.confirm_delete'),
-        icon: '/assets/icon/trash-solid.svg',
+        icon: '/icon/trash-solid.svg',
         buttons: true,
         dangerMode: true
       }).then(async (willDelete) => {
@@ -374,7 +373,7 @@ export default {
       swal({
         title: this.$t('general.are_you_sure'),
         text: this.$tc('class.confirm_delete', 2),
-        icon: '/assets/icon/trash-solid.svg',
+        icon: '/icon/trash-solid.svg',
         buttons: true,
         dangerMode: true
       }).then(async (willDelete) => {

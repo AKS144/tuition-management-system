@@ -44,6 +44,15 @@ class ClassController extends Controller
         ]);
     }
 
+    public function edit(Request $request, $id)
+    {
+        $classroom = Classroom::with('tutor')->find($id);
+
+        return response()->json([
+            'class' => $classroom
+        ]);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -69,7 +78,12 @@ class ClassController extends Controller
             ], 401);
         }
 
-        $class = Classroom::create($class);
+        $class = new Classroom();
+        $class->name = $request->name;
+        $class->code = $request->code;
+        $class->tutor_id = $request->tutor_id;
+        $class->branch_id = $request->header('branch');
+        $class->save();
 
         return response([
             'status' => true,
