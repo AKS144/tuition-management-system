@@ -29,7 +29,7 @@
       </div>
       <div class="customer-card card">
         <div class="card-body">
-        <!-- student basic info -->
+          <!-- student basic info -->
           <div class="row">
             <div class="section-title col-sm-2">{{ $t('students.basic_info') }}</div>
             <div class="col-sm-5">
@@ -176,7 +176,7 @@
                     {{ $tc('validation.required') }}
                   </span>
                   <span v-if="!$v.formData.parent_nric.minLength" class="text-danger"> 
-                    {{ $tc('validation.parent_nric', $v.formData.nric.$params.minLength.min, { count: $v.formData.parent_nric.$params.minLength.min }) }} 
+                    {{ $tc('validation.parent_nric', $v.formData.parent_nric.$params.minLength.min, { count: $v.formData.parent_nric.$params.minLength.min }) }} 
                   </span>
                 </div>
               </div>
@@ -225,7 +225,12 @@ export default {
         nric: null,
         mobile_no: null,
         status: null,
-        date_joined: null
+        date_joined: null,
+        parent_name: null,
+        parent_nric: null,
+        relatonship: null,
+        parent_mobile: null,
+        parent_email: null
       },
 
       status_key: null
@@ -245,8 +250,20 @@ export default {
       },
       nric: {
         required,
-        minLength: minLength(7)
+        numeric,
+        minLength: minLength(12)
       },
+      parent_name: {
+        required
+      },
+      parent_nric: {
+        required,
+        numeric,
+        minLength: minLength(12)
+      },
+      relationship: {
+        required
+      }
     }
   },
   computed: {
@@ -296,6 +313,11 @@ export default {
       this.formData.mobile_no = student.mobile_no
       this.formData.status = student.status
       this.formData.date_joined = student.formattedJoinedAt
+      this.formData.parent_name = parent.parent_name
+      this.formData.parent_nric = parent.parent_nric
+      this.formData.relationship = student.relationship
+      this.formData.parent_mobile = parent.parent_mobile
+      this.formData.parent_email = parent.parent_email
 
       this.status_key = student.status
     },
