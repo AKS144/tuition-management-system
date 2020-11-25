@@ -48,7 +48,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <label>{{ $t('items.tutor') }}</label>
+                <label>{{ $t('items.tutor') }}</label><span class="text-danger"> *</span>
                 <base-select
                   v-model="formData.tutor"
                   :options="classTutors"
@@ -60,7 +60,7 @@
                 </base-select>
               </div>
               <div class="form-group">
-                <label class="form-label">{{ $t('items.batch_year') }}</label>
+                <label class="form-label">{{ $t('items.batch_year') }}</label><span class="text-danger"> *</span>
                 <base-input
                   v-model.trim="formData.batch_year"
                   :invalid="$v.formData.batch_year.$error"
