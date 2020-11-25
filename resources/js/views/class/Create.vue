@@ -117,6 +117,7 @@ export default {
         unit: null,
         taxes: [],
         tax_per_item: false
+      },
       title: 'Add Item',
       tutors: [],
       formData: {
@@ -146,8 +147,7 @@ export default {
         this.formData.price = newValue * 100
       }
     },
-    ...mapGetters('taxType', [
-      'taxTypes'
+
     ...mapGetters('classroom', [
       'classTutors'
     ]),
@@ -180,6 +180,7 @@ export default {
       tutorName: {
         required,
         minLength: minLength(3)
+      },
       batch_year: {
         required
       }
@@ -196,8 +197,6 @@ export default {
       'openModal'
     ]),
     async loadEditData () {
-      let response = await this.fetchItem(this.$route.params.id)
-
       this.formData = {...response.data.item, unit: null}
       this.formData.tutorName = this.tutor.find(_tutor => response.data.tutor.tutor_id === _tutor.id)
       this.formData.taxes = response.data.item.taxes.map(tax => {

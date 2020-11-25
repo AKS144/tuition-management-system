@@ -269,8 +269,6 @@ export default {
       payments: {
         payment_prefix: null
       },
-      class: {
-        subjects: []
       subject: {
         units: []
       },
