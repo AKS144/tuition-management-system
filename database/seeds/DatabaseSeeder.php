@@ -34,6 +34,8 @@ class DatabaseSeeder extends Seeder
             UnitSeeder::class,
             AddressSeeder::class,
             BranchSettingSeeder::class,
+            ExpenseCategoriesSeeder::class,
+            ExpenseSeeder::class
         ]);
 
         // Get all the user attaching to each branch
