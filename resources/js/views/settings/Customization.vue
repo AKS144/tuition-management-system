@@ -8,8 +8,8 @@
         <li class="tab" @click="setActiveTab('PAYMENTS')">
           <a :class="['tab-link', {'a-active': activeTab === 'PAYMENTS'}]" href="#">{{ $t('settings.customization.payments.title') }}</a>
         </li>
-        <li class="tab" @click="setActiveTab('ITEMS')">
-          <a :class="['tab-link', {'a-active': activeTab === 'ITEMS'}]" href="#">{{ $t('settings.customization.items.title') }}</a>
+        <li class="tab" @click="setActiveTab('SUBJECTS')">
+          <a :class="['tab-link', {'a-active': activeTab === 'SUBJECTS'}]" href="#">{{ $t('settings.customization.class.title') }}</a>
         </li>
       </ul>
 
@@ -178,15 +178,15 @@
         </div>
       </transition>
 
-      <!-- Subject Tab -->
+      <!-- Subjects Tab -->
       <transition name="fade-customize">
-        <div v-if="activeTab === 'CLASS'" class="item-tab">
+        <div v-if="activeTab === 'SUBJECTS'" class="item-tab">
           <div class="page-header">
             <div class="row">
               <div class="col-md-8">
-                <h3 class="page-title">
-                  {{ $t('settings.customization.subjects.title') }}
-                </h3>
+                <!-- <h3 class="page-title">
+                  {{ $t('settings.customization.class.title') }}
+                </h3> -->
               </div>
               <div class="col-md-4 d-flex flex-row-reverse">
                 <base-button
@@ -195,7 +195,7 @@
                   color="theme"
                   @click="addSubject"
                 >
-                  {{ $t('settings.customization.subjects.add_subject') }}
+                  {{ $t('settings.customization.class.add_item_unit') }}
                 </base-button>
               </div>
             </div>
@@ -209,12 +209,12 @@
           >
             <table-column
               :sortable="true"
-              :label="$t('settings.customization.subject.subjects')"
+              :label="$t('settings.customization.class.units')"
               show="name"
             />
             <table-column
               :sortable="true"
-              :label="$t('settings.customization.subject.code')"
+              :label="$t('settings.customization.class.code')"
               show="code"
             />
             <table-column
@@ -260,7 +260,6 @@ export default {
     return {
       activeTab: 'INVOICES',
       invoiceAutogenerate: false,
-      estimateAutogenerate: false,
       paymentAutogenerate: false,
       invoices: {
         invoice_prefix: null,
@@ -272,6 +271,8 @@ export default {
       },
       class: {
         subjects: []
+      subject: {
+        units: []
       },
       currentData: null
     }
@@ -292,13 +293,6 @@ export default {
   validations: {
     invoices: {
       invoice_prefix: {
-        required,
-        maxLength: maxLength(5),
-        alpha
-      }
-    },
-    estimates: {
-      estimate_prefix: {
         required,
         maxLength: maxLength(5),
         alpha
@@ -330,54 +324,44 @@ export default {
         key: 'invoice_auto_generate',
         value: this.invoiceAutogenerate ? 'YES' : 'NO'
       }
-      let response = await window.axios.put('/api/settings/update-setting', data)
-      if (response.data) {
-        window.toastr['success'](this.$t('general.setting_updated'))
-      }
-    },
-    async setEstimateSetting () {
-      let data = {
-        key: 'estimate_auto_generate',
-        value: this.estimateAutogenerate ? 'YES' : 'NO'
-      }
-      let response = await window.axios.put('/api/settings/update-setting', data)
+      let response = await window.axios.put('/api/v1/settings/update-setting', data)
       if (response.data) {
         window.toastr['success'](this.$t('general.setting_updated'))
       }
     },
     async addSubject () {
       this.openModal({
-        'title': this.$t('settings.customization.items.add_subject'),
+        'title': this.$t('settings.customization.class.add_item_unit'),
         'componentName': 'Subject'
       })
       this.$refs.subjectTable.refresh()
     },
     async editItemUnit (data) {
       this.openModal({
-        'title': this.$t('settings.customization.items.edit_subject'),
+        'title': this.$t('settings.customization.class.edit_item_unit'),
         'componentName': 'Subject',
         'id': data.id,
         'data': data
       })
       this.$refs.subjectTable.refresh()
     },
-    async removeItemUnit (id) {
+    async removeSubject (id) {
       swal({
         title: this.$t('general.are_you_sure'),
-        text: this.$t('settings.customization.subjects.subject_confirm_delete'),
-        icon: '/assets/icon/trash-solid.svg',
+        text: this.$t('settings.customization.class.item_unit_confirm_delete'),
+        icon: '/icon/trash-solid.svg',
         buttons: true,
         dangerMode: true
       }).then(async (value) => {
         if (value) {
           let response = await this.deleteSubject(id)
           if (response.data.success) {
-            window.toastr['success'](this.$t('settings.customization.subjects.deleted_message'))
+            window.toastr['success'](this.$t('settings.customization.class.deleted_message'))
             this.id = null
             this.$refs.subjectTable.refresh()
             return true
           }
-          window.toastr['error'](this.$t('settings.customization.subjects.already_in_use'))
+          window.toastr['error'](this.$t('settings.customization.class.already_in_use'))
         }
       })
     },
@@ -423,11 +407,6 @@ export default {
         return true
       }
 
-      if (currentTab === 'ESTIMATES') {
-        this.estimates.estimate_prefix = this.estimates.estimate_prefix.toUpperCase()
-        return true
-      }
-
       if (currentTab === 'PAYMENTS') {
         this.payments.payment_prefix = this.payments.payment_prefix.toUpperCase()
         return true
@@ -438,33 +417,24 @@ export default {
         key: 'payment_auto_generate',
         value: this.paymentAutogenerate ? 'YES' : 'NO'
       }
-      let response = await window.axios.put('/api/settings/update-setting', data)
+      let response = await window.axios.put('/api/v1/settings/update-setting', data)
       if (response.data) {
         window.toastr['success'](this.$t('general.setting_updated'))
       }
     },
     async loadData () {
-      let res = await window.axios.get('/api/settings/get-customize-setting')
+      let res = await window.axios.get('/api/v1/settings/get-customize-setting')
 
       if (res.data) {
         this.invoices.invoice_prefix = res.data.invoice_prefix
         this.invoices.invoice_notes = res.data.invoice_notes
         this.invoices.invoice_terms_and_conditions = res.data.invoice_terms_and_conditions
-        this.estimates.estimate_prefix = res.data.estimate_prefix
-        this.estimates.estimate_notes = res.data.estimate_notes
-        this.estimates.estimate_terms_and_conditions = res.data.estimate_terms_and_conditions
         this.payments.payment_prefix = res.data.payment_prefix
 
         if (res.data.invoice_auto_generate === 'YES') {
           this.invoiceAutogenerate = true
         } else {
           this.invoiceAutogenerate = false
-        }
-
-        if (res.data.estimate_auto_generate === 'YES') {
-          this.estimateAutogenerate = true
-        } else {
-          this.estimateAutogenerate = false
         }
 
         if (res.data.payment_auto_generate === 'YES') {
@@ -487,19 +457,6 @@ export default {
         window.toastr['success'](this.$t('settings.customization.invoices.invoice_setting_updated'))
       }
     },
-    async updateEstimateSetting () {
-      this.$v.estimates.$touch()
-
-      if (this.$v.estimates.$invalid) {
-        return false
-      }
-
-      let data = {type: 'ESTIMATES', ...this.estimates}
-
-      if (this.updateSetting(data)) {
-        window.toastr['success'](this.$t('settings.customization.estimates.estimate_setting_updated'))
-      }
-    },
     async updatePaymentSetting () {
       this.$v.payments.$touch()
 
@@ -514,7 +471,7 @@ export default {
       }
     },
     async updateSetting (data) {
-      let res = await window.axios.put('/api/settings/update-customize-setting', data)
+      let res = await window.axios.put('/api/v1/settings/update-customize-setting', data)
 
       if (res.data.success) {
         return true

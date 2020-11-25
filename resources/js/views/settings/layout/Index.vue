@@ -51,36 +51,36 @@ export default {
           icon: 'edit',
           iconType: 'fa'
         },
-        {
-          link: '/admin/settings/preferences',
-          title: 'settings.menu_title.preferences',
-          icon: 'cog',
-          iconType: 'fas'
-        },
-        {
-          link: '/admin/settings/tax-types',
-          title: 'settings.menu_title.tax_types',
-          icon: 'check-circle',
-          iconType: 'far'
-        },
-        {
-          link: '/admin/settings/expense-category',
-          title: 'settings.menu_title.expense_category',
-          icon: 'list-alt',
-          iconType: 'far'
-        },
-        {
-          link: '/admin/settings/mail-configuration',
-          title: 'settings.mail.mail_config',
-          icon: 'envelope',
-          iconType: 'fa'
-        },
-        {
-          link: '/admin/settings/notifications',
-          title: 'settings.menu_title.notifications',
-          icon: 'bell',
-          iconType: 'far'
-        }
+        // {
+        //   link: '/admin/settings/preferences',
+        //   title: 'settings.menu_title.preferences',
+        //   icon: 'cog',
+        //   iconType: 'fas'
+        // },
+        // {
+        //   link: '/admin/settings/tax-types',
+        //   title: 'settings.menu_title.tax_types',
+        //   icon: 'check-circle',
+        //   iconType: 'far'
+        // },
+        // {
+        //   link: '/admin/settings/expense-category',
+        //   title: 'settings.menu_title.expense_category',
+        //   icon: 'list-alt',
+        //   iconType: 'far'
+        // },
+        // {
+        //   link: '/admin/settings/mail-configuration',
+        //   title: 'settings.mail.mail_config',
+        //   icon: 'envelope',
+        //   iconType: 'fa'
+        // },
+        // {
+        //   link: '/admin/settings/notifications',
+        //   title: 'settings.menu_title.notifications',
+        //   icon: 'bell',
+        //   iconType: 'far'
+        // }
       ]
     }
   },

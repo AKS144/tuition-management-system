@@ -257,7 +257,7 @@ export default {
             name: this.fileObject.name,
             data: this.previewLogo
           }))
-          await axios.post('/api/settings/company/upload-logo', logoData)
+          await axios.post('/api/v1/settings/company/upload-logo', logoData)
         }
         this.isLoading = false
         window.toastr['success'](this.$t('settings.company_info.updated_message'))

@@ -19,7 +19,7 @@ class SubjectController extends Controller
         $subject = Subject::all();
 
         return response([
-            'status' => true,
+            'success' => true,
             'subject' => $subject
         ]);
     }
@@ -41,16 +41,14 @@ class SubjectController extends Controller
 
         if($validator->fails()){
             return response([
-                'status' => false,
-                'error' => $validator->errors(),
-                'message' => 'Validation Error'
+                'message' => $validator->errors()->first()
             ], 401);
         }
 
         $subject = Subject::create($subject);
 
         return response([
-            'status' => true,
+            'success' => true,
             'data' => $subject
         ], 200);
     }
@@ -64,7 +62,7 @@ class SubjectController extends Controller
     public function show(Subject $subject)
     {
         return response([
-            'status' => true,
+            'success' => true,
             'data' => $subject
         ], 200);
     }
@@ -81,7 +79,7 @@ class SubjectController extends Controller
         $subject->update($request->all());
 
         return response([
-            'status' => true,
+            'success' => true,
             'data' => $subject
         ]);
     }
@@ -97,7 +95,7 @@ class SubjectController extends Controller
         $subject->delete();
 
         return response([
-            'status' => true
+            'success' => true
         ]);
     }
 }

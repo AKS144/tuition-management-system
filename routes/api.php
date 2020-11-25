@@ -149,8 +149,43 @@ Route::group(['prefix' => 'v1'], function () {
             ]);
 
             Route::get('/company', [
-                'as' => 'get.admin.company',
+                'as' => 'get.company',
                 'uses' => 'API\SettingsController@getCompanyDetail'
+            ]);
+
+            Route::post('/company/upload-logo', [
+                'as' => 'company.logo',
+                'uses' => 'API\SettingsController@uploadBranchLogo'
+            ]);
+
+            Route::post('/company', [
+                'as' => 'get.company',
+                'uses' => 'API\SettingsController@updateBranchDetail'
+            ]);
+
+            Route::put('/profile', [
+                'as' => 'profile',
+                'uses' => 'API\SettingsController@updateProfile'
+            ]);
+
+            Route::post('/profile/upload-avatar', [
+                'as' => 'profile.avatar',
+                'uses' => 'API\SettingsController@uploadAvatar'
+            ]);
+
+            Route::get('/get-customize-setting', [
+                'as' => 'get.customize.setting',
+                'uses' => 'API\SettingsController@getCustomizeSetting'
+            ]);
+
+            Route::put('/update-customize-setting', [
+                'as' => 'update.customize.setting',
+                'uses' => 'API\SettingsController@updateCustomizeSetting'
+            ]);
+
+            Route::put('/update-setting', [
+                'as' => 'update.setting',
+                'uses' => 'API\SettingsController@updateSetting'
             ]);
         });
     });
