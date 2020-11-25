@@ -771,7 +771,6 @@
           "already_in_use": "Payment Mode is already in use",
           "deleted_message": "Payment Mode deleted successfully"
         },
-
         "subjects": {
           "title": "Class",
           "subjects": "Subject",
@@ -785,9 +784,6 @@
           "already_in_use": "Subject is already in use",
           "deleted_message": "Subject deleted successfully"
         },
-
-        "items": {
-          "title": "Class",
         "class": {
           "title": "Subject",
           "units": "Subject",
@@ -998,7 +994,7 @@
       "tuition_management_system": "Tuition Management System"
     },
     "validation": {
-      "invalid_url": "Invalid url (ex: http://www.crater.com)",
+      "invalid_url": "Invalid url (ex: http://www.jomfikir.com)",
       "required": "Field is required",
       "email_incorrect": "Incorrect Email.",
       "email_already_taken": "The email has already been taken.",
@@ -1035,4 +1031,3 @@
       "something_went_wrong": "something went wrong"
     }
   }
-}
