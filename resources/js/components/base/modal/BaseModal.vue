@@ -19,10 +19,10 @@ import TaxTypeModal from './TaxTypeModal'
 import ItemModal from './ItemModal'
 import EstimateTemplate from './EstimateTemplate'
 import InvoiceTemplate from './InvoiceTemplate'
-import CustomerModal from './CustomerModal'
+import StudentModal from './StudentModal'
 import CategoryModal from './CategoryModal'
 import PaymentMode from './PaymentModeModal'
-import ItemUnit from './ItemUnitModal'
+import Subject from './SubjectModal'
 import MailTestModal from './MailTestModal'
 
 export default {
@@ -31,10 +31,10 @@ export default {
     ItemModal,
     EstimateTemplate,
     InvoiceTemplate,
-    CustomerModal,
+    StudentModal,
     CategoryModal,
     PaymentMode,
-    ItemUnit,
+    Subject,
     MailTestModal
   },
   data () {

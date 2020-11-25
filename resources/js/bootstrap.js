@@ -8,7 +8,7 @@ import VDropdown from './components/dropdown/VDropdown.vue'
 import VDropdownItem from './components/dropdown/VDropdownItem.vue'
 import VDropdownDivider from './components/dropdown/VDropdownDivider.vue'
 import DotIcon from './components/icon/DotIcon.vue'
-import CustomerModal from './components/base/modal/CustomerModal.vue'
+import StudentModal from './components/base/modal/StudentModal.vue'
 import TaxTypeModal from './components/base/modal/TaxTypeModal.vue'
 import CategoryModal from './components/base/modal/CategoryModal.vue'
 import money from 'v-money'
@@ -67,15 +67,15 @@ window.axios.defaults.headers.common = {
 window.axios.interceptors.request.use(function (config) {
     // Do something before request is sent
     const AUTH_TOKEN = Ls.get('auth.token')
-    // const companyId = Ls.get('selectedCompany')
+    const branchId = Ls.get('selectedBranch')
 
     if (AUTH_TOKEN) {
         config.headers.common['Authorization'] = `Bearer ${AUTH_TOKEN}`
     }
 
-    // if (companyId) {
-    //   config.headers.common['company'] = companyId
-    // }
+    if (branchId) {
+      config.headers.common['branch'] = branchId
+    }
 
     return config
     }, function (error) {
@@ -129,6 +129,6 @@ Vue.component('v-dropdown-item', VDropdownItem)
 Vue.component('v-dropdown-divider', VDropdownDivider)
 
 Vue.component('dot-icon', DotIcon)
-Vue.component('customer-modal', CustomerModal)
+Vue.component('student-modal', StudentModal)
 Vue.component('tax-type-modal', TaxTypeModal)
 Vue.component('category-modal', CategoryModal)

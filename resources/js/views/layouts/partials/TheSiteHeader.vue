@@ -1,16 +1,17 @@
 <template>
   <header class="site-header">
-    <a href="/" class="brand-main">
+    <a href="/admin/dashboard" class="brand-main">
       <img
         id="logo-white"
         src="/img/logo-white.png"
-        alt="Crater Logo"
+        alt="Jomfikir Logo"
         class="d-none d-md-inline"
+        style='max-width: 100%; max-height: 100%;'
       >
       <img
         id="logo-mobile"
-        src="/img/crater-white-small.png"
-        alt="Laraspace Logo"
+        src="/img/logo-white-mobile.png"
+        alt="Jomfikir Logo"
         class="d-md-none">
     </a>
 
@@ -37,12 +38,12 @@
             </router-link>
           </v-dropdown-item>
           <v-dropdown-item>
-            <router-link class="dropdown-item" to="/admin/estimates/create">
-              <font-awesome-icon class="dropdown-item-icon" icon="file" /> <span> {{ $t('estimates.new_estimate') }} </span>
+            <router-link class="dropdown-item" to="/admin/expenses/create">
+              <font-awesome-icon class="dropdown-item-icon" icon="file" /> <span> {{ $t('expenses.new_expense') }} </span>
             </router-link>
           </v-dropdown-item>
           <v-dropdown-item>
-            <router-link class="dropdown-item" to="/admin/customers/create">
+            <router-link class="dropdown-item" to="/admin/students/create">
               <font-awesome-icon class="dropdown-item-icon" icon="user" />  <span> {{ $t('customers.new_customer') }} </span>
             </router-link>
           </v-dropdown-item>
@@ -84,24 +85,19 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
   computed: {
-    ...mapGetters('userProfile', [
-      'user'
+    ...mapGetters('user', [
+      'currentUser'
     ]),
     profilePicture () {
-      if (this.user && this.user.avatar !== null) {
-        return this.user.avatar
+      if (this.currentUser && this.currentUser.image !== null) {
+        // console.log(this.currentUser.image)
+        return '/images/' + this.currentUser.image
       } else {
         return '/images/default-avatar.jpg'
       }
     }
   },
-  created () {
-    this.loadData()
-  },
   methods: {
-    ...mapActions('userProfile', [
-      'loadData'
-    ]),
     ...mapActions({
       companySelect: 'changeCompany'
     }),

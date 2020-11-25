@@ -4,6 +4,15 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Subject;
+use App\Currency;
+use App\BranchSetting;
+use App\Item;
+use App\TaxType;
+use App\PaymentMethod;
+use App\Unit;
+use App\Branch;
+use Auth;
 use Illuminate\Http\Request;
 use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Validator;
@@ -168,5 +177,68 @@ class UserController extends Controller
                 'message' => 'Failed to delete the user'
             ], 401);
         }
+    }
+
+    public function getBootstrap(Request $request)
+    { 
+        $user = Auth::user();
+
+        $branch = $request->header('branch_id') ?? 1;
+        
+        $currencies = Currency::latest()->get();
+
+        $default_language = BranchSetting::getSetting('language', $branch);
+
+        $default_currency = Currency::findOrFail(
+            BranchSetting::getSetting('currency', $branch)
+        );
+
+        $status = [
+            ['key' => 'Active' , 'value' => '1'],
+            ['key' => 'Not Active' , 'value' => '0'],
+            ['key' => 'Terminated' , 'value' => '2'],
+        ];
+
+        $moment_date_format = BranchSetting::getSetting(
+            'moment_date_format',
+            $branch
+        );
+
+        $fiscal_year = BranchSetting::getSetting(
+            'fiscal_year',
+            $branch
+        );
+
+        $items = Item::with('taxes')
+            ->whereBranch($request->header('branch_id'))
+            ->get();
+
+        $taxTypes = TaxType::latest()->get();
+
+        $paymentMethods = PaymentMethod::latest()
+            ->get();
+
+        $units = Unit::latest()
+            ->get();
+        
+        $subject = Subject::latest()
+            ->get();
+
+        return response()->json([
+            'user' => $user,
+            'subject' => $subject,
+            'currencies' => $currencies,
+            'default_currency' => $default_currency,
+            'default_language' => $default_language,
+            'branch' => $user->branch,
+            'branches' => Branch::all(),
+            'items' => $items,
+            'taxTypes' => $taxTypes,
+            'moment_date_format' => $moment_date_format,
+            'paymentMethods' => $paymentMethods,
+            'units' => $units,
+            'status' => $status,
+            'fiscal_year' => $fiscal_year,
+        ]);
     }
 }

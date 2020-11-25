@@ -37,9 +37,9 @@ export default {
       'isAppLoaded'
     ]),
 
-    ...mapGetters('company', {
-      selectedCompany: 'getSelectedCompany',
-      companies: 'getCompanies'
+    ...mapGetters('branch', {
+      selectedBranch: 'getSelectedBranch',
+      branches: 'getBranches'
     }),
 
     isShow () {
@@ -52,26 +52,26 @@ export default {
 
   created () {
     this.bootstrap().then((res) => {
-      this.setInitialCompany()
+      this.setInitialBranch()
     })
   },
 
   methods: {
     ...mapActions(['bootstrap']),
-    ...mapActions('company', ['setSelectedCompany']),
-    setInitialCompany () {
-      let selectedCompany = Ls.get('selectedCompany') !== null
+    ...mapActions('branch', ['setSelectedBranch']),
+    setInitialBranch () {
+      let selectedBranch = Ls.get('selectedBranch') !== null
 
-      if (selectedCompany) {
-        let foundCompany = this.companies.find((company) => company.id === parseInt(selectedCompany))
+      if (selectedBranch) {
+        let foundBranch = this.branches.find((branch) => branch.id === parseInt(selectedBranch))
 
-        if (foundCompany) {
-          this.setSelectedCompany(foundCompany)
+        if (foundBranch) {
+          this.setSelectedBranch(foundBranch)
           return
         }
       }
 
-      this.setSelectedCompany(this.companies[0])
+      this.setSelectedBranch(this.branches[0])
     }
   }
 }

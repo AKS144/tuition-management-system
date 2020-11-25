@@ -3,9 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
-class Branch extends Model
+class Branch extends Model implements HasMedia
 {
+    use HasMediaTrait;
+    
     public $timestamps = FALSE;
     
     /**
@@ -21,7 +25,7 @@ class Branch extends Model
      * Get the user associated with the branch
      */
     public function users(){
-        return $this->belongsToMany(User::class, 'branch_user');
+        return $this->hasMany(User::class);
     }
 
     /**
@@ -94,12 +98,19 @@ class Branch extends Model
         return $this->hasMany(Tax::class);
     }
 
+    /**
+     * Get the classroom associated with the branch
+     */
+    public function classrooms(){
+        return $this->hasMany(Classroom::class);
+    }
+
     
     /**
      * Get the of the branch address.
      */
     public function addresses()
     {
-        return $this->morphMOne(Address::class, 'addressable');
+        return $this->morphOne(Address::class, 'addressable');
     }
 }

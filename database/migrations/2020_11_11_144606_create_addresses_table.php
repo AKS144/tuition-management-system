@@ -27,6 +27,7 @@ class CreateAddressesTable extends Migration
             $table->string('fax')->nullable();
             $table->string('type')->nullable();
             $table->bigInteger('addressable_id');
+            $table->string('addressable_type');
             $table->timestamps();
         });
     }

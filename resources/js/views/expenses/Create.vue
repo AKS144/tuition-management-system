@@ -38,10 +38,6 @@
           <div class="card">
             <div class="card-body">
               <div class="row">
-                <!-- <div class="form-group col-sm-6">
-                  <label class="control-label">{{ $t('expenses.expense_title') }}</label>
-                  <input v-model="formData.title" type="text" name="name" class="form-control">
-                </div> -->
                 <div class="form-group col-sm-6">
                   <label class="control-label">{{ $t('expenses.category') }}</label><span class="text-danger"> * </span>
                   <base-select
@@ -67,12 +63,6 @@
                     <span v-if="!$v.category.required" class="text-danger">{{ $t('validation.required') }}</span>
                   </div>
                 </div>
-                <!-- <div class="form-group col-sm-6">
-                  <label>{{ $t('expenses.contact') }}</label>
-                  <select v-model="formData.contact" name="contact" class="form-control ls-select2">
-                    <option v-for="(contact, index) in contacts" :key="index" :value="contact.id"> {{ contact.name }}</option>
-                  </select>
-                </div> -->
                 <div class="form-group col-sm-6">
                   <label>{{ $t('expenses.expense_date') }}</label><span class="text-danger"> * </span>
                   <base-date-picker
@@ -101,19 +91,6 @@
                     <span v-if="!$v.formData.amount.maxLength" class="text-danger">{{ $t('validation.price_maxlength') }}</span>
                     <span v-if="!$v.formData.amount.minValue" class="text-danger">{{ $t('validation.price_minvalue') }}</span>
                   </div>
-                </div>
-                <div class="form-group col-sm-6">
-                  <label class="form-label">{{ $t('expenses.customer') }}</label>
-                  <base-select
-                    ref="baseSelect"
-                    v-model="customer"
-                    :options="customerList"
-                    :searchable="true"
-                    :show-labels="false"
-                    :placeholder="$t('customers.select_a_customer')"
-                    label="name"
-                    track-by="id"
-                  />
                 </div>
                 <div class="form-group col-sm-6">
                   <label for="description">{{ $t('expenses.note') }}</label>
@@ -182,8 +159,7 @@ export default {
         expense_category_id: null,
         expense_date: new Date(),
         amount: null,
-        notes: '',
-        user_id: null
+        notes: ''
       },
       money: {
         decimal: '.',
@@ -199,9 +175,7 @@ export default {
       passData: [],
       contacts: [],
       previewReceipt: null,
-      fileSendUrl: '/api/expenses',
-      customer: null,
-      customerList: []
+      fileSendUrl: '/api/expenses'
     }
   },
   validations: {
@@ -243,12 +217,12 @@ export default {
     ...mapGetters('category', [
       'categories'
     ]),
-    ...mapGetters('company', [
-      'getSelectedCompany'
+    ...mapGetters('branch', [
+      'getSelectedBranch'
     ]),
     getReceiptUrl () {
       if (this.isEdit) {
-        return `/expenses/${this.$route.params.id}/receipt/${this.getSelectedCompany.unique_hash}`
+        return `/expenses/${this.$route.params.id}/receipt/${this.getSelectedBranch.unique_hash}`
       }
     }
   },
@@ -258,7 +232,6 @@ export default {
     }
   },
   mounted () {
-    // this.$refs.baseSelect.$refs.search.focus()
     this.fetchInitialData()
     if (this.isEdit) {
       this.getReceipt()
@@ -270,8 +243,6 @@ export default {
   methods: {
     ...mapActions('expense', [
       'fetchCreateExpense',
-      'getFile',
-      'sendFileWithData',
       'addExpense',
       'updateExpense',
       'fetchExpense'
@@ -287,7 +258,6 @@ export default {
         'title': 'Add Category',
         'componentName': 'CategoryModal'
       })
-      // this.$refs.table.refresh()
     },
     onFileChange (e) {
       var input = event.target
@@ -322,9 +292,6 @@ export default {
         this.formData.expense_date = moment(this.formData.expense_date).toString()
         this.formData.amount = (response.data.expense.amount)
         this.fileSendUrl = `/api/expenses/${this.$route.params.id}`
-        if (response.data.expense.user_id) {
-          this.customer = this.customerList.find(customer => customer.id === response.data.expense.user_id)
-        }
       }
     },
     async sendData () {
@@ -343,7 +310,6 @@ export default {
       data.append('expense_date', moment(this.formData.expense_date).format('DD/MM/YYYY'))
       data.append('amount', (this.formData.amount))
       data.append('notes', this.formData.notes ? this.formData.notes : '')
-      data.append('user_id', this.customer ? this.customer.id : '')
 
       if (this.isEdit) {
         this.isLoading = true

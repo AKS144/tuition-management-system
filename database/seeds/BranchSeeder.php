@@ -16,12 +16,10 @@ class BranchSeeder extends Seeder
         $branch = [
             [
                 'name' => 'Pusat Tuisyen Fikir Jaya',
-                'city' => 'Selangor',
                 'unique_hash' => Str::random(60)
             ],
             [
                 'name' => 'Pusat Tuisyen Faiza Jaya',
-                'city' => 'Selangor',
                 'unique_hash' => Str::random(60)
             ],
         ];

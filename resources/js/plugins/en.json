@@ -1,8 +1,9 @@
 {
     "navigation": {
       "dashboard": "Dashboard",
-      "customers": "Customers",
-      "items": "Items",
+      "students": "Students",
+      "items": "Classes",
+      "class": "Classes",
       "invoices": "Invoices",
       "expenses": "Expenses",
       "estimates": "Estimates",
@@ -30,13 +31,13 @@
       "subject": "Subject",
       "message": "Message",
       "go_back": "Go Back",
-      "back_to_login": "Back to Login?",
+      "back_to_login": "Back to Login",
       "home": "Home",
       "filter": "Filter",
       "delete": "Delete",
       "edit": "Edit",
       "view": "View",
-      "add_new_item": "Add New Item",
+      "add_new_item": "Add New Class",
       "clear_all": "Clear All",
       "showing": "Showing",
       "of": "of",
@@ -59,7 +60,7 @@
       "choose": "Choose",
       "remove": "Remove",
       "powered_by": "Powered by",
-      "bytefury": "Bytefury",
+      "bytefury": "M&S",
       "select_a_status": "Select a status",
       "select_a_tax": "Select a tax",
       "search": "Search",
@@ -67,7 +68,7 @@
       "list_is_empty": "List is empty.",
       "no_tax_found": "No tax found!",
       "four_zero_four": "404",
-      "you_got_lost": "Whoops! You got Lost!",
+      "you_got_lost": "Page not Found",
       "go_home": "Go Home",
       "test_mail_conf": "Test Mail Configuration",
       "send_mail_successfully": "Mail sent successfully",
@@ -84,9 +85,9 @@
       "select_year": "Select year",
       "cards": {
         "due_amount": "Amount Due",
-        "customers": "Customers",
+        "customers": "Students",
         "invoices": "Invoices",
-        "estimates": "Estimates"
+        "items": "Classes"
       },
       "chart_info": {
         "total_sales": "Sales",
@@ -104,16 +105,23 @@
       "recent_invoices_card": {
         "title": "Due Invoices",
         "due_on": "Due On",
-        "customer": "Customer",
+        "customer": "Student",
         "amount_due": "Amount Due",
         "actions": "Actions",
         "view_all": "View All"
       },
-      "recent_estimate_card": {
-        "title": "Recent Estimates",
-        "date": "Date",
-        "customer": "Customer",
-        "amount_due": "Amount Due",
+      "classes_list_card": {
+        "title": "Classes List",
+        "classes": "Class Name",
+        "class_code" : "Class Code",
+        "tutor": "Tutor Name",
+        "actions": "Actions",
+        "view_all": "View All"
+      },
+      "student_list_card": {
+        "title": "Students List",
+        "students": "Student",
+        "status": "Status",
         "actions": "Actions",
         "view_all": "View All"
       }
@@ -125,13 +133,13 @@
       "compound_tax": "Compound Tax"
     },
     "customers": {
-      "title": "Customers",
-      "add_customer": "Add Customer",
-      "contacts_list": "Customer List",
+      "title": "Students",
+      "add_customer": "Add Student",
+      "contacts_list": "Students List",
       "name": "Name",
-      "display_name": "Display Name",
-      "primary_contact_name": "Primary Contact Name",
-      "contact_name": "Contact Name",
+      "display_name": "Student Name",
+      "primary_contact_name": "Primary Contact Name (remove)",
+      "contact_name": "Contact Name (remove)",
       "amount_due": "Amount Due",
       "email": "Email",
       "address": "Address",
@@ -146,55 +154,126 @@
       "password": "Password",
       "street_number": "Street Number",
       "primary_currency": "Primary Currency",
-      "add_new_customer": "Add New Customer",
-      "save_customer": "Save Customer",
-      "update_customer": "Update Customer",
-      "customer": "Customer | Customers",
-      "new_customer": "New Customer",
-      "edit_customer": "Edit Customer",
-      "basic_info": "Basic Info",
-      "billing_address": "Billing Address",
-      "shipping_address": "Shipping Address",
-      "copy_billing_address": "Copy from Billing",
-      "no_customers": "No customers yet!",
-      "no_customers_found": "No customers found!",
-      "list_of_customers": "This section will contain the list of customers.",
-      "primary_display_name": "Primary Display Name",
+      "add_new_customer": "Add New Student",
+      "save_customer": "Save Student",
+      "update_customer": "Update Student",
+      "customer": "Student | Students",
+      "new_customer": "New Student",
+      "edit_customer": "Edit Student",
+      "basic_info": "Student Info",
+      "billing_address": "Parents/Guardian Info",
+      "shipping_address": "Shipping Address (remove)",
+      "copy_billing_address": "Copy from Billing (remove)",
+      "no_customers": "No students yet!",
+      "no_customers_found": "No students found!",
+      "list_of_customers": "This section will contain the list of students.",
+      "primary_display_name": "Primary Display Name (remove)",
       "select_currency": "Select currency",
-      "select_a_customer": "Select a customer",
+      "select_a_customer": "Select a student",
       "type_or_click": "Type or click to select",
-  
-      "confirm_delete": "You will not be able to recover this customer and all the related Invoices, Estimates and Payments. | You will not be able to recover these customers and all the related Invoices, Estimates and Payments.",
-      "created_message": "Customer created successfully",
-      "updated_message": "Customer updated successfully",
-      "deleted_message": "Customer deleted successfully | Customers deleted successfully"
+
+      "confirm_delete": "You will not be able to recover this student's record and any related invoices and payments. | You will not be able to recover these students' record and any related invoices and payments.",
+      "created_message": "Student created successfully",
+      "updated_message": "Student updated successfully",
+      "deleted_message": "Student deleted successfully | Students deleted successfully"
     },
-    "items": {
-      "title": "Items",
-      "items_list": "Items List",
+    "students": {
+      "age": "Age",
+      "title": "Students",
+      "student": "Student | Students",
+      "new_student": "New Student",
+      "edit_student": "Edit Student",
+      "view_student": "View Student",
+      "update_student": "Update Student",
+      "save_student": "Save Student",
+      "basic_info": "Student Info",
+      "full_name": "Full Name",
+      "nric": "NRIC",
+      "email": "Email",
+      "country": "Country",
+      "state": "State",
+      "city": "City",
+      "zip_code": "Zip Code",
+      "address": "Address",
+      "job": "Job",
+      "mobile_no": "Mobile Number",
+      "no_students": "No Student registered!",
+      "list_of_students": "This section will contain the list of students.",
+      "add_new_student": "Add New Student",
+      "status": "Status",
+      "parent_info": "Parents/Guardian Info",
+      "parent_name" : "Parents/Guardian Name",
+      "relationship": "Relationship",
+      "parent_nric": "NRIC",
+      "parent_mobile": "Phone Number",
+      "parent_email" : "E-mail",
+      "joined_date": "Date Joined",
+      "action": "Action",
+      "set_student_status": "Select Status",
+      "confirm_delete": "You will not be able to recover this student and all the related Subject, Class, Package, Invoices and etc. | You will not be able to recover these students and all the related Subject, Class, Payment, Invoices and etc.",
+      "created_message": "Student created successfully",
+      "updated_message": "Student updated successfully",
+      "deleted_message": "Student deleted successfully | Students deleted successfully"
+    },
+    "class": {
+      "title": "Class",
+      "code": "Class Code",
+      "tutor": "Tutor",
+      "items_list": "Classes List",
       "name": "Name",
-      "unit": "Unit",
+      "unit": "Subject",
       "description": "Description",
       "added_on": "Added On",
       "price": "Price",
       "date_of_creation": "Date Of Creation",
       "action": "Action",
-      "add_item": "Add Item",
-      "save_item": "Save Item",
-      "update_item": "Update Item",
-      "item": "Item | Items",
-      "add_new_item": "Add New Item",
-      "new_item": "New Item",
-      "edit_item": "Edit Item",
-      "no_items": "No items yet!",
-      "list_of_items": "This section will contain the list of items.",
-      "select_a_unit": "select unit",
+      "add_item": "Add Class",
+      "save_item": "Save Class",
+      "update_item": "Update Class",
+      "item": "Class | Classes",
+      "add_new_item": "Add New Class",
+      "new_item": "New Class",
+      "edit_item": "Edit Class",
+      "no_items": "No class(es) yet!",
+      "list_of_items": "This section will contain the list of classes.",
+      "select_a_unit": "Select subject...",
+      "select_a_tutor": "Select tutor...",
       "taxes": "Taxes",
-      "item_attached_message": "Cannot delete an item which is already in use",
-      "confirm_delete": "You will not be able to recover this Item | You will not be able to recover these Items",
-      "created_message": "Item created successfully",
-      "updated_message": "Item updated successfully",
-      "deleted_message": "Item deleted successfully | Items deleted successfully"
+      "item_attached_message": "Cannot delete a class which is already in use",
+      "confirm_delete": "You will not be able to recover this class. | You will not be able to recover these classes",
+      "created_message": "Class created successfully",
+      "updated_message": "Class updated successfully",
+      "deleted_message": "Class deleted successfully | Classes deleted successfully"
+    },
+    "items": {
+      "title": "Class",
+      "items_list": "Classes List",
+      "name": "Name",
+      "code": "Class Code",
+      "tutor": "Tutor",
+      "unit": "Subject",
+      "description": "Description",
+      "batch_year": "Batch Year",
+      "added_on": "Added On",
+      "price": "Price",
+      "date_of_creation": "Date Of Creation",
+      "action": "Action",
+      "add_item": "Add Class",
+      "save_item": "Save Class",
+      "update_item": "Update Class",
+      "item": "Class | Classes",
+      "add_new_item": "Add New Class",
+      "new_item": "New Class",
+      "edit_item": "Edit Class",
+      "no_items": "No class(es) yet!",
+      "list_of_items": "This section will contain the list of classes.",
+      "select_a_unit": "Select subject...",
+      "taxes": "Taxes",
+      "item_attached_message": "Cannot delete a class which is already in use",
+      "confirm_delete": "You will not be able to recover this class. | You will not be able to recover these classes",
+      "created_message": "Class created successfully",
+      "updated_message": "Class updated successfully",
+      "deleted_message": "Class deleted successfully | Classes deleted successfully"
     },
     "estimates": {
       "title": "Estimates",
@@ -262,7 +341,7 @@
       "list_of_estimates": "This section will contain the list of estimates.",
       "mark_as_rejected": "Mark as rejected",
       "mark_as_accepted": "Mark as accepted",
-  
+
       "marked_as_accepted_message": "Estimate marked as accepted",
       "marked_as_rejected_message": "Estimate marked as rejected",
       "confirm_delete": "You will not be able to recover this Estimate | You will not be able to recover these Estimates",
@@ -295,7 +374,7 @@
       "all": "All",
       "paid": "Paid",
       "unpaid": "Unpaid",
-      "customer": "CUSTOMER",
+      "customer": "STUDENT",
       "paid_status": "PAID STATUS",
       "ref_no": "REF NO.",
       "number": "NUMBER",
@@ -308,7 +387,7 @@
       "invoice_number": "Invoice Number",
       "ref_number": "Ref Number",
       "contact": "Contact",
-      "add_item": "Add an Item",
+      "add_item": "Add a Class",
       "date": "Date",
       "due_date": "Due Date",
       "status": "Status",
@@ -322,9 +401,9 @@
       "invoice_template": "Invoice Template",
       "template": "Template",
       "mark_as_sent": "Mark as sent",
-      "confirm_send_invoice": "This invoice will be sent via email to the customer",
+      "confirm_send_invoice": "This invoice will be sent via email to the student",
       "invoice_mark_as_sent": "This invoice will be marked as sent",
-      "confirm_send": "This invoice will be sent via email to the customer",
+      "confirm_send": "This invoice will be sent via email to the student",
       "invoice_date": "Invoice Date",
       "record_payment": "Record Payment",
       "add_new_invoice": "Add New Invoice",
@@ -344,7 +423,7 @@
       "clone_invoice": "Clone Invoice",
       "confirm_clone": "This invoice will be cloned into a new Invoice",
       "item": {
-        "title": "Item Title",
+        "title": "Class",
         "description": "Description",
         "quantity": "Quantity",
         "price": "Price",
@@ -354,8 +433,8 @@
         "sub_total": "Sub Total",
         "tax": "Tax",
         "amount": "Amount",
-        "select_an_item": "Type or click to select an item",
-        "type_item_description": "Type Item Description (optional)"
+        "select_an_item": "Type or click to select an class",
+        "type_item_description": "Type class description (optional)"
       },
       "payment_attached_message": "One of the selected invoices already have a payment attached to it. Make sure to delete the attached payments first in order to go ahead with the removal",
       "confirm_delete": "You will not be able to recover this Invoice | You will not be able to recover these Invoices",
@@ -394,7 +473,7 @@
       "title": "Payments",
       "payments_list": "Payments List",
       "record_payment": "Record Payment",
-      "customer": "Customer",
+      "customer": "Student",
       "date": "Date",
       "amount": "Amount",
       "action": "Action",
@@ -415,11 +494,11 @@
       "no_matching_payments": "There are no matching payments!",
       "list_of_payments": "This section will contain the list of payments.",
       "select_payment_mode": "Select payment mode",
-      "confirm_send_payment": "This payment will be sent via email to the customer",
+      "confirm_send_payment": "This payment will be sent via email to the student",
       "send_payment_successfully": "Payment sent successfully",
       "user_email_does_not_exist": "User email does not exist",
       "something_went_wrong": "something went wrong",
-  
+
       "confirm_delete": "You will not be able to recover this Payment | You will not be able to recover these Payments",
       "created_message": "Payment created successfully",
       "updated_message": "Payment updated successfully",
@@ -429,9 +508,9 @@
     "expenses": {
       "title": "Expenses",
       "expenses_list": "Expenses List",
-      "select_a_customer": "Select a customer",
+      "select_a_customer": "Select a student",
       "expense_title": "Title",
-      "customer": "Customer",
+      "customer": "Student",
       "contact": "Contact",
       "category": "Category",
       "from_date": "From Date",
@@ -454,7 +533,7 @@
       "expense": "Expense | Expenses",
       "no_expenses": "No expenses yet!",
       "list_of_expenses": "This section will contain the list of expenses.",
-  
+
       "confirm_delete": "You will not be able to recover this Expense | You will not be able to recover these Expenses",
       "created_message": "Expense created successfully",
       "updated_message": "Expense updated successfully",
@@ -613,7 +692,7 @@
         "company_info": "Company info",
         "company_name": "Company Name",
         "company_logo": "Company Logo",
-        "section_description": "Information about your company that will be displayed on invoices, estimates and other documents created by Crater.",
+        "section_description": "Company information will be display on all docuemnts generated by this system.",
         "phone": "Phone",
         "country": "Country",
         "state": "State",
@@ -627,7 +706,7 @@
         "customization": "customization",
         "save": "Save",
         "addresses": {
-          "title": "Addresses",
+          "title": "Addresses //remove",
           "section_description": "You can set Customer Billing Address and Customer Shipping Address Format (Displayed in PDF only). ",
           "customer_billing_address": "Customer Billing Address",
           "customer_shipping_address": "Customer Shipping Address",
@@ -651,7 +730,7 @@
           "address_setting_updated": "Address Setting updated successfully"
         },
         "updated_message": "Company information updated successfully",
-  
+
         "invoices": {
           "title": "Invoices",
           "notes": "Notes",
@@ -663,7 +742,7 @@
           "terms_and_conditions": "Terms and Conditions",
           "invoice_setting_updated": "Invoice Setting updated successfully"
         },
-  
+
         "estimates": {
           "title": "Estimates",
           "estimate_prefix": "Estimate Prefix",
@@ -673,7 +752,7 @@
           "enter_estimate_prefix": "Enter estmiate prefix",
           "estimate_setting_updated": "Estimate Setting updated successfully"
         },
-  
+
         "payments": {
           "title": "Payments",
           "payment_prefix": "Payment Prefix",
@@ -692,18 +771,33 @@
           "already_in_use": "Payment Mode is already in use",
           "deleted_message": "Payment Mode deleted successfully"
         },
-  
-        "items": {
-          "title": "Items",
-          "units": "units",
-          "add_item_unit": "Add Item Unit",
-          "edit_item_unit": "Edit Item Unit",
-          "unit_name": "Unit Name",
-          "item_unit_added": "Item Unit Added",
-          "item_unit_updated": "Item Unit Updated",
-          "item_unit_confirm_delete": "You will not be able to recover this Item unit",
-          "already_in_use": "Item Unit is already in use",
-          "deleted_message": "Item Unit deleted successfully"
+        "subjects": {
+          "title": "Class",
+          "subjects": "Subject",
+          "code": "Subject Code",
+          "add_subject": "Add New Subject",
+          "edit_subject": "Edit Subject",
+          "subject_name": "Subject Name",
+          "subject_added": "Subject Added",
+          "subject_updated": "Subject Updated",
+          "subject_confirm_delete": "You will not be able to recover this Subject",
+          "already_in_use": "Subject is already in use",
+          "deleted_message": "Subject deleted successfully"
+        },
+        "class": {
+          "title": "Subject",
+          "units": "Subject",
+          "code": "Class Code",
+          "tutor": "Tutor",
+          "add_item_unit": "Add New Subject",
+          "edit_item_unit": "Edit Subject",
+          "unit_name": "Subject Name",
+          "item_unit_added": "Subject Added",
+          "item_unit_updated": "Subject Updated",
+          "item_unit_confirm_delete": "You will not be able to recover this Subject",
+          "already_in_use": "Subject is already in use",
+          "deleted_message": "Subject deleted successfully",
+          "updated_message": "Class successfully updated"
         }
       },
       "account_settings": {
@@ -805,7 +899,7 @@
         "running_migrations": "Running Migrations",
         "finishing_update": "Finishing Update",
         "update_failed": "Update Failed",
-        "update_failed_text": "Sorry! Your update failed on : {step} step"   
+        "update_failed_text": "Sorry! Your update failed on : {step} step"
       }
     },
     "wizard": {
@@ -900,7 +994,7 @@
       "tuition_management_system": "Tuition Management System"
     },
     "validation": {
-      "invalid_url": "Invalid url (ex: http://www.crater.com)",
+      "invalid_url": "Invalid url (ex: http://www.jomfikir.com)",
       "required": "Field is required",
       "email_incorrect": "Incorrect Email.",
       "email_already_taken": "The email has already been taken.",
@@ -931,9 +1025,9 @@
       "maximum_options_error": "Maximum  of {max} options selected. First remove a selected option to select another.",
       "notes_maxlength": "Notes should not be greater than 255 characters.",
       "address_maxlength": "Address should not be greater than 255 characters.",
+      "nric_minlength": "NRIC must have at least {count} character",
       "ref_number_maxlength": "Ref Number should not be greater than 255 characters.",
       "prefix_maxlength": "Prefix should not be greater than 5 characters.",
       "something_went_wrong": "something went wrong"
     }
   }
-  

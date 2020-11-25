@@ -29,6 +29,8 @@ class CreatePaymentsTable extends Migration
             $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
             $table->bigInteger('invoice_id')->unsigned()->nullable();
             $table->foreign('invoice_id')->references('id')->on('invoices')->onDelete('cascade');
+            $table->bigInteger('branch_id')->unsigned()->nullable();
+            $table->foreign('branch_id')->references('id')->on('branches')->onDelete('cascade');
             $table->timestamps();
         });
     }

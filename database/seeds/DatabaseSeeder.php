@@ -34,17 +34,19 @@ class DatabaseSeeder extends Seeder
             UnitSeeder::class,
             AddressSeeder::class,
             BranchSettingSeeder::class,
+            ExpenseCategoriesSeeder::class,
+            ExpenseSeeder::class
         ]);
 
         // Get all the user attaching to each branch
         $users = App\User::all();
 
         // Populate branch_user table
-        App\Branch::all()->each(function ($branch) use ($users) {
-            $branch->users()->attach(
-                $users->random(rand(1, $users->count()))->pluck('id')->toArray()
-            );
-        });
+        // App\Branch::all()->each(function ($branch) use ($users) {
+        //     $branch->users()->attach(
+        //         $users->random(rand(1, $users->count()))->pluck('id')->toArray()
+        //     );
+        // });
 
         // Get all the venue attaching to each branch
         $venue = App\Venue::all();
@@ -58,11 +60,12 @@ class DatabaseSeeder extends Seeder
 
         // Get all student attaching to each parent/class/package/payment
         $student = App\Student::all();
-
+        $parent = App\Parents::all();
+        
         // Populate parent_student table
-        App\Parents::all()->each(function ($parent) use ($student) {
-            $parent->students()->attach(
-                $student->random(rand(1, $student->count()))->pluck('id')->toArray()
+        App\Student::all()->each(function ($student) use ($parent) {
+            $student->parents()->attach(
+                $parent->random(rand(1, 2))->pluck('id')->toArray()
             );
         });
 

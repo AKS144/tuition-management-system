@@ -32,27 +32,22 @@ export default {
         [
           {
             title: 'navigation.dashboard',
-            icon: 'tachometer-alt',
+            icon: 'home',
             route: '/admin/dashboard'
           },
           {
-            title: 'navigation.customers',
+            title: 'navigation.students',
             icon: 'user',
-            route: '/admin/customers'
+            route: '/admin/students'
           },
           {
-            title: 'navigation.items',
-            icon: 'star',
-            route: '/admin/items'
+            title: 'navigation.class',
+            icon: 'users',
+            route: '/admin/class'
           }
         ],
 
         [
-          {
-            title: 'navigation.estimates',
-            icon: 'file',
-            route: '/admin/estimates'
-          },
           {
             title: 'navigation.invoices',
             icon: 'file-alt',
@@ -65,7 +60,7 @@ export default {
           },
           {
             title: 'navigation.expenses',
-            icon: 'space-shuttle',
+            icon: 'money-bill-wave',
             route: '/admin/expenses'
           }
         ],

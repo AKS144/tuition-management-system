@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Tutor;
 
 class Tutor extends Model
 {
@@ -26,7 +27,7 @@ class Tutor extends Model
     /**
      * Get the classroom associated with the tutor
      */
-    public function classroom(){
+    public function classrooms(){
         return $this->hasMany(Classroom::class);
     }
 
@@ -43,5 +44,10 @@ class Tutor extends Model
     public function addresses()
     {
         return $this->morphMOne(Address::class, 'addressable');
+    }
+
+    public function scopeWhereBranch($query, $branch_id)
+    {
+        $query->where('tutors.branch_id', $branch_id);
     }
 }
