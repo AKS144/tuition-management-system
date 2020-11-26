@@ -79,6 +79,28 @@
                 />
                 <span v-if="$v.formData.date_joined.$error && !$v.formData.date_joined.required" class="text-danger"> {{ $t('validation.required') }} </span>
               </div>
+              
+              <div class="form-group">
+                <label class="form-label">{{ $t('students.parent') }}</label>
+                  <base-select
+                    v-model="formData.parent"
+                    :options="parents"
+                    :allow-empty="false"
+                    :searchable="true"
+                    :custom-label="parentNameWithNric"
+                    :show-labels="false"
+                    :tabindex="5"
+                    :placeholder="$t('students.select_parent')"
+                    label="full_name"
+                  >
+                    <div slot="afterList">
+                      <button type="button" class="list-add-button" @click="openParentModal">
+                        <font-awesome-icon class="icon" icon="cart-plus" />
+                        <label>{{ $t('settings.parent.add_new_parent') }}</label>
+                      </button>
+                    </div>
+                  </base-select>
+              </div>
             </div>
             <div class="col-sm-5">
               <div class="form-group">
@@ -122,84 +144,7 @@
                   />
               </div>
             </div>
-          </div>
-          <hr>
-          <!-- parents basic info -->
-          <div class="row">
-            <div class="section-title col-sm-2">{{ $t('students.parent_info') }}</div>
-            <div class="col-sm-5">
-              <div class="form-group">
-                <label class="form-label">{{ $t('students.parent_name') }}</label><span class="text-danger"> *</span>
-                <base-input
-                  :invalid="$v.formData.parent_name.$error"
-                  v-model="formData.parent_name"
-                  focus
-                  type="text"
-                  name="parent_name"
-                  tab-index="6"
-                  @input="$v.formData.parent_name.$touch()"
-                />
-                <div v-if="$v.formData.parent_name.$error">
-                  <span v-if="!$v.formData.parent_name.required" class="text-danger">
-                    {{ $tc('validation.required') }}
-                  </span>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="form-label">{{ $t('students.relationship') }}</label>
-                <base-input
-                  :invalid="$v.formData.relationship.$error"
-                  v-model.trim="formData.relationship"
-                  type="text"
-                  name="relatonship"
-                  tab-index="8"
-                  @input="$v.formData.relationship.$touch()"
-                />
-                <div v-if="$v.formData.relationship.$error">
-                  <span v-if="!$v.formData.relationship.required" class="text-danger">
-                    {{ $tc('validation.required') }}
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-5">
-              <div class="form-group">
-                <label class="form-label">{{ $t('students.parent_nric') }}</label>
-                <base-input
-                  v-model.trim="formData.parent_nric"
-                  type="text"
-                  tab-index="7"
-                  @input="$v.formData.parent_nric.$touch()"
-                />
-                <div v-if="$v.formData.parent_nric.$error">
-                  <span v-if="!$v.formData.parent_nric.required" class="text-danger">
-                    {{ $tc('validation.required') }}
-                  </span>
-                  <span v-if="!$v.formData.parent_nric.minLength" class="text-danger"> 
-                    {{ $tc('validation.parent_nric', $v.formData.parent_nric.$params.minLength.min, { count: $v.formData.parent_nric.$params.minLength.min }) }} 
-                  </span>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="form-label">{{ $t('students.parent_mobile') }}</label>
-                <base-input
-                  v-model.trim="formData.parent_mobile"
-                  type="text"
-                  name="parent_mobile"
-                  tab-index="9"
-                />
-              </div>
-              <div class="form-group">
-                <label class="form-label">{{ $t('students.parent_email') }}</label>
-                <base-input
-                  v-model.trim="formData.parent_email"
-                  type="text"
-                  name="parent_email"
-                  tab-index="10"
-                />
-              </div>
-            </div>
-          </div>             
+          </div>       
         </div>
       </div>
     </form>
@@ -226,11 +171,6 @@ export default {
         mobile_no: null,
         status: null,
         date_joined: null,
-        parent_name: null,
-        parent_nric: null,
-        relatonship: null,
-        parent_mobile: null,
-        parent_email: null
       },
 
       status_key: null
@@ -270,6 +210,9 @@ export default {
     ...mapGetters('user', [
       'status',
     ]),
+    ...mapGetters('parent', [
+      'parents',
+    ]),
     isEdit () {
       if (this.$route.name === 'students.edit') {
         return true
@@ -286,7 +229,8 @@ export default {
       }
     }
   },
-  mounted () {
+  created () {
+    this.fetchParents()
     if (this.isEdit) {
       this.loadStudent()
     } else {
@@ -298,11 +242,26 @@ export default {
     statusName ({key, value}) {
       return `${key}`
     },
+    parentNameWithNric ({full_name, mobile_no}) {
+      return `${full_name} - ${mobile_no}`
+    },
     ...mapActions('student', [
       'addStudent',
       'fetchStudent',
       'updateStudent'
     ]),
+    ...mapActions('parent', [
+      'fetchParents',
+    ]),
+    ...mapActions('modal', [
+      'openModal'
+    ]),
+    openParentModal () {
+      this.openModal({
+        'title': 'Add Parent',
+        'componentName': 'Parent'
+      })
+    },
     async loadStudent () {
       let { data: { student, parent } } = await this.fetchStudent(this.$route.params.id)
 

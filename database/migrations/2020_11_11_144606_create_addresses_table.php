@@ -25,7 +25,7 @@ class CreateAddressesTable extends Migration
             $table->string('zip')->nullable();
             $table->string('phone')->nullable();
             $table->string('fax')->nullable();
-            $table->string('type')->nullable();
+            $table->string('type')->default('billing');
             $table->bigInteger('addressable_id');
             $table->string('addressable_type');
             $table->timestamps();

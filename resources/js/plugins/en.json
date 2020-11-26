@@ -190,6 +190,7 @@
       "full_name": "Full Name",
       "nric": "NRIC",
       "email": "Email",
+      "parent": "Parent",
       "country": "Country",
       "state": "State",
       "city": "City",
@@ -813,6 +814,14 @@
           "already_in_use": "Level is already in use",
           "deleted_message": "Level deleted successfully",
           "updated_message": "Class successfully updated"
+        },
+
+        "parent": {
+          "name" : "Parents/Guardian Name",
+          "nric": "NRIC",
+          "relationship": "Relationship",
+          "mobile": "Phone Number",
+          "email" : "E-mail"
         }
       },
       "account_settings": {

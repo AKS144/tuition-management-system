@@ -24,6 +24,7 @@ import CategoryModal from './CategoryModal'
 import PaymentMode from './PaymentModeModal'
 import Subject from './SubjectModal'
 import Level from './LevelModal'
+import Parent from './ParentModal'
 import MailTestModal from './MailTestModal'
 
 export default {
@@ -37,6 +38,7 @@ export default {
     PaymentMode,
     Subject,
     Level,
+    Parent,
     MailTestModal
   },
   data () {

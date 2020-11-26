@@ -43,6 +43,11 @@ Route::group(['prefix' => 'v1'], function () {
 
         Route::resource('/students', 'API\StudentController');
 
+        // Parent
+        //----------------------------------
+
+        Route::resource('/parents', 'API\ParentController');
+
         // Classroom
         //----------------------------------
         
