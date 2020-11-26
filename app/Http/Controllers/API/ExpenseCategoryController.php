@@ -113,7 +113,7 @@ class ExpenseCategoryController extends Controller
      * @param  \App\ExpenseCategory  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ExpenseCategory $category)
+    public function destroy($id)
     {
         $category = ExpenseCategory::find($id);
         if ($category->expenses() && $category->expenses()->count() > 0) {
