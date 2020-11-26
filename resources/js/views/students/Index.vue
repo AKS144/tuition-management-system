@@ -167,10 +167,12 @@
           :label="$t('students.mobile_no')"
           show="mobile_no"
         />
-        <table-column
-          :label="$t('students.status')"
-          show="status"
-        />
+        <table-column :label="$t('students.status')" sort-as="status">
+          <template slot-scope="row">
+            <span> {{ $t('students.status') }}</span>
+            <span :class="'student-status-' + (row.status.replace(' ', '')).toLowerCase()">{{row.status.toUpperCase()}}</span>
+          </template>
+        </table-column>
         <table-column
           :label="$t('students.joined_date')"
           sort-as="date_joined"
