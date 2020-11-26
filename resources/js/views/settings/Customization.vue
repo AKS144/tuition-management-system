@@ -11,6 +11,9 @@
         <li class="tab" @click="setActiveTab('SUBJECTS')">
           <a :class="['tab-link', {'a-active': activeTab === 'SUBJECTS'}]" href="#">{{ $t('settings.customization.class.title') }}</a>
         </li>
+        <li class="tab" @click="setActiveTab('LEVELS')">
+          <a :class="['tab-link', {'a-active': activeTab === 'LEVELS'}]" href="#">{{ $t('settings.customization.level.title') }}</a>
+        </li>
       </ul>
 
       <!-- Invoices Tab -->
@@ -247,6 +250,69 @@
         </div>
       </transition>
 
+      <!-- Levels Tab -->
+      <transition name="fade-customize">
+        <div v-if="activeTab === 'LEVELS'" class="item-tab">
+          <div class="page-header">
+            <div class="row">
+              <div class="col-md-8">
+                <!-- <h3 class="page-title">
+                  {{ $t('settings.customization.class.title') }}
+                </h3> -->
+              </div>
+              <div class="col-md-4 d-flex flex-row-reverse">
+                <base-button
+                  outline
+                  class="add-new-tax"
+                  color="theme"
+                  @click="addLevel"
+                >
+                  {{ $t('settings.customization.level.add_level') }}
+                </base-button>
+              </div>
+            </div>
+          </div>
+          <table-component
+            ref="levelTable"
+            :show-filter="false"
+            :data="levels"
+            table-class="table tax-table"
+            class="mb-3"
+          >
+            <table-column
+              :sortable="true"
+              :label="$t('settings.customization.level.name')"
+              show="name"
+            />
+            <table-column
+              :sortable="false"
+              :filterable="false"
+              cell-class="action-dropdown"
+            >
+              <template slot-scope="row">
+                <span>{{ $t('settings.tax_types.action') }}</span>
+                <v-dropdown>
+                  <a slot="activator" href="#">
+                    <dot-icon />
+                  </a>
+                  <v-dropdown-item>
+                    <div class="dropdown-item" @click="editLevel(row)">
+                      <font-awesome-icon :icon="['fas', 'pencil-alt']" class="dropdown-item-icon" />
+                      {{ $t('general.edit') }}
+                    </div>
+                  </v-dropdown-item>
+                  <v-dropdown-item>
+                    <div class="dropdown-item" @click="removeLevel(row.id)">
+                      <font-awesome-icon :icon="['fas', 'trash']" class="dropdown-item-icon" />
+                      {{ $t('general.delete') }}
+                    </div>
+                  </v-dropdown-item>
+                </v-dropdown>
+              </template>
+            </table-column>
+          </table-component>
+        </div>
+      </transition>
     </div>
   </div>
 </template>
@@ -272,12 +338,18 @@ export default {
       subject: {
         units: []
       },
+      level: {
+        levels: []
+      },
       currentData: null
     }
   },
   computed: {
     ...mapGetters('subject', [
       'subjects'
+    ]),
+    ...mapGetters('level', [
+      'levels'
     ]),
     ...mapGetters('payment', [
       'paymentModes'
@@ -317,6 +389,9 @@ export default {
     ...mapActions('subject', [
       'deleteSubject'
     ]),
+    ...mapActions('level', [
+      'deleteLevel'
+    ]),
     async setInvoiceSetting () {
       let data = {
         key: 'invoice_auto_generate',
@@ -334,7 +409,7 @@ export default {
       })
       this.$refs.subjectTable.refresh()
     },
-    async editItemUnit (data) {
+    async editSubject (data) {
       this.openModal({
         'title': this.$t('settings.customization.class.edit_item_unit'),
         'componentName': 'Subject',
@@ -360,6 +435,42 @@ export default {
             return true
           }
           window.toastr['error'](this.$t('settings.customization.class.already_in_use'))
+        }
+      })
+    },
+    async addLevel () {
+      this.openModal({
+        'title': this.$t('settings.customization.level.add_level'),
+        'componentName': 'Level'
+      })
+      this.$refs.levelTable.refresh()
+    },
+    async editLevel (data) {
+      this.openModal({
+        'title': this.$t('settings.customization.level.edit_level'),
+        'componentName': 'Level',
+        'id': data.id,
+        'data': data
+      })
+      this.$refs.levelTable.refresh()
+    },
+    async removeLevel (id) {
+      swal({
+        title: this.$t('general.are_you_sure'),
+        text: this.$t('settings.customization.level.level_confirm_delete'),
+        icon: '/icon/trash-solid.svg',
+        buttons: true,
+        dangerMode: true
+      }).then(async (value) => {
+        if (value) {
+          let response = await this.deleteLevel(id)
+          if (response.data.success) {
+            window.toastr['success'](this.$t('settings.customization.level.deleted_message'))
+            this.id = null
+            this.$refs.levelTable.refresh()
+            return true
+          }
+          window.toastr['error'](this.$t('settings.customization.level.already_in_use'))
         }
       })
     },

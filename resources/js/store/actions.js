@@ -7,6 +7,7 @@ import * as taxTypeTypes from './modules/tax-type/mutation-types'
 import * as itemTypes from './modules/item/mutation-types'
 import * as paymentModes from './modules/payment/mutation-types'
 import * as subjectTypes from './modules/subject/mutation-types'
+import * as levelTypes from './modules/level/mutation-types'
 
 export default {
     bootstrap ({ commit, dispatch, state }) {
@@ -25,6 +26,7 @@ export default {
             commit('payment/' + paymentModes.SET_PAYMENT_MODES, response.data.paymentMethods)
             commit('user/' + userTypes.SET_STUDENT_STATUS, response.data.status)
             commit('subject/' + subjectTypes.BOOTSTRAP_SUBJECTS, response.data.subject)
+            commit('level/' + levelTypes.BOOTSTRAP_LEVELS, response.data.level)
             commit(types.UPDATE_APP_LOADING_STATUS, true)
             resolve(response)
           }).catch((err) => {

@@ -8,6 +8,7 @@ use App\Subject;
 use App\Currency;
 use App\BranchSetting;
 use App\Item;
+use App\Level;
 use App\TaxType;
 use App\PaymentMethod;
 use App\Unit;
@@ -224,6 +225,9 @@ class UserController extends Controller
         $subject = Subject::latest()
             ->get();
 
+        $level = Level::latest()
+            ->get();
+
         return response()->json([
             'user' => $user,
             'subject' => $subject,
@@ -239,6 +243,7 @@ class UserController extends Controller
             'units' => $units,
             'status' => $status,
             'fiscal_year' => $fiscal_year,
+            'level' => $level
         ]);
     }
 }

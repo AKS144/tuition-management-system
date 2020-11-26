@@ -1,0 +1,4 @@
+export const BOOTSTRAP_LEVELS = 'BOOTSTRAP_LEVELS'
+export const ADD_LEVEL = 'ADD_LEVEL'
+export const UPDATE_LEVEL = 'UPDATE_LEVEL'
+export const DELETE_LEVEL = 'DELETE_LEVEL'

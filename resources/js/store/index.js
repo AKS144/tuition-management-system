@@ -23,6 +23,7 @@ import general from './modules/settings/general'
 import item from './modules/item'
 import classroom from './modules/class'
 import subject from './modules/subject'
+import level from './modules/level'
 
 Vue.use(Vuex)
 
@@ -55,6 +56,7 @@ export default new Vuex.Store({
         general,
         item,
         classroom,
-        subject
+        subject,
+        level
     }
 })

@@ -42,8 +42,7 @@ class ExpenseCategoryController extends Controller
         if($validator->fails()){
             return response([
                 'status' => false,
-                'error' => $validator->errors(),
-                'message' => 'Validation Error'
+                'message' => $validator->errors()->first,
             ], 401);
         }
 

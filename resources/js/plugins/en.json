@@ -798,6 +798,21 @@
           "already_in_use": "Subject is already in use",
           "deleted_message": "Subject deleted successfully",
           "updated_message": "Class successfully updated"
+        },
+        "level": {
+          "title": "Level",
+          "name": "Level",
+          "code": "Class Code",
+          "tutor": "Tutor",
+          "add_level": "Add New Level",
+          "edit_ilevel": "Edit Level",
+          "unit_name": "Name",
+          "item_unit_added": "Subject Added",
+          "item_unit_updated": "Subject Updated",
+          "level_confirm_delete": "You will not be able to recover this Level",
+          "already_in_use": "Level is already in use",
+          "deleted_message": "Level deleted successfully",
+          "updated_message": "Class successfully updated"
         }
       },
       "account_settings": {

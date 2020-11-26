@@ -42,16 +42,16 @@ class LevelController extends Controller
         if($validator->fails()){
             return response([
                 'status' => false,
-                'error' => $validator->errors(),
-                'message' => 'Validation Error'
+                'message' => $validator->errors()->first()
             ], 401);
         }
 
-        $level = Level::create($level);
+        $level = new Level();
+        $level->name = $request->name;
+        $level->save();
 
         return response([
-            'status' => true,
-            'data' => $level
+            'level' => $level
         ], 200);
     }
 
@@ -64,8 +64,22 @@ class LevelController extends Controller
     public function show(Level $level)
     {
         return response([
-            'status' => true,
-            'data' => $level
+            'level' => $level
+        ]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \Crater\Level $Level
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $level = Level::findOrFail($id);
+
+        return response()->json([
+            'level' => $level
         ]);
     }
 
@@ -76,14 +90,16 @@ class LevelController extends Controller
      * @param  \App\Level  $level
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Level $level)
+    public function update(Request $request, $id)
     {
-        $level->update($request->all());
+        $level = Level::findOrFail($id);
+        $level->name = $request->name;
+        $level->save();
 
-        return response([
-            'status' => true,
-            'data' => $level,
-        ], 200);
+        return response()->json([
+            'level' => $level,
+            'success' => true
+        ]);
     }
 
     /**
@@ -92,12 +108,20 @@ class LevelController extends Controller
      * @param  \App\Level  $level
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Level $level)
+    public function destroy($id)
     {
+        $level = Level::find($id);
+        if (($level->subjects() && $level->subjects()->count() > 0) || 
+            ($level->subjectLevel() && $level->subjectLevel()->count() > 0)) {
+            return response()->json([
+                'success' => false
+            ]);
+        }
+
         $level->delete();
 
-        return response([
-            'status' => true,
-        ], 200);
+        return response()->json([
+            'success' => true
+        ]);
     }
 }
