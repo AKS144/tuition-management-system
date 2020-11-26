@@ -33,7 +33,7 @@ class TaxType extends Model
         return $this->belongsTo(Branch::class);
     }
 
-    public function scopeWhereCompany($query, $branch_id)
+    public function scopeWhereBranch($query, $branch_id)
     {
         $query->where('branch_id', $branch_id);
     }

@@ -57,12 +57,12 @@ export default {
           icon: 'cog',
           iconType: 'fas'
         },
-        // {
-        //   link: '/admin/settings/tax-types',
-        //   title: 'settings.menu_title.tax_types',
-        //   icon: 'check-circle',
-        //   iconType: 'far'
-        // },
+        {
+          link: '/admin/settings/tax-types',
+          title: 'settings.menu_title.tax_types',
+          icon: 'check-circle',
+          iconType: 'far'
+        },
         // {
         //   link: '/admin/settings/expense-category',
         //   title: 'settings.menu_title.expense_category',

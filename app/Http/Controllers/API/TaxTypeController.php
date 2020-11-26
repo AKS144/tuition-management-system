@@ -22,9 +22,11 @@ class TaxTypeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $taxTypes = TaxType::all();
+        $taxTypes = TaxType::whereBranch($request->header('branch'))
+            ->latest()
+            ->get();
 
         return response([
             'status' => true,
@@ -51,17 +53,23 @@ class TaxTypeController extends Controller
         if($validator->fails()){
             return response([
                 'status' => false,
-                'error' => $validator->errors(),
-                'message' => 'Validation Error'
+                'message' => $validator->errors()->first()
             ], 401);
         }
 
-        $taxTypes = TaxType::create($taxTypes);
+        $taxType = new TaxType();
+        $taxType->name = $request->name;
+        $taxType->percent = $request->percent;
+        $taxType->description = $request->description;
+        if ($request->has('compound_tax')) {
+            $taxType->compound_tax = $request->compound_tax;
+        }
+        $taxType->branch_id = $request->header('branch');
+        $taxType->save();
 
-        return response([
-            'status' => true,
-            'data' => $taxTypes,
-        ], 200);
+        return response()->json([
+            'taxType' => $taxType,
+        ]);
     }
 
     /**
@@ -79,6 +87,19 @@ class TaxTypeController extends Controller
     }
 
     /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \Crater\TaxType  $taxType
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(TaxType $taxType)
+    {
+        return response()->json([
+            'taxType' => $taxType
+        ]);
+    }
+
+    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -87,12 +108,33 @@ class TaxTypeController extends Controller
      */
     public function update(Request $request, TaxType $taxType)
     {
-        $taxType->update($request->all());
+        $taxTypes = $request->all();
 
-        return response([
-            'status' => true,
-            'data' => $taxType,
-        ], 200);
+        $validator = Validator::make($taxTypes, [
+            'name' => 'required|unique:tax_types',
+            'percent' => 'required|between:0, 99.99',
+
+        ]);
+
+        if($validator->fails()){
+            return response([
+                'status' => false,
+                'message' => $validator->errors()->first()
+            ], 401);
+        }
+
+        $taxType->name = $request->name;
+        $taxType->percent = $request->percent;
+        $taxType->description = $request->description;
+        if ($request->has('collective_tax')) {
+            $taxType->collective_tax = $request->collective_tax;
+        }
+        $taxType->compound_tax = $request->compound_tax;
+        $taxType->save();
+
+        return response()->json([
+            'taxType' => $taxType,
+        ]);
     }
 
     /**
@@ -103,10 +145,15 @@ class TaxTypeController extends Controller
      */
     public function destroy(TaxType $taxType)
     {
+        if ($taxType->taxes() && $taxType->taxes()->count() > 0) {
+            return response()->json([
+                'success' => false
+            ]);
+        }
         $taxType->delete();
 
-        return response([
-            'status' => true,
-        ], 200);
+        return response()->json([
+            'success' => true
+        ]);
     }
 }
