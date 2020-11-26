@@ -62,8 +62,40 @@ class SettingsController extends Controller
             'selectedLanguage' => $language,
             'selectedCurrency' => $currency,
             'carbon_date_format' => $carbon_date_format,
-            'moment_date_format' => $moment_date_format,
-            'status' => $status,
+            'moment_date_format' => $moment_date_format
+        ]);
+    }
+
+    public function updateGeneralSettings(Request $request){
+        $sets = [
+            'currency',
+            'time_zone',
+            'language',
+            'carbon_date_format',
+            'fiscal_year',
+            'moment_date_format'
+        ];
+
+        foreach ($sets as $key) {
+            BranchSetting::setSetting($key, $request->$key, $request->header('branch'));
+        }
+
+        return response()->json([
+            'success' => true
+        ]);
+    }  
+    
+    /**
+     * Retrieve Specific Branch Setting
+     * @param \Crater\Http\Requests\SettingKeyRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getSetting(Request $request)
+    {
+        $setting = BranchSetting::getSetting($request->key, $request->header('branch'));
+
+        return response()->json([
+            $request->key => $setting
         ]);
     }
 

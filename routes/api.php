@@ -144,8 +144,13 @@ Route::group(['prefix' => 'v1'], function () {
         //----------------------------------
         Route::group(['prefix' => 'settings'], function () {
             Route::get('/general', [
-                'as' => 'get.admin.branch.setting',
+                'as' => 'get.branch.setting',
                 'uses' => 'API\SettingsController@getGeneralSettings'
+            ]);
+
+            Route::put('/general', [
+                'as' => 'branch.setting',
+                'uses' => 'API\SettingsController@updateGeneralSettings'
             ]);
 
             Route::get('/company', [
@@ -186,6 +191,11 @@ Route::group(['prefix' => 'v1'], function () {
             Route::put('/update-setting', [
                 'as' => 'update.setting',
                 'uses' => 'API\SettingsController@updateSetting'
+            ]);
+
+            Route::get('/get-setting', [
+                'as' => 'admin.setting',
+                'uses' => 'API\SettingsController@getSetting'
             ]);
         });
     });

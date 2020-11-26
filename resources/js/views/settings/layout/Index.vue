@@ -51,12 +51,12 @@ export default {
           icon: 'edit',
           iconType: 'fa'
         },
-        // {
-        //   link: '/admin/settings/preferences',
-        //   title: 'settings.menu_title.preferences',
-        //   icon: 'cog',
-        //   iconType: 'fas'
-        // },
+        {
+          link: '/admin/settings/preferences',
+          title: 'settings.menu_title.preferences',
+          icon: 'cog',
+          iconType: 'fas'
+        },
         // {
         //   link: '/admin/settings/tax-types',
         //   title: 'settings.menu_title.tax_types',

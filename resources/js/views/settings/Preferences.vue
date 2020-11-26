@@ -229,7 +229,7 @@ export default {
       return true
     },
     async getDiscountSettings () {
-      let response = await axios.get('/api/settings/get-setting?key=discount_per_item')
+      let response = await axios.get('/api/v1/settings/get-setting?key=discount_per_item')
       if (response.data) {
         response.data.discount_per_item === 'YES' ?
           this.discount_per_item = true :
@@ -241,7 +241,7 @@ export default {
         key: 'discount_per_item',
         value: this.discount_per_item ? 'YES' : 'NO'
       }
-      let response = await axios.put('/api/settings/update-setting', data)
+      let response = await axios.put('/api/v1/settings/update-setting', data)
       if (response.data.success) {
         window.toastr['success'](this.$t('general.setting_updated'))
       }
