@@ -11,6 +11,6 @@ class ExpenseSeeder extends Seeder
      */
     public function run()
     {
-        factory('App\Expense', 10)->create()->each(function ($expense){});
+        factory('App\Expense', 10)->create();
     }
 }

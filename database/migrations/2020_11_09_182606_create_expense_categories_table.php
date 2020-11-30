@@ -17,7 +17,7 @@ class CreateExpenseCategoriesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('description')->nullable();
-            $table->bigInteger('branch_id')->unsigned()->nullable();
+            $table->bigInteger('branch_id')->unsigned();
             $table->foreign('branch_id')->references('id')->on('branches')->onDelete('cascade');
             $table->timestamps();
         });

@@ -34,7 +34,7 @@ class DatabaseSeeder extends Seeder
             UnitSeeder::class,
             AddressSeeder::class,
             BranchSettingSeeder::class,
-            ExpenseCategoriesSeeder::class,
+            ExpenseCategorySeeder::class,
             ExpenseSeeder::class
         ]);
 
