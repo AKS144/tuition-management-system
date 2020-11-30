@@ -26,7 +26,7 @@ class BranchSettingSeeder extends Seeder
             'language'           => 'en',
             'notification_email' =>  $user->email,
             'fiscal_year'        => '1-12',
-            'carbon_date_format' => 'd m Y',
+            'carbon_date_format' => 'd M Y',
             'moment_date_format' => 'DD MMM YYYY'
         ];
 
