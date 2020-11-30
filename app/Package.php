@@ -20,14 +20,14 @@ class Package extends Model
     /**
      * Get the subject level associated with the package
      */
-    public function subjectLevel(){
+    public function subjectLevels(){
         return $this->belongsToMany(SubjectLevel::class, 'subject_level_package');
     }
 
     /**
      * Get the student associated with the package
      */
-    public function student(){
+    public function students(){
         return $this->belongsToMany(Student::class, 'student_package');
     }
 }

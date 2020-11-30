@@ -98,6 +98,10 @@ Route::group(['prefix' => 'v1'], function () {
         //----------------------------------
         Route::resource('/categories', 'API\ExpenseCategoryController');
 
+        // Packages
+        //----------------------------------
+        Route::resource('/packages', 'API\PackageController');
+
         // Expenses
         //----------------------------------
         Route::post('/expenses/delete', [
