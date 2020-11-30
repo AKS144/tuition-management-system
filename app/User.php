@@ -12,6 +12,7 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Carbon\Carbon;
 use App\BranchSetting;
 use App\Currency;
+use App\Branch;
 
 class User extends Authenticatable implements HasMedia
 {
@@ -62,7 +63,8 @@ class User extends Authenticatable implements HasMedia
      * Get the branch associated with the user
      */
     public function branch(){
-        return $this->belongsTo(Branch::class);
+        // return $this->belongsTo(Branch::class);
+        return $this->belongsToMany(Branch::class, 'branch_user');
     }
 
     /**

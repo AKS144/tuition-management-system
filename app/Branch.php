@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use App\User;
 
 class Branch extends Model implements HasMedia
 {
@@ -25,7 +26,8 @@ class Branch extends Model implements HasMedia
      * Get the user associated with the branch
      */
     public function users(){
-        return $this->hasMany(User::class);
+        // return $this->hasMany(User::class);
+        return $this->belongsToMany(User::class, 'branch_user');
     }
 
     /**

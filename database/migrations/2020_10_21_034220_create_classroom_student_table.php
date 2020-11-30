@@ -15,8 +15,8 @@ class CreateClassroomStudentTable extends Migration
     {
         Schema::create('classroom_student', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('is_recurring');
-            $table->bigInteger('frequency');
+            $table->bigInteger('is_recurring')->default('0');
+            $table->bigInteger('frequency')->nullable();
             $table->bigInteger('classroom_id')->unsigned();
             $table->bigInteger('student_id')->unsigned();
 

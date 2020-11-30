@@ -234,7 +234,7 @@ class UserController extends Controller
             'currencies' => $currencies,
             'default_currency' => $default_currency,
             'default_language' => $default_language,
-            'branch' => $user->branch,
+            'branch' => $user->branch->first(),
             'branches' => Branch::all(),
             'items' => $items,
             'taxTypes' => $taxTypes,
