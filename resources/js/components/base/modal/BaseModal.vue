@@ -21,6 +21,7 @@ import EstimateTemplate from './EstimateTemplate'
 import InvoiceTemplate from './InvoiceTemplate'
 import StudentModal from './StudentModal'
 import CategoryModal from './CategoryModal'
+import PackageModal from './PackageModal'
 import PaymentMode from './PaymentModeModal'
 import Subject from './SubjectModal'
 import Level from './LevelModal'
@@ -35,6 +36,7 @@ export default {
     InvoiceTemplate,
     StudentModal,
     CategoryModal,
+    PackageModal,
     PaymentMode,
     Subject,
     Level,

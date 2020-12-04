@@ -58,6 +58,7 @@ import {
   faLink,
   faHome,
   faMoneyBillWave,
+  faCube
 } from '@fortawesome/free-solid-svg-icons'
 import { far } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
@@ -125,7 +126,8 @@ library.add(
   faRocket,
   faCamera,
   faLink,
-  faHome
+  faHome,
+  faCube
 )
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)

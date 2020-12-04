@@ -552,6 +552,40 @@
         "select_a_category": "Select a category"
       }
     },
+    "packages": {
+      "title": "Expenses",
+      "expenses_list": "Expenses List",
+      "select_a_customer": "Select a student",
+      "expense_title": "Title",
+      "customer": "Student",
+      "contact": "Contact",
+      "category": "Category",
+      "from_date": "From Date",
+      "to_date": "To Date",
+      "expense_date": "Date",
+      "type": "Type",
+      "receipt": "Receipt",
+      "amount": "Amount",
+      "action": "Action",
+      "note": "Note",
+      "category_id": "Category Id",
+      "date": "Expense Date",
+      "add_expense": "Add Expense",
+      "add_new_expense": "Add New Expense",
+      "save_expense": "Save Expense",
+      "update_expense": "Update Expense",
+      "download_receipt": "Download Receipt",
+      "edit_expense": "Edit Expense",
+      "new_expense": "New Expense",
+      "expense": "Expense | Expenses",
+      "no_expenses": "No expenses yet!",
+      "list_of_expenses": "This section will contain the list of expenses.",
+
+      "confirm_delete": "You will not be able to recover this Expense | You will not be able to recover these Expenses",
+      "created_message": "Expense created successfully",
+      "updated_message": "Expense updated successfully",
+      "deleted_message": "Expense deleted successfully | Expenses deleted successfully"
+    },
     "login": {
       "email": "Email",
       "password": "Password",
@@ -639,7 +673,8 @@
         "notifications": "Notifications",
         "tax_types": "Tax Types",
         "expense_category": "Expense Categories",
-        "update_app": "Update App"
+        "update_app": "Update App",
+        "package": "Package"
       },
       "title": "Settings",
       "setting": "Settings | Settings",
@@ -924,6 +959,22 @@
         "finishing_update": "Finishing Update",
         "update_failed": "Update Failed",
         "update_failed_text": "Sorry! Your update failed on : {step} step"
+      },
+      "package": {
+        "title": "Packages",
+        "action": "Action",
+        "description": "List of Subject Packages offered by this branch. You can Add or Remove these packages according to your preference.",
+        "add_new_package": "Add New Package",
+        "add_package": "Add Package",
+        "edit_package": "Edit Package",
+        "package_name": "Package Name",
+        "package_type": "Description",
+        "amount": "Amount",
+        "created_message": "Package created successfully",
+        "deleted_message": "Package deleted successfully",
+        "updated_message": "Package updated successfully",
+        "confirm_delete": "You will not be able to recover this Package",
+        "already_in_use": "Package is already in use"
       }
     },
     "wizard": {

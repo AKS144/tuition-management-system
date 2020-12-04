@@ -20,7 +20,7 @@ class PackageController extends Controller
 
         return response([
             'success' => true,
-            'package' => $package
+            'packages' => $package
         ]);
     }
 
@@ -50,7 +50,7 @@ class PackageController extends Controller
 
         return response([
             'success' => true,
-            'data' => $package
+            'package' => $package
         ], 200);
     }
 
@@ -64,7 +64,16 @@ class PackageController extends Controller
     {
         return response()->json([
             'success' => true,
-            'data' => $package
+            'package' => $package
+        ]);
+    }
+
+    public function edit($id)
+    {
+        $package = Package::findOrFail($id);
+
+        return response()->json([
+            'package' => $package
         ]);
     }
 
@@ -75,13 +84,17 @@ class PackageController extends Controller
      * @param  \App\Package  $package
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Package $package)
+    public function update(Request $request, $id)
     {
-        $package->update($request->all());
+        $package = Package::findOrFail($id);
+        $package->name = $request->name;
+        $package->type = $request->type;
+        $package->amount = $request->amount;
+        $package->save();
 
         return response()->json([
-            'success' => true,
-            'data' => $package
+            'packages' => $package,
+            'success' => true
         ]);
     }
 
