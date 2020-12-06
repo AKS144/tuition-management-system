@@ -60,7 +60,7 @@ import UserProfile from './views/settings/UserProfile.vue'
 import TaxTypes from './views/settings/TaxTypes.vue'
 import ExpenseCategory from './views/settings/ExpenseCategory.vue'
 import MailConfig from './views/settings/MailConfig.vue'
-import UpdateApp from './views/settings/UpdateApp.vue'
+import Packages from './views/settings/Package.vue'
 
 // Users
 
@@ -319,9 +319,9 @@ const routes = [
                     component: Notifications
                 },
                 {
-                    path: 'update-app',
-                    name: 'updateapp',
-                    component: UpdateApp
+                    path: 'packages',
+                    name: 'packages',
+                    component: Packages
                 }
                 ]
             }

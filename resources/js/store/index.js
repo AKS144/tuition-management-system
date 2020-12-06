@@ -25,6 +25,7 @@ import classroom from './modules/class'
 import subject from './modules/subject'
 import level from './modules/level'
 import parent from './modules/parent'
+import pack from './modules/package'
 
 Vue.use(Vuex)
 
@@ -59,6 +60,7 @@ export default new Vuex.Store({
         classroom,
         subject,
         level,
-        parent
+        parent,
+        pack
     }
 })

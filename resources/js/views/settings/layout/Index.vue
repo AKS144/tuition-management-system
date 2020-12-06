@@ -58,6 +58,12 @@ export default {
           iconType: 'fas'
         },
         {
+          link: '/admin/settings/packages',
+          title: 'settings.menu_title.package',
+          icon: 'cube',
+          iconType: 'fa'
+        },
+        {
           link: '/admin/settings/tax-types',
           title: 'settings.menu_title.tax_types',
           icon: 'check-circle',
